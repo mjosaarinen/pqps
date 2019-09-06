@@ -80,29 +80,66 @@ It's helpful to have an USB extension cable and an USB hub with individual
 on/off switches for each ports (something like £10).
 
 
-## Measurement mod
+## Measurement Mods
 
 I followed the instructions in section 1.2. "Quick setup to measure current 
-on board Nucleo64" of UM2269. 
+on board Nucleo64" of UM2269. There are other measurement options.
 
+Setup to measure current consumption of MCU only:
+
+* On PowerShield: Jumpers of power supply pin: Close jumper AREF_ARD, open jumper 3V3_ARD.
+* On Nucleo64: Open Jumper IDD. 
+* On Nucleo64: Remove solder bridge SB12 to disconnect reset signal
+from ST-Link part.
+
+UM1724 states that "SB12 NRST (target STM32 RESET) must be OFF if CN4 pin 5 is 
+used in the external application." Anyway, this is not your typical 
+accidental solder bridge but a surface-mounted zero-ohm resistor. 
+Just carefully heat both ends of the resistor until it comes off. 
+Since there is some solder residue, I used a multimeter to check that
+the connection is really off.
 
 | <img src="assets/pqps_jumpers.jpg"> | <img src="assets/idd_jumper.jpg"> |<img src="assets/sb12_solder.jpg">
-|-----|-----|-----|
-| Jumpers on PowerShield | IDD Jumper on Nucleo64 | The SB12 Solder Bridge |
+|:---:|:---:|:---:|
+| Jumpers on PowerShield. | IDD Jumper on Nucleo64. | The SB12 Solder Bridge. |
 
 
-<img src="assets/pqps_jumpers.jpg"><img src="assets/idd_jumper.jpg"><img src="assets/sb12_solder.jpg">
+## Note on the serial interface
 
+We will be dealing with two serial interfaces simultaneously; on my
+system the they appear as `/dev/ttyACM0` and  `/dev/ttyACM1`; in order to 
+find their unique identifier paths, list: `ls /dev/serial/by-id`. 
 
-![pqps_jumpers](assets/pqps_jumpers.jpg)
-![idd_jumper](assets/idd_jumper.jpg)
-![sb12_solder](assets/sb12_solder.jpg)
+The PowerShield line feed dicipline is little strange. For direct access
+I use picocom (`sudo install picocom`) like this (as noted, the path
+can be different for you):
+
+```
+picocom --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronics_PowerShield__Virtual_ComPort_in_FS_Mode__FFFFFFFEFFFF-if00
+```
+
+Try issuing the `help` command to get a command summary. 
+
+UM2269 states that the PowerShield baudrate is 3686400, but I really don't 
+know how to make that work (it actually sounds crazy high). 
+`setserial -av <powershield device>` gives a base rate of 38400 anyway.
+
 
 
 
 ## Blahbnlah
 
 ```
+
+freq 5
+format ascii_dec
+acqtime 5
+
+targrst 1
+start
+
+
+st-flash --format ihex write BUILD/pqps.hex
 
 I'm using picocom to talk with the board:
 
@@ -113,7 +150,9 @@ git clone --recursive https://github.com/mupq/pqm4.git
 GNU Tools for Arm Embedded Processors 8-2019-q3-update
 
 
-picocom --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronics_PowerShield__Virtual_ComPort_in_FS_Mode__FFFFFFFEFFFF-if00
+picocom --echo --imap lfcrlf --omap crlf 
+/dev/serial/by-id/usb-STMicroelectronics_PowerShield__Virtual_ComPort_in_FS_Mode__FFFFFFFEFFFF-if00
+
 
 picocom --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronics_STM32_STLink_0672FF535155878281153855-if02
 
@@ -122,8 +161,6 @@ lcd 1 "PowerShield/PQPS"
 lcd 2 "(c)2019 PQShield"
 
 
-stty ]icrnl 
-/dev/serial/by-id/usb-STMicroelectronics_PowerShield__Virtual_ComPort_in_FS_Mode__FFFFFFFEFFFF-if00
 
 ```
 
