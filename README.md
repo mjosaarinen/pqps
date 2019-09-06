@@ -11,7 +11,7 @@ relationship is linear and largely algorithm-independent, but we'll see.
 
 This little tutorial and software package explains how to use the
 [X-NUCLEO-LPM01A](https://www.st.com/en/evaluation-tools/x-nucleo-lpm01a.html),
-high-precision controlled power supply board to measure power consumption of 
+a high-precision controlled power supply board to measure power consumption of 
 cryptographic algorithms of a Cortex M4 target. The board is commonly
 called "PowerShield" in ST documentation, and I'll it as self. Note that
 the PowerShield is used in the "industry standard" Ultra-Low Power (ULP)
@@ -84,6 +84,13 @@ on/off switches for each ports (something like £10).
 
 I followed the instructions in section 1.2. "Quick setup to measure current 
 on board Nucleo64" of UM2269. 
+
+![PowerShield Sandwich](assets/pqps_jumpers.jpg)
+![PowerShield Sandwich](assets/idd_jumper.jpg)
+![PowerShield Sandwich](assets/sb12_solder.jpg)
+
+
+## Blahbnlah
 
 ```
 
