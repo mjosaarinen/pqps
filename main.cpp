@@ -123,7 +123,7 @@ int main()
 	//	SystemCoreClock = 24000000;
 	//	SystemCoreClockUpdate();
 
-	pc.printf("\n[RESET] This is pqnucleo! Welcome.\n\n");
+	pc.printf("\n[RESET] This is PQPowerShield! Welcome.\n\n");
 
  	pc.printf("SystemCoreClock         %lu\n", SystemCoreClock); 
 
