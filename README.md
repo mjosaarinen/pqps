@@ -86,7 +86,7 @@ I followed the instructions in section 1.2. "Quick setup to measure current
 on board Nucleo64" of UM2269. 
 
 
-| <img src="assets/pqps_jumpers.jpg" height="512"> | <img src="assets/idd_jumper.jpg" height="512"> |<img src="assets/sb12_solder.jpg" height="512">
+| <img src="assets/pqps_jumpers.jpg"  width="640" height="512"> | <img src="assets/idd_jumper.jpg"  width="640" height="512"> |<img src="assets/sb12_solder.jpg" width="640" height="512">
 |-----|-----|-----|
 | Jumpers on PowerShield | IDD Jumper on Nucleo64 | The SB12 Solder Bridge |
 
