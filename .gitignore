@@ -1,0 +1,6 @@
+*.o
+*.bin
+*.elf
+*.a
+*.d
+BUILD/
