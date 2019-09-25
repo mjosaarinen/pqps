@@ -48,7 +48,7 @@ PROJECT := pqps
 #PQALG	= pqm4/crypto_kem/frodokem640aes/m4
 #PQALG	= pqm4/crypto_sign/falcon512/m4-ct
 
-#PQALG	= pqm4/crypto_sign/dilithium3/m4
+PQALG	?= pqm4/crypto_kem/saber/m4
 
 # Project settings
 ###############################################################################
@@ -86,25 +86,26 @@ LINKER_SCRIPT ?= ../mbed/TARGET_NUCLEO_F411RE/TOOLCHAIN_GCC_ARM/STM32F411XE.ld
 ###############################################################################
 # Tools and Flags
 
-AS      = arm-none-eabi-gcc
-CC      = arm-none-eabi-gcc
+AS		= arm-none-eabi-gcc
+CC		= arm-none-eabi-gcc
+AR		= arm-none-eabi-ar
 CPP     = arm-none-eabi-g++
-LD      = arm-none-eabi-gcc
+LD		= arm-none-eabi-gcc
 
 PREPROC = arm-none-eabi-cpp
 ELF2BIN = arm-none-eabi-objcopy
 
 MY_ARCH	= -mcpu=cortex-m4 -mthumb -mfpu=fpv4-sp-d16 -mfloat-abi=softfp
 
-C_DEFS += -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
-C_DEFS += -fmessage-length=0 -fno-exceptions -ffunction-sections
-C_DEFS += -fdata-sections -funsigned-char -fno-delete-null-pointer-checks
-C_DEFS += -fomit-frame-pointer
-C_DEFS += -MMD $(INCLUDE_PATHS) $(MY_ARCH) -O3
+C_DEFS	+= -Wall -Wextra -Wno-unused-parameter -Wno-missing-field-initializers
+C_DEFS	+= -fmessage-length=0 -fno-exceptions -ffunction-sections
+C_DEFS	+= -fdata-sections -funsigned-char -fno-delete-null-pointer-checks
+C_DEFS	+= -fomit-frame-pointer
+C_DEFS	+= -MMD $(INCLUDE_PATHS) $(MY_ARCH) -O3
 
-C_FLAGS += -std=c99
-C_FLAGS += -include mbed_config.h
-C_FLAGS += $(C_DEFS)
+C_FLAGS	+= -std=c99
+C_FLAGS	+= -include mbed_config.h
+C_FLAGS	+= $(C_DEFS)
 
 CXX_FLAGS += -include mbed_config.h
 CXX_FLAGS += -fno-rtti
@@ -156,8 +157,7 @@ $(PROJECT).link_script.ld: $(LINKER_SCRIPT)
 #	@$(PREPROC) -E -P $(LD_FLAGS) $< -o $@
 	cp $(LINKER_SCRIPT) $(PROJECT).link_script.ld
 
-
-$(PROJECT).elf: $(OBJECTS) $(SYS_OBJECTS) $(PROJECT).link_script.ld 
+$(PROJECT).elf: $(OBJECTS)  $(SYS_OBJECTS) $(PROJECT).link_script.ld 
 	+@echo "link: $(notdir $@)"
 	+@echo "$(filter %.o, $^)" > .link_options.txt
 	@$(LD) $(LD_FLAGS) -T $(filter-out %.o, $^) $(LIBRARY_PATHS) \
@@ -165,17 +165,9 @@ $(PROJECT).elf: $(OBJECTS) $(SYS_OBJECTS) $(PROJECT).link_script.ld
 
 $(PROJECT).bin: $(PROJECT).elf
 	$(ELF2BIN) -O binary $< $@
-	+@echo "===== bin file ready to flash: $(OBJDIR)/$@ =====" 
 
 $(PROJECT).hex: $(PROJECT).elf
 	$(ELF2BIN) -O ihex $< $@
-
-dump-vars:
-	@echo pwd = `pwd`
-	@echo C_FLAGS = $(C_FLAGS)
-	@echo INCLUDE_PATHS = $(INCLUDE_PATHS)
-	@echo OBJECTS = $(OBJECTS)
-
 
 # flash it
 
