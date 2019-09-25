@@ -1,0 +1,182 @@
+################################################################################
+#                             PowerShield commands                             #
+################################################################################
+#   Command    #                          Description                          #
+################################################################################
+# Common operation                                                             #
+################################################################################
+# help         # Displays list of commands.                                    #
+#              #                                                               #
+# echo <arg1>  # Loopback to check functionality of communication Rx and Tx.   #
+#              # <arg1>: String of characters                                  #
+#              #                                                               #
+# powershield  # Check PowerShield device availability, can be used to scan    #
+#              # on which serial port is connected the PowerShield.            #
+#              # Response: 'PowerShield present' with board unique ID          #
+#              #                                                               #
+# version      # Get PowerShield FW revision.                                  #
+
+PowerShield > ack powershield 540096853-1296257025-2424881
+
+#              # Response: '<main>.<sub1>.<sub2>'                              #
+#              #                                                               #
+# status       # Get PowerShield status.                                       #
+#              # Response: 'ok' or 'error: <error description>'                #
+#              #                                                               #
+# htc          # Host take control (go from mode 'standalone'                  #
+#              # to mode 'controlled by host')                                 #
+# hrc          # Host release control (go from mode 'controlled by host'       #
+#              # to mode 'standalone')                                         #
+#              #                                                               #
+# lcd          # Display a custom string on LCD display when PowerShield is    #
+# <arg1>       # controlled by host.                                           #
+# <arg2>       # <arg1>: LCD line. Numerical value among list: {1, 2}          #
+#              # <arg2>: String to be displayed, surrounded by double quotes   #
+#              #         and with 16 characters maximum.                       #
+#              # Example: lcd 1 "  custom display"                             #
+#              #                                                               #
+# psrst        # Reset PowerShield (hardware reset,                            #
+#              # host communication will have to be restored).                 #
+#              #                                                               #
+################################################################################
+# Measurement acquisition configuration                                        #
+################################################################################
+# volt <arg1>  # Set or get power supply voltage level, unit: V.               #
+#              # <arg1>: Set voltage: Numerical value in range [1800m; 3300m]  #
+#              #                      Default value: 3300mV                    #
+#              #         Get voltage: String 'get'                             #
+#              #                                                               #
+# freq <arg1>  # Set sampling frequency, unit: Hz.                             #
+#              # <arg1>: Numerical value among list:                           #
+#              #         {100k, 50k, 20k, 10k, 5k, 2k, 1k, 500, 200            #
+#              #          100, 50, 20, 10, 5, 2, 1}                            #
+#              #         Default value: 100Hz                                  #
+#              #                                                               #
+# acqtime      # Set acquisition time, unit: s.                                #
+# <arg1>       # <arg1>: For limited acquisition duration:                     #
+#              #           Numerical value in range: [100u; 10]                #
+#              #         For infinite acquisition duration:                    #
+#              #           Numerical value '0' or string 'inf'                 #
+#              #         Caution: Maximum acquisition time depends on other    #
+#              #                  parameters. Refer to table below.            #
+#              #         Default value: 10s                                    #
+#              #                                                               #
+# acqmode      # Set acquisition mode: dynamic or static.                      #
+# <arg1>       #   dynamic: current can vary, range [100nA; 10mA]              #
+#              #   static: current must be constant, range [2nA; 200mA]        #
+#              # <arg1>: String among list: {dyn, stat}                        #
+#              #         Default value: 'dyn'                                  #
+#              #                                                               #
+# funcmode     # Set optimization of acquisition mode dynamic (applicable      #
+# <arg1>       # only with command 'output' set to parameter 'current'):       #
+#              #   optim: priority on current resolution (100nA-10mA),         #
+#              #          max sampling frequency at 100KHz.                    #
+#              #   high:  high current (30uA-10mA), high sampling frequency    #
+#              #          (50-100KHz), high resolution.                        #
+#              # <arg1>: String among list: {optim, high}                      #
+#              #         Default value: 'optim'                                #
+#              #                                                               #
+# output       # Set output type.                                              #
+# <arg1>       #   current: instantaneous current                              #
+#              #   energy:  integrated energy, reset after each sample sent    #
+#              #            (integration time set by param 'freq',             #
+#              #            limited at 10kHz max (<=> 100us min)).             #
+#              # <arg1>: String among list: {current, energy}                  #
+#              #         Default value: 'current'                              #
+#              #                                                               #
+# format <arg1># Set measurement data format.                                  #
+#              # Data format 1: ASCII, decimal basis.                          #
+#              #                Format readable directly, but sampling         #
+#              #                frequency limited to 10kHz.                    #
+#              #                Decoding: 6409-07 <=> 6409 x 10^-7 = 640.9uA   #
+#              # Data format 2: Binary, hexadecimal basis.                     #
+#              #                Format optimized data stream size.             #
+#              #                Decoding: 52A0 <=> (2A0)16 x 16^-5 = 640.9uA   #
+#              # <arg1>: String among list: {ascii_dec, bin_hexa}              #
+#              #         Caution: Data format depends on other                 #
+#              #                  parameters. Refer to table below.            #
+#              #         Default value: 'ascii_dec'                            #
+#              #                                                               #
+# trigsrc      # Set trigger source to start measurement acquisition:          #
+# <arg1>       # trigger source SW (immediate trig after SW start),            #
+#              # trigger from external signal rising or falling edge on        #
+#              # Arduino connector D7 (via solder bridge).                     #
+#              # <arg1>: String among list: {sw, d7}                           #
+#              #         Default value: 'sw'                                   #
+#              #                                                               #
+# trigdelay    # Set trigger delay between target power-up and start           #
+# <arg1>       # measurement acquisition, unit: s, resolution: 1ms.            #
+#              # <arg1>: Numerical value in range [0; 30]                      #
+#              #         Default value: 1m                                     #
+#              #                                                               #
+# currthres    # Set current threshold to trig an event, unit: A.              #
+# <arg1>       # Event triggered when threshold exceeded: signal generated     #
+#              # on Arduino connector D2 or D3 (via solder bridge)             #
+#              # and LED4 (blue) turned on.                                    #
+#              # <arg1>: Numerical value in range [100n; 50m]                  #
+#              #         or value '0' for threshold disable                    #
+#              #         Default value: 1m                                     #
+#              #                                                               #
+# pwrend       # Set target power supply to be applied after current           #
+# <arg1>       # measurement acquisition: power-on or power-off.               #
+#              # <arg1>: String among list: {on, off}                          #
+#              #         Default value: 'on'                                   #
+#              #                                                               #
+################################################################################
+# Measurement acquisition operation                                            #
+################################################################################
+# start        # Start acquisition (measurement of current or energy           #
+#              # depending on configuration).                                  #
+#              #                                                               #
+# stop         # Stop acquisition. If acquisition is set to a finite duration, #
+#              # it will stop when reaching the target duration.               #
+#              #                                                               #
+# targrst      # Reset target by disconnecting power supply during             #
+# <arg1>       # a configurable duration, unit: s.                             #
+#              # Note: Can be performed during acquisition to monitor target   #
+#              #       transient current consumption during its power-up.      #
+#              # <arg1>: Numerical value in range [10m; 1]                     #
+#              #         or value '0' to let target powered-down               #
+#              #                                                               #
+# temp         # Get temperature from temperature sensor on PowerShield board, #
+# <arg1>       # on unit: Degree Celsius or Fahrenheit.                        #
+#              # <arg1>: String among list: {degc, degf}                       #
+#              #         Default value: 'degc'                                 #
+#              #                                                               #
+################################################################################
+# Board state operation                                                        #
+################################################################################
+# autotest     # Perform board autotest and display autotest results.          #
+# <arg1>       # Note: Autotest is done at PowerShield power-up.               #
+#              # <arg1>: Optional: string among list: {start, status}          #
+#              #                   or no argument equivalent to value: 'start' #
+#              #                                                               #
+# calib        # Perform board self-calibration.                               #
+#              # Note: New calibration should be performed when temperature    #
+#              #       shifts of more than 5 degC since the previous           #
+#              #       calibration.                                            #
+#              # Note: Calibration is done at PowerShield power-up             #
+#              #       and after each update of power supply voltage level.    #
+#              #                                                               #
+################################################################################
+# Note: Numerical values of arguments can be formatted either:                 #
+#       - Numerical characters only (possible when numbers are >= 1)           #
+#       - Numerical characters with unit characters 'u', 'm', 'k', 'm'         #
+#       - Numerical characters with power of ten '-xx' or '+xx'                #
+#         (xx: number on 2 digits maximum)                                     #
+#       Example: Value '2 milliseconds' can be entered with: '2m' or '2-3'     #
+################################################################################
+# Table of maximum acquisition time possible in function of                    #
+# sampling frequency and data format,                                          #
+# for a baudrate of 3686400 bauds:                                             #
+#    ______________________________________________________________________    #
+#    |  format        freq    |   acqtime max    (corresp. nb of samples) |    #
+#    |____________________________________________________________________|    #
+#    | ascii_dec  | <=  5k    |    unlimited     (unlimited)              |    #
+#    | ascii_dec  |    10k    |        1s        (   10 000)              |    #
+#    | ascii_dec  |    20k    |      500ms       (    5 000)              |    #
+#    | bin_hexa   | <=100k    |    unlimited     (unlimited)              |    #
+#    |____________________________________________________________________|    #
+################################################################################
+
+

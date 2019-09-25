@@ -138,7 +138,7 @@ acqtime 5
 targrst 1
 start
 
-
+st-flash reset
 st-flash --format ihex write BUILD/pqps.hex
 
 I'm using picocom to talk with the board:
@@ -150,8 +150,7 @@ git clone --recursive https://github.com/mupq/pqm4.git
 GNU Tools for Arm Embedded Processors 8-2019-q3-update
 
 
-picocom --echo --imap lfcrlf --omap crlf 
-/dev/serial/by-id/usb-STMicroelectronics_PowerShield__Virtual_ComPort_in_FS_Mode__FFFFFFFEFFFF-if00
+picocom --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronics_PowerShield__Virtual_ComPort_in_FS_Mode__FFFFFFFEFFFF-if00
 
 
 picocom --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronics_STM32_STLink_0672FF535155878281153855-if02
