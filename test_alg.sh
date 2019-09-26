@@ -20,6 +20,6 @@ do
 	echo ==== $alg ====
 	make clean
 	make PQALG=$alg flash
-	time timeout 100 ./psctrl.py | tee $log
+	time timeout 120 ./psctrl.py | tee $log
 done
 

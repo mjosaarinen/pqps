@@ -158,6 +158,7 @@ htc    1234567890123456
 lcd 1 "PowerShield/PQPS"
 lcd 2 "(c)2019 PQShield"
 
+for x in *.txt; do cat $x | tr '\000' '#' | grep -A 55 -e BASELINE -e "GET ALL" | grep "#" | sed 's/-/E-/g' | grep E | tr '#\n' ' ,'; echo $x; done > baseline.csv 
 
 
 ```

@@ -78,13 +78,6 @@ int test_sign(int ms_time)
 
 	ser.printf("\n[INIT] test_sign(%d)\n", ms_time);
 
-#ifdef CRYPTO_ALGNAME
-	ser.printf("CRYPTO_ALGNAME          %s\n", CRYPTO_ALGNAME);
-#endif        
-	ser.printf("CRYPTO_SECRETKEYBYTES   %d\n", CRYPTO_SECRETKEYBYTES);
-	ser.printf("CRYPTO_PUBLICKEYBYTES   %d\n", CRYPTO_PUBLICKEYBYTES);
-	ser.printf("CRYPTO_BYTES            %d\n", CRYPTO_BYTES);
-
 	timer.reset();
 	timer.start();
 
@@ -151,7 +144,7 @@ int measure_sign(int ms_time, int do_kg, int do_sg, int do_so)
 	uint64_t n, kg, sg, so;
 
 	//	make sure that there is a keypair
-	if (!init_sign)
+	if (!do_kg && !init_sign)
 		test_sign(0);
 
 	ser.printf("\n[START] measure_sign(%d%s%s%s)\n", ms_time,
@@ -212,6 +205,9 @@ int measure_sign(int ms_time, int do_kg, int do_sg, int do_so)
 		ser.printf("*** Verify %12llu %s\n",  so / n, CRYPTO_ALGNAME);
 	ser.printf("*** Total  %12llu %s\n",  (kg+sg+so) / n, CRYPTO_ALGNAME);
 
+	if (do_kg)
+		init_sign = 1;
+
 	return r;
 }
 
@@ -235,14 +231,6 @@ int test_kem(int ms_time)
 	int i, r;
 
 	ser.printf("\n[INIT] test_kem(%d)\n", ms_time);
-
-#ifdef CRYPTO_ALGNAME
-	ser.printf("CRYPTO_ALGNAME          %s\n", CRYPTO_ALGNAME);
-#endif        
-	ser.printf("CRYPTO_SECRETKEYBYTES   %d\n", CRYPTO_SECRETKEYBYTES);
-	ser.printf("CRYPTO_PUBLICKEYBYTES   %d\n", CRYPTO_PUBLICKEYBYTES);
-	ser.printf("CRYPTO_CIPHERTEXTBYTES  %d\n", CRYPTO_CIPHERTEXTBYTES);
-	ser.printf("CRYPTO_BYTES            %d\n", CRYPTO_BYTES);
 
 	timer.reset();
 	timer.start();
@@ -307,7 +295,7 @@ int measure_kem(int ms_time, int do_kg, int do_enc, int do_dec)
 	uint64_t n, kg, enc, dec;
 
 	//	make sure that there is a keypair
-	if (!init_kem)
+	if (!do_kg && !init_kem)
 		test_kem(0);
 
 	//	main test
@@ -368,6 +356,9 @@ int measure_kem(int ms_time, int do_kg, int do_enc, int do_dec)
 
  	ser.printf("*** Total  %12llu %s\n",  (kg+enc+dec) / n, CRYPTO_ALGNAME);
 
+	if (do_kg)
+		init_kem = 1;
+
 	return r;
 }
 
@@ -387,9 +378,18 @@ int main()
 	DWT->CYCCNT = 0;
 	DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
 
+	pin_d7 = 0;
+
 #ifdef TEST_KEM
 
-	test_kem(1000);
+#ifdef CRYPTO_ALGNAME
+	ser.printf("CRYPTO_ALGNAME          %s\n", CRYPTO_ALGNAME);
+#endif        
+	ser.printf("CRYPTO_SECRETKEYBYTES   %d\n", CRYPTO_SECRETKEYBYTES);
+	ser.printf("CRYPTO_PUBLICKEYBYTES   %d\n", CRYPTO_PUBLICKEYBYTES);
+	ser.printf("CRYPTO_CIPHERTEXTBYTES  %d\n", CRYPTO_CIPHERTEXTBYTES);
+	ser.printf("CRYPTO_BYTES            %d\n", CRYPTO_BYTES);
+
 	do {
 		ser.printf("[INPUT] a = all, k = keygen, e = encaps, d = decaps\n");	
 
@@ -419,7 +419,13 @@ int main()
 
 #ifdef TEST_SIGN
 
-	test_sign(1000);
+#ifdef CRYPTO_ALGNAME
+	ser.printf("CRYPTO_ALGNAME          %s\n", CRYPTO_ALGNAME);
+#endif        
+	ser.printf("CRYPTO_SECRETKEYBYTES   %d\n", CRYPTO_SECRETKEYBYTES);
+	ser.printf("CRYPTO_PUBLICKEYBYTES   %d\n", CRYPTO_PUBLICKEYBYTES);
+	ser.printf("CRYPTO_BYTES            %d\n", CRYPTO_BYTES);
+
 	do {
 		ser.printf("[INPUT] a = all, k = keygen, s = sign, v = verify\n");	
 
@@ -447,6 +453,8 @@ int main()
 #endif
 
 	ser.printf("\n[DONE] sleep()\n");
+
+	pin_d7 = 0;
 
 	while (1) {
 		sleep();
