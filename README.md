@@ -152,8 +152,7 @@ GNU Tools for Arm Embedded Processors 8-2019-q3-update
 
 picocom --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronics_PowerShield__Virtual_ComPort_in_FS_Mode__FFFFFFFEFFFF-if00
 
-
-picocom --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronics_STM32_STLink_0672FF535155878281153855-if02
+picocom -b 115200 --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronics_STM32_STLink_0672FF535155878281153855-if02
 
 htc    1234567890123456
 lcd 1 "PowerShield/PQPS"

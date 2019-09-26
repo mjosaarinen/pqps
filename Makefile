@@ -86,11 +86,12 @@ LINKER_SCRIPT ?= ../mbed/TARGET_NUCLEO_F411RE/TOOLCHAIN_GCC_ARM/STM32F411XE.ld
 ###############################################################################
 # Tools and Flags
 
-AS		= arm-none-eabi-gcc
-CC		= arm-none-eabi-gcc
-AR		= arm-none-eabi-ar
-CPP     = arm-none-eabi-g++
-LD		= arm-none-eabi-gcc
+TOOLCHAIN = arm-none-eabi-
+AS		= $(TOOLCHAIN)gcc
+CC		= $(TOOLCHAIN)gcc
+AR		= $(TOOLCHAIN)ar
+CPP     = $(TOOLCHAIN)g++
+LD		= $(TOOLCHAIN)gcc
 
 PREPROC = arm-none-eabi-cpp
 ELF2BIN = arm-none-eabi-objcopy

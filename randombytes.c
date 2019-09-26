@@ -8,7 +8,17 @@
 
 //	really super duper quick-and-dirty (but deterministic) fibonacci
 
-uint32_t fibo_a = 0xDEADBEEF, fibo_b = 0x01234567;
+static uint32_t fibo_a = 0xDEADBEEF, fibo_b = 0x01234567;
+
+//	we want to be able to quickly reset the state to some value
+
+void my_random_seed(int seed)
+{
+	fibo_a = (0xDEADBEEF ^ (seed << 20) ^ (seed >> 12)) | 1;
+	fibo_b = seed;
+}
+
+//	simple/stupid fibonacci generator
 
 int randombytes(uint8_t *obuf, size_t len)
 {
