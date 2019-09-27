@@ -17,6 +17,18 @@ void my_random_seed(int seed);
 
 }
 
+//	Algorithm name
+
+#if !defined(CRYPTO_ALGNAME) && defined(crypto_kem_PRIMITIVE)
+#define CRYPTO_ALGNAME crypto_kem_PRIMITIVE
+#endif
+
+#ifndef CRYPTO_ALGNAME
+#define CRYPTO_ALGNAME "undefined"
+#endif
+
+//	KEM or Signature algorithm ?
+
 #ifdef CRYPTO_CIPHERTEXTBYTES
 #define TEST_KEM
 #else
@@ -46,17 +58,10 @@ void hexbytes(const uint8_t *data, size_t len)
 
 void zzz_ms(int ms_time)
 {
-	ser.printf("\n[ZZZ] test_kem(%d)\n", ms_time);
-
-	timer.reset();
-	timer.start();
-
+	ser.printf("\n[ZZZ] zzz_ms(%d)\n", ms_time);
 	pin_d7 = !pin_d7;				//	trigger measurement
-
-	do {
-		sleep();
-	} while (timer.read_ms() < ms_time);
-	timer.stop();
+	wait_ms(ms_time);
+	ser.printf("\n[END] wakey wakey\n");
 }
 
 //	==== SIGNATURE ALGORITHMS ====
@@ -72,16 +77,16 @@ static size_t sm_len = 0;
 static size_t m_len = MESSAGE_BYTES;
 static int init_sign = 0;
 
-int test_sign(int ms_time)
+int test_alg(int ms_time)
 {
-	int 	i, r;
+	int 	i, r, ms;
 
-	ser.printf("\n[INIT] test_sign(%d)\n", ms_time);
+	ser.printf("\n[INIT] test_alg(%d)\n", ms_time);
 
 	timer.reset();
 	timer.start();
 
-	for (i = 0; i < 1000; i++) {
+	for (i = 0; i < 999999999; i++) {
 
 		my_random_seed(i);
 
@@ -124,19 +129,21 @@ int test_sign(int ms_time)
 		}
 
 		//	timeout
-		if (timer.read_ms() > ms_time)
+		ms = timer.read_ms();
+		if (ms > ms_time)
 			break;
+
 	}
 	
 	timer.stop();
 
-	ser.printf("[INIT] self-test ok, i=%d\n", i);
+	ser.printf("[INIT] self-test ok, %d milliseconds (i=%d)\n", ms, i);
 	init_sign = 1;
 
 	return 0;
 }
 
-int measure_sign(int ms_time, int do_kg, int do_sg, int do_so)
+int measure(int ms_time, int do_kg, int do_sg, int do_so)
 {
 	int r, ms;
 	uint32_t t;
@@ -145,9 +152,9 @@ int measure_sign(int ms_time, int do_kg, int do_sg, int do_so)
 
 	//	make sure that there is a keypair
 	if (!do_kg && !init_sign)
-		test_sign(0);
+		test_alg(0);
 
-	ser.printf("\n[START] measure_sign(%d%s%s%s)\n", ms_time,
+	ser.printf("\n[START] measure(%d%s%s%s)\n", ms_time,
 		do_kg ? ",kg" : "", do_sg ? ",sign" : "", do_so ? ",ver" : "");
 
 	r = 0;
@@ -192,7 +199,7 @@ int measure_sign(int ms_time, int do_kg, int do_sg, int do_so)
 
 	timer.stop();
 
-	ser.printf("*** %d milliseconds, n = %llu (%d errors)\n", ms, n, r);
+	ser.printf("[END] %d milliseconds, n=%llu (%d errors)\n", ms, n, r);
 
 	if (n == 0)
 		return r;
@@ -226,17 +233,17 @@ static uint8_t s1[CRYPTO_BYTES];
 static uint8_t s2[CRYPTO_BYTES];
 static int	init_kem = 0;
 
-int test_kem(int ms_time)
+int test_alg(int ms_time)
 {
-	int i, r;
+	int i, r, ms;
 
-	ser.printf("\n[INIT] test_kem(%d)\n", ms_time);
+	ser.printf("\n[TEST] test_alg(%d)\n", ms_time);
 
 	timer.reset();
 	timer.start();
 
 	//	check that it works correctly
-	for (i = 0; i < 1000; i++) {
+	for (i = 0; i < 999999999; i++) {
 
 		my_random_seed(i);
 
@@ -274,12 +281,13 @@ int test_kem(int ms_time)
 		}
 
 		//	timeout
-		if (timer.read_ms() > ms_time)
+		ms = timer.read_ms();
+		if (ms > ms_time)
 			break;
 	}
 	timer.stop();
 
-	ser.printf("[INIT] self-test ok, i=%d\n", i);
+	ser.printf("[TEST] self-test ok, %d millisconds (i=%d)\n", ms, i);
 
 	init_kem = 1;
 
@@ -287,7 +295,7 @@ int test_kem(int ms_time)
 }
 
 
-int measure_kem(int ms_time, int do_kg, int do_enc, int do_dec)
+int measure(int ms_time, int do_kg, int do_enc, int do_dec)
 {
 	int r, ms;
 	uint32_t t;
@@ -296,10 +304,10 @@ int measure_kem(int ms_time, int do_kg, int do_enc, int do_dec)
 
 	//	make sure that there is a keypair
 	if (!do_kg && !init_kem)
-		test_kem(0);
+		test_alg(0);
 
 	//	main test
-	ser.printf("\n[START] measure_kem(%d%s%s%s)\n", ms_time, 
+	ser.printf("\n[START] measure(%d%s%s%s)\n", ms_time, 
 		do_kg ? ",kg" : "", do_enc ? ",enc" : "", do_dec ? ",dec" : "");
 
 	r = 0;
@@ -378,83 +386,60 @@ int main()
 	DWT->CYCCNT = 0;
 	DWT->CTRL |= DWT_CTRL_CYCCNTENA_Msk;
 
+	//	reset trigger
 	pin_d7 = 0;
 
+	ser.printf("CRYPTO_ALGNAME          %s\n", CRYPTO_ALGNAME);
+	ser.printf("CRYPTO_SECRETKEYBYTES   %d\n", CRYPTO_SECRETKEYBYTES);
+	ser.printf("CRYPTO_PUBLICKEYBYTES   %d\n", CRYPTO_PUBLICKEYBYTES);
 #ifdef TEST_KEM
-
-#ifdef CRYPTO_ALGNAME
-	ser.printf("CRYPTO_ALGNAME          %s\n", CRYPTO_ALGNAME);
-#endif        
-	ser.printf("CRYPTO_SECRETKEYBYTES   %d\n", CRYPTO_SECRETKEYBYTES);
-	ser.printf("CRYPTO_PUBLICKEYBYTES   %d\n", CRYPTO_PUBLICKEYBYTES);
 	ser.printf("CRYPTO_CIPHERTEXTBYTES  %d\n", CRYPTO_CIPHERTEXTBYTES);
+#endif
 	ser.printf("CRYPTO_BYTES            %d\n", CRYPTO_BYTES);
 
 	do {
+#ifdef TEST_KEM
 		ser.printf("[INPUT] a = all, k = keygen, e = encaps, d = decaps\n");	
-
-		switch (ch = ser.getc()) {
-			case 'a':
-				measure_kem(5000, 1, 1, 1);
-				break;
-			case 'k':
-				measure_kem(1000, 1, 0, 0);
-				break;
-			case 'e':
-				measure_kem(1000, 0, 1, 0);
-				break;
-			case 'd':
-				measure_kem(1000, 0, 0, 1);
-				break;
-			case 't':
-				test_kem(60000);
-				break;
-			case 'z':
-				zzz_ms(5000);
-				break;
-		}
-	} while (ch != 'x');
-
 #endif
-
 #ifdef TEST_SIGN
-
-#ifdef CRYPTO_ALGNAME
-	ser.printf("CRYPTO_ALGNAME          %s\n", CRYPTO_ALGNAME);
-#endif        
-	ser.printf("CRYPTO_SECRETKEYBYTES   %d\n", CRYPTO_SECRETKEYBYTES);
-	ser.printf("CRYPTO_PUBLICKEYBYTES   %d\n", CRYPTO_PUBLICKEYBYTES);
-	ser.printf("CRYPTO_BYTES            %d\n", CRYPTO_BYTES);
-
-	do {
 		ser.printf("[INPUT] a = all, k = keygen, s = sign, v = verify\n");	
+#endif
 
 		switch (ch = ser.getc()) {
 			case 'a':
-				measure_sign(5000, 1, 1, 1);
+				measure(5000, 1, 1, 1);
 				break;
+
 			case 'k':
-				measure_sign(1000, 1, 0, 0);
+				measure(5000, 1, 0, 0);
 				break;
+
 			case 's':
-				measure_sign(1000, 0, 1, 0);
+			case 'e':
+				measure(5000, 0, 1, 0);
 				break;
+
 			case 'v':
-				measure_sign(1000, 0, 0, 1);
+			case 'd':
+				measure(5000, 0, 0, 1);
 				break;
+
 			case 't':
-				test_sign(60000);
+				test_alg(60000);
 				break;
+
 			case 'z':
 				zzz_ms(5000);
 				break;
 		}
+
+		//	set seed
+		if (ch >= '0' || ch <= '9')
+			my_random_seed(ch - '0');
+
 	} while (ch != 'x');
-#endif
 
 	ser.printf("\n[DONE] sleep()\n");
-
-	pin_d7 = 0;
 
 	while (1) {
 		sleep();

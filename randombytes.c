@@ -25,9 +25,9 @@ int randombytes(uint8_t *obuf, size_t len)
 	size_t i;
 
 	for (i = 0; i < len; i++) {
-		obuf[i] = (fibo_a >> 24) ^ (fibo_b >> 16);
 		fibo_a += fibo_b;
 		fibo_b += fibo_a;
+		obuf[i] = (fibo_a >> 24) ^ (fibo_b >> 16);
 	}
 
 	return 0;

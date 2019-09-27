@@ -48,7 +48,6 @@ PROJECT := pqps
 #PQALG	= pqm4/crypto_kem/frodokem640aes/m4
 #PQALG	= pqm4/crypto_sign/falcon512/m4-ct
 
-PQALG	?= pqm4/crypto_kem/saber/m4
 
 # Project settings
 ###############################################################################
@@ -126,11 +125,7 @@ LD_SYS_LIBS := -Wl,--start-group -lstdc++ -lsupc++ -lm -lc -lgcc -lnosys -lmbed 
 ###############################################################################
 # Rules
 
-
-.PHONY: all lst size
-
-all: $(PROJECT).bin $(PROJECT).hex size
-
+all: $(PROJECT).hex
 
 .c.o:
 	+@$(call MAKEDIR,$(dir $@))
