@@ -54,13 +54,26 @@ void hexbytes(const uint8_t *data, size_t len)
 	ser.printf("\n");
 }
 
-//	sleepy sleep (but trigger!)
+//	delay
 
 void zzz_ms(int ms_time)
 {
+	int ms;
+
 	ser.printf("\n[ZZZ] zzz_ms(%d)\n", ms_time);
-	pin_d7 = !pin_d7;				//	trigger measurement
-	wait_ms(ms_time);
+
+	timer.reset();
+	timer.start();
+
+	pin_d7 = 1;								//	trigger measurement
+	pin_d7 = 0;
+
+	do {
+		ms = timer.read_ms();
+	} while (ms < ms_time);
+
+//	wait_ms(ms_time);
+
 	ser.printf("\n[END] wakey wakey\n");
 }
 
@@ -81,11 +94,13 @@ int test_alg(int ms_time)
 {
 	int 	i, r, ms;
 
-	ser.printf("\n[INIT] test_alg(%d)\n", ms_time);
+	ser.printf("\n[TEST] test_alg(%d)\n", ms_time);
 
 	timer.reset();
 	timer.start();
 
+	r = 0;
+	ms = 0;
 	for (i = 0; i < 999999999; i++) {
 
 		my_random_seed(i);
@@ -99,14 +114,14 @@ int test_alg(int ms_time)
 		r = crypto_sign_keypair(pk, sk);
 		if (r != 0) {
 			ser.printf("i=%d: crypto_sign_keypair() returned %d\n", i, r);
-			return r;
+			break;
 		}
 
 		//	sign message
 		r = crypto_sign(sm, &sm_len, m, MESSAGE_BYTES, sk);
 		if (r != 0) {
 			ser.printf("i=%d: crypto_sign() returned %d\n", i, r);
-			return r;
+			break;
 		}
 		if (sm_len > CRYPTO_BYTES + MESSAGE_BYTES) {
 			ser.printf("i=%d: (Signature of %d bytes is %d bytes.)\n", 
@@ -117,7 +132,7 @@ int test_alg(int ms_time)
 		r = crypto_sign_open(m, &m_len, sm, sm_len, pk);
 		if (r != 0) {
 			ser.printf("i=%d: crypto_sign_open() returned %d\n", i, r);
-			return r;
+			break;
 		}
 
 		//	try to verify corrupt message
@@ -125,8 +140,10 @@ int test_alg(int ms_time)
 		r = crypto_sign_open(m, &m_len, sm, sm_len, pk);
 		if (r == 0) {
 			ser.printf("i=%d: crypto_sign_open() success for bad sign\n", i);
-			return -1;
+			r = -1;
+			break;
 		}
+		r = 0;
 
 		//	timeout
 		ms = timer.read_ms();
@@ -137,10 +154,11 @@ int test_alg(int ms_time)
 	
 	timer.stop();
 
-	ser.printf("[INIT] self-test ok, %d milliseconds (i=%d)\n", ms, i);
+	ser.printf("[END] %s(%d), %d milliseconds (i=%d)\n", 
+		r == 0 ? "PASS" : "FAIL", r, ms, i);
 	init_sign = 1;
 
-	return 0;
+	return r;
 }
 
 int measure(int ms_time, int do_kg, int do_sg, int do_so)
@@ -163,7 +181,8 @@ int measure(int ms_time, int do_kg, int do_sg, int do_so)
 	timer.reset();
 	timer.start();
 
-	pin_d7 = !pin_d7;				//	trigger measurement
+	pin_d7 = 1;								//	trigger measurement
+	pin_d7 = 0;
 
 	do {
 		n++;
@@ -243,6 +262,9 @@ int test_alg(int ms_time)
 	timer.start();
 
 	//	check that it works correctly
+
+	r = 0;
+	ms = 0;
 	for (i = 0; i < 999999999; i++) {
 
 		my_random_seed(i);
@@ -256,19 +278,19 @@ int test_alg(int ms_time)
 		r = crypto_kem_keypair(pk, sk);
 		if (r != 0) {
 			ser.printf("i=%d: crypto_kem_keypair() returned %d\n", i, r);
-			return r;
+			break;
 		}
 
 		r = crypto_kem_enc(ct, s1, pk);
 		if (r != 0) {
 			ser.printf("i=%d: crypto_kem_enc() returned %d\n", i, r);
-			return r;
+			break;
 		}
 
 		r = crypto_kem_dec(s2, ct, sk);
 		if (r != 0) {
 			ser.printf("i=%d: crypto_kem_dec() returned %d\n", i, r);
-			return r;
+			break;
 		}
 
 		if (memcmp(s1, s2, CRYPTO_BYTES) != 0) {
@@ -277,7 +299,8 @@ int test_alg(int ms_time)
 			hexbytes(s1, sizeof(s1));
 			ser.printf("s2 = ");
 			hexbytes(s1, sizeof(s2));
-			return -1;
+			r = -1;
+			break;
 		}
 
 		//	timeout
@@ -287,11 +310,12 @@ int test_alg(int ms_time)
 	}
 	timer.stop();
 
-	ser.printf("[TEST] self-test ok, %d millisconds (i=%d)\n", ms, i);
+	ser.printf("[END] %s(%d), %d milliseconds (i=%d)\n", 
+		r == 0 ? "PASS" : "FAIL", r, ms, i);
 
 	init_kem = 1;
 
-	return 0;
+	return r;
 }
 
 
@@ -316,7 +340,8 @@ int measure(int ms_time, int do_kg, int do_enc, int do_dec)
 	timer.reset();
 	timer.start();
 
-	pin_d7 = !pin_d7;				//	trigger measurement
+	pin_d7 = 1;								//	trigger measurement
+	pin_d7 = 0;
 
 	do {
 		n++;
@@ -410,8 +435,16 @@ int main()
 				measure(5000, 1, 1, 1);
 				break;
 
+			case 'A':
+				measure(0, 1, 1, 1);
+				break;
+
 			case 'k':
 				measure(5000, 1, 0, 0);
+				break;
+
+			case 'K':
+				measure(0, 1, 0, 0);
 				break;
 
 			case 's':
@@ -419,23 +452,39 @@ int main()
 				measure(5000, 0, 1, 0);
 				break;
 
+			case 'S':
+			case 'E':
+				measure(0, 0, 1, 0);
+				break;
+
 			case 'v':
 			case 'd':
 				measure(5000, 0, 0, 1);
 				break;
 
-			case 't':
-				test_alg(60000);
+			case 'V':
+			case 'D':
+				measure(0, 0, 0, 1);
 				break;
 
 			case 'z':
 				zzz_ms(5000);
 				break;
+
+			case 't':
+				test_alg(5000);
+				break;
+
+			case 'T':
+				test_alg(0);
+				break;
 		}
 
 		//	set seed
-		if (ch >= '0' || ch <= '9')
+		if (ch >= '0' && ch <= '9') {
 			my_random_seed(ch - '0');
+			ser.printf("\n[RANDOM] %c\n", ch);
+		}
 
 	} while (ch != 'x');
 

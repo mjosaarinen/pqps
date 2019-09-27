@@ -7,19 +7,32 @@
 
 if [ ! -n "$1" ]
 then
-        TARGETS="pqm4/crypto_*/*/* pqm4/mupq/crypto_*/*/* pqm4/mupq/pqclean/crypto_*/*/*"
+	# note; randomizes order with shuf
+	TARGETS=`du -a pqm4 | grep -E "\/api.h" | grep crypto | \
+				sed 's/\/api.h//g' | colrm 1 8 | shuf` 
 else
-        TARGETS=$@
+	TARGETS=$@
 fi
 
 mkdir -p log
+
+echo $TARGETS
+
 for alg in $TARGETS
 do
-	log=log/`echo $alg | tr '/' '_'`.txt
-	rm -f $log
-	echo ==== $alg ====
+	log=log/`echo $alg | tr '/' '_'`.`date +"%Y%m%d%H%M%S"`
+	rm -rf BUILD $log
+
+	echo path $alg
+	echo ==== $log ====
 	make clean
-	make PQALG=$alg flash
-	time timeout 120 ./psctrl.py | tee $log
+	make PQALG=$alg
+
+	if [ -f "BUILD/pqps.hex" ]; then
+		st-flash --format ihex write BUILD/pqps.hex
+		if [ $? -eq 0 ]; then
+			time timeout 1000 ./psctrl.py | tee $log
+		fi
+	fi
 done
 

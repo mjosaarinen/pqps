@@ -44,6 +44,9 @@ def pwsh_get():
 			return s.replace("\0", "").strip().replace("\r", "").replace("\n\n\n", "\n")
 		s += str(x, encoding='ascii', errors='ignore')
 
+
+
+
 #	read target
 
 def targ_get():
@@ -98,6 +101,18 @@ def pwsh_get_ok():
 		time.sleep(1)
 
 
+# acquire
+
+def pwsh_acquire():
+	r = "";
+	while r.find("end") == -1:
+		r += str(pwsh.read(), encoding='ascii', errors='ignore')
+	r = r.split("\0")
+	v = []
+	for x in r[1:-1]:
+		v.append(float(x.replace("-", "e-")))
+	return v
+
 #	status
 
 targ_resp()
@@ -110,23 +125,21 @@ pwsh_cmd("temp degc")
 pwsh_cmd("volt get")
 pwsh_cmd("targrst 1")
 
-pwsh_cmd("lcd 1 \"PowerShield PQC!\"")
+pwsh_cmd("lcd 1 \"PQPS Tracer     \"")
 pwsh_cmd("lcd 2 \"(c)2019 PQShield\"")
 pwsh_get_ok()
 
 #	configure the acquisiton
-pwsh_cmd("output energy")
+pwsh_cmd("output current")
 pwsh_cmd("format ascii_dec")
-pwsh_cmd("freq 10")
-pwsh_cmd("acqtime 5")
+pwsh_cmd("funcmode high")
+pwsh_cmd("freq 20k")
+pwsh_cmd("acqtime 50m")
 pwsh_cmd("acqmode dyn")
 
 while pwsh_get().find("ack trigsrc d7") == -1:
 	time.sleep(1)
 	pwsh_cmd("trigsrc d7")
-
-pwsh_cmd("start");
-pwsh_get_ok()
 
 #	there was a reset; get info
 alg = targ_get_str("[INPUT]")
@@ -145,63 +158,34 @@ else:
 pwsh_cmd("lcd 1 \""+alg[0:15]+"\"")
 print("----", alg, "----", flush=True)
 
-pwsh_cmd("lcd 2 \"Measuring All   \"")
-print("[GET ALL]")
-targ_cmd("a");
-pwsh_get_str("Acquisition completed")
-targ_get_str("[END]")
-
-pwsh_cmd("lcd 2 \"Measuring KeyGen\"")
-print("[KEYGEN]", flush=True)
-targ_cmd("k");
-pwsh_get_str("Acquisition completed")
-targ_get_str("[END]")
-
-if kem:
-
-	pwsh_cmd("lcd 2 \"Measuring Encaps\"")
-	print("[ENCAPS]", flush=True)
-	targ_cmd("e");
-	pwsh_get_str("Acquisition completed")
-	targ_get_str("[END]")
-
-	pwsh_cmd("lcd 2 \"Measuring Decaps\"")
-	print("[DECAPS]", flush=True)
-	targ_cmd("d");
-	pwsh_get_str("Acquisition completed")
-	targ_get_str("[END]")
-
-else:
-
-	pwsh_cmd("lcd 2 \"Measuring Sign  \"")
-	print("[SIGN]", flush=True)
-	targ_cmd("s");
-	pwsh_get_str("Acquisition completed")
-	targ_get_str("[END]")
-
-	pwsh_cmd("lcd 2 \"Measuring Verify\"")
-	print("[VERIFY]", flush=True)
-	targ_cmd("v");
-	pwsh_get_str("Acquisition completed")
-	targ_get_str("[END]")
-
-# baseline
-
-pwsh_cmd("lcd 2 \"Baseline power  \"")
-print("[BASELINE]")
-targ_cmd("z");
-pwsh_get_str("Acquisition completed")
-targ_get_str("[END]")
 
 # test it
-pwsh_cmd("lcd 2 \"Diagnostic test \"")
-print("[TESTING]")
-targ_cmd("t");
+print("[TEST]")
+targ_cmd("T");
 targ_get_str("[END]")
 
+# set key
+
+pwsh_cmd("stop");
+pwsh_get_ok()
+targ_cmd("1K");
+pwsh_cmd("start");
+pwsh_get_ok()
+
+# get traces
+
+targ_cmd("S");
+a=pwsh_acquire();
+print(a)
+
+pwsh_get_ok()
+
+targ_cmd("S");
+a=pwsh_acquire();
+print(a)
+
+
 pwsh_cmd("trigsrc sw")
-pwsh_cmd("lcd 1 \"PowerShield PQC!\"")
-pwsh_cmd("lcd 2 \"(c)2019 PQShield\"")
 pwsh_get_ok()
 
 sys.exit()
