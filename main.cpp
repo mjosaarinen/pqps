@@ -432,7 +432,7 @@ int main()
 
 		switch (ch = ser.getc()) {
 			case 'a':
-				measure(5000, 1, 1, 1);
+				measure(10000, 1, 1, 1);
 				break;
 
 			case 'A':
@@ -440,7 +440,7 @@ int main()
 				break;
 
 			case 'k':
-				measure(5000, 1, 0, 0);
+				measure(10000, 1, 0, 0);
 				break;
 
 			case 'K':
@@ -449,7 +449,7 @@ int main()
 
 			case 's':
 			case 'e':
-				measure(5000, 0, 1, 0);
+				measure(10000, 0, 1, 0);
 				break;
 
 			case 'S':
@@ -459,7 +459,7 @@ int main()
 
 			case 'v':
 			case 'd':
-				measure(5000, 0, 0, 1);
+				measure(10000, 0, 0, 1);
 				break;
 
 			case 'V':
@@ -468,11 +468,11 @@ int main()
 				break;
 
 			case 'z':
-				zzz_ms(5000);
+				zzz_ms(10000);
 				break;
 
 			case 't':
-				test_alg(5000);
+				test_alg(10000);
 				break;
 
 			case 'T':

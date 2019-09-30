@@ -118,7 +118,7 @@ pwsh_get_ok()
 pwsh_cmd("output energy")
 pwsh_cmd("format ascii_dec")
 pwsh_cmd("freq 10")
-pwsh_cmd("acqtime 5")
+pwsh_cmd("acqtime 10")
 pwsh_cmd("acqmode dyn")
 
 while pwsh_get().find("ack trigsrc d7") == -1:
