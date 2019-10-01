@@ -376,9 +376,11 @@ seconds but SIKE doesn't necessarily manage even a single iteration during
 that time).
 
 There's a faster Cortex M4 SIKE implementation reported in 
-[IACR ePrint 2019/535][https://eprint.iacr.org/2019/535], but the authors
+[IACR ePrint 2019/535](https://eprint.iacr.org/2019/535), but the authors
 have not released their software so measurements are not possible. 
-
+This implementation still reports a latency of several seconds, so
+power consumption can still be assumed to be hundreds of times higher
+than with most other candidates.
 
 ### NOTE
 
