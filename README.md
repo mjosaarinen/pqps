@@ -106,7 +106,7 @@ the connection is really off.
 
 | <img src="assets/pqps_jumpers.jpg"> | <img src="assets/idd_jumper.jpg"> | <img src="assets/sb12_solder.jpg"> | <img src="assets/sb2_solder.jpg"> |
 |:---:|:---:|:---:|:---:|
-| Jumpers on PowerShield. | IDD Jumper on Nucleo64. | Solder Bridge SB12. || Solder Bridge SB2. 
+| Jumpers on PowerShield. | IDD Jumper on Nucleo64. | Solder Bridge SB12. | Solder Bridge SB2. |
 
 
 ## Note on the serial interface
