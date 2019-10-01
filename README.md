@@ -376,9 +376,6 @@ drifts during processing (average power measurements is based only on first 10
 seconds but SIKE doesn't necessarily manage even a single iteration during
 that time).
 
-### Signature Energy
-
-
 ### NOTE
 
 (c) 2019  PQShield Ltd. No warranty whatsoever; use at your own risk.
