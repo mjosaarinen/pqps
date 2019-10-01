@@ -3,6 +3,8 @@
 #	parselog.py
 #	2019-09-30	Markku-Juhani O. Saarinen <mjos@pqshield.com>
 
+#	parse a single measurement run (from stdin)
+
 import sys
 import time
 
@@ -21,11 +23,7 @@ verify	= 0.0
 
 samp_l = 0
 
-lns = sys.stdin.readlines()
-i = 0
-watt = []
-samp = []
-sampling = False
+# prettyprint units
 
 def units(x):
 	if (abs(x) < 1E-12):
@@ -39,7 +37,7 @@ def units(x):
 	if (abs(x) < 1.0):
 		return f'{1E3*x:7.3f} m'
 	if (abs(x) < 1E3):
-		return f'{x:7.3f} '
+		return f'{x:7.3f}  '
 	if (abs(x) < 1E6):
 		return f'{1E-3*x:7.3f} k'
 	if (abs(x) < 1E9):
@@ -47,6 +45,18 @@ def units(x):
 	if (abs(x) < 1E12):
 		return f'{1E-9*x:7.3f} G'
 	return f'{x:8g}'
+
+def stats(cyc,pw):
+	return units(cyc)+"cycles" + "\t" + units(cyc/core_clk)+"s" + "\t" + \
+			units(pw)+"W" + "\t" + units(cyc*pw/core_clk)+"J"
+
+# read everything from standard input and parse it
+
+lns = sys.stdin.readlines()
+i = 0
+watt = []
+samp = []
+sampling = False
 
 for lin in lns:
 	lv = lin.split();
@@ -99,7 +109,7 @@ for lin in lns:
 		if lv[1] == "Verify":
 			verify=float(lv[2])
 
-	#	loop
+	#	line number
 	i = i + 1
 
 kem = ct_l > 0;
@@ -108,9 +118,17 @@ if len(watt) < 4:
 	print("Not enough data")
 	exit(1)
 
-def stats(cyc,pw):
-	return units(cyc)+"cycles" + "\t" + units(cyc/core_clk)+"s" + "\t" + \
-			units(pw)+"W" + "\t" + units(cyc*pw/core_clk)+"J"
+
+#	abbreviated format
+
+#if kem == False:
+#	s = "|" + alg_name.ljust(20) + " | "
+#	s += units(keygen*watt[1]/core_clk)+"J | "
+#	s += units(sign*watt[2]/core_clk)+"J | "
+#	s += units(verify*watt[3]/core_clk)+"J | "
+#	s += units((keygen+sign+verify)*watt[0]/core_clk)+"J |"
+#	print(s)
+#	exit(1)
 
 if kem:
 	print(f"{alg_name} (sk={sk_l}, pk={pk_l}, ct={ct_l}, ss={data_l})")
