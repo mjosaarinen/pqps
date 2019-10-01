@@ -8,7 +8,7 @@
 My motivation was to establish a straightforward model from "cycle counts" to 
 "Joules" for the Cortex M4 target in the context of new (post-quantum)
 asymmetric cryptographic algorithms. The null hypothesis was that the 
-relationship is linear and largely algorithm-independent, this turned
+relationship is linear and largely algorithm-independent. This turned
 out *not* to be true. 
 
 * In practice we
@@ -26,9 +26,11 @@ algorithm.
 * I did four randomized trials for each target algorithm, 
 running each component for at least 10 seconds in each (typically
 tens or hundreds of iterations), and the results
-were reasonable consistent. You may look at the semiprocessed data 
+are quite consistent. You may look at the semiprocessed data 
 [parsed_data.txt](parsed_data.txt) if you like. Note that many
-algorithms have multiple implementations (check out the name) !
+algorithms have several implementations (check out the name).
+
+* I can usually tell what algorithm you're running based on your wattage!
 
 * See bottom of this page for initial summary.
 
