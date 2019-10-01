@@ -126,6 +126,13 @@ The scripts use bash and Python3 for serial communication
 
 ## Measurement Mods
 
+UM1724 states that "SB12 NRST (target STM32 RESET) must be OFF if CN4 pin 5 is 
+used in the external application." Anyway, this is not your typical 
+accidental solder bridge but a surface-mounted zero-ohm resistor. 
+Just carefully heat both ends of the resistor until it comes off. 
+Since there is some solder residue, I used a multimeter to check that
+the connection is really off.
+
 There are other measurement options, but this is the currenct configuration
 used in measurements.
 
@@ -140,13 +147,6 @@ from ST-Link part.
 I followed the instructions in Section 1.2 of UM2269 "Quick setup to measure 
 current on board Nucleo64" (AREF_ARD, 3V3_ARD, IDD, SB12) and additionally
 disconnected SB2; Section 6.3.3 of UM1724 "External power supply input: +3.3V".
-
-UM1724 states that "SB12 NRST (target STM32 RESET) must be OFF if CN4 pin 5 is 
-used in the external application." Anyway, this is not your typical 
-accidental solder bridge but a surface-mounted zero-ohm resistor. 
-Just carefully heat both ends of the resistor until it comes off. 
-Since there is some solder residue, I used a multimeter to check that
-the connection is really off.
 
 | <img src="assets/pqps_jumpers.jpg"> | <img src="assets/idd_jumper.jpg"> | <img src="assets/sb12_solder.jpg"> | <img src="assets/sb2_solder.jpg"> |
 |:---:|:---:|:---:|:---:|
