@@ -11,24 +11,90 @@ asymmetric cryptographic algorithms. The null hypothesis was that the
 relationship is linear and largely algorithm-independent, this turned
 out *not* to be true. 
 
-In practice we
+* In practice we
 saw current wander between 10 mA and 38 mA with stabilized 3V voltage,
 corresponding to 30 mW .. 114 mW range. Algorithms were clocked at
 96 MHz; cycle timing was used together with integrated average energy
 of each primitive to derive an energy profile for each tested algorithm.
 
-Power consumption is not constant, but is largely dependant on the 
+* Power consumption is not constant, but is largely dependant on the 
 instruction mix of the particular algorithm being tested. 
 Very consistently and unexpectedly e.g. the NTRU key generation
 routine requires only half of the wattage of decapsulation of the same
 algorithm.
 
-I did four randomized trials for each target algorithm, 
+* I did four randomized trials for each target algorithm, 
 running each component for at least 10 seconds in each (typically
 tens or hundreds of iterations), and the results
 were reasonable consistent. You may look at the semiprocessed data 
-[parsed_data.txt](parsed_data.txt) if you like.
+[parsed_data.txt](parsed_data.txt) if you like. Note that many
+algorithms have multiple implementations (check out the name) !
 
+
+### KEM Energy
+
+| Algorithm	          | KeyGen     | Encaps     | Decaps     |     TOTAL  |
+| ------------------- | ---------: | ---------: | ---------: | ---------: |
+|R5ND_1KEM_0d (sneik) | 141.772 μJ | 217.855 μJ | 249.400 μJ | 608.979 μJ |
+|R5ND_1KEM_0d         | 198.684 μJ | 302.225 μJ | 350.382 μJ | 850.914 μJ |
+|NewHope512-CPAKEM    | 406.786 μJ | 565.863 μJ |  73.115 μJ |   1.045 mJ |
+|R5ND_1KEM_5d         | 263.490 μJ | 407.069 μJ | 527.827 μJ |   1.198 mJ |
+|BabyBearEphem        | 486.618 μJ | 620.858 μJ | 195.841 μJ |   1.303 mJ |
+|Kyber512             | 414.146 μJ | 534.836 μJ | 509.484 μJ |   1.458 mJ |
+|LightSaber           | 394.382 μJ | 561.079 μJ | 589.476 μJ |   1.545 mJ |
+|R5ND_3KEM_5d (sneik) | 345.262 μJ | 595.979 μJ | 723.238 μJ |   1.664 mJ |
+|NewHope512-CCAKEM    | 484.444 μJ | 751.010 μJ | 735.068 μJ |   1.969 mJ |
+|BabyBear             | 486.745 μJ | 598.762 μJ | 904.495 μJ |   1.990 mJ |
+|NewHope1024-CPAKEM   | 801.470 μJ |   1.110 mJ | 132.155 μJ |   2.043 mJ |
+|R5ND_3KEM_5d         | 493.941 μJ | 749.414 μJ | 945.253 μJ |   2.186 mJ |
+|MamaBearEphem        | 949.155 μJ |   1.116 mJ | 266.321 μJ |   2.331 mJ |
+|R5ND_3KEM_0d (sneik) | 520.033 μJ | 844.171 μJ |   1.046 mJ |   2.413 mJ |
+|R5ND_3KEM_5d (sneik) | 484.466 μJ | 868.059 μJ |   1.095 mJ |   2.447 mJ |
+|Kyber768             | 772.271 μJ | 920.445 μJ | 876.267 μJ |   2.568 mJ |
+|Saber                | 771.151 μJ |   1.008 mJ |   1.051 mJ |   2.829 mJ |
+|R5ND_5KEM_5d (sneik) | 659.994 μJ |   1.037 mJ |   1.310 mJ |   2.992 mJ |
+|R5ND_3KEM_0d         | 718.093 μJ |   1.030 mJ |   1.315 mJ |   3.061 mJ |
+|LightSaber           | 752.380 μJ |   1.105 mJ |   1.320 mJ |   3.172 mJ |
+|MamaBear             | 941.644 μJ |   1.085 mJ |   1.519 mJ |   3.546 mJ |
+|R5ND_5KEM_5d         | 850.040 μJ |   1.227 mJ |   1.571 mJ |   3.647 mJ |
+|PapaBearEphem        |   1.563 mJ |   1.760 mJ | 338.313 μJ |   3.662 mJ |
+|NewHope1024-CCAKEM   | 957.152 μJ |   1.452 mJ |   1.433 mJ |   3.840 mJ |
+|R5ND_5KEM_0d         | 929.557 μJ |   1.346 mJ |   1.730 mJ |   4.001 mJ |
+|Kyber1024            |   1.265 mJ |   1.443 mJ |   1.383 mJ |   4.089 mJ |
+|FireSaber            |   1.239 mJ |   1.530 mJ |   1.592 mJ |   4.359 mJ |
+|PapaBear             |   1.553 mJ |   1.729 mJ |   2.298 mJ |   5.580 mJ |
+|LAC128               |   1.177 mJ |   2.043 mJ |   3.195 mJ |   6.413 mJ |
+|R5N1_1KEM_0d (sneik) |   2.578 mJ |   2.064 mJ |   2.318 mJ |   6.943 mJ |
+|R5N1_1KEM_0d         |   3.232 mJ |   3.065 mJ |   3.650 mJ |   9.948 mJ |
+|R5N1_3KEM_0d (sneik) |   4.228 mJ |   4.111 mJ |   4.447 mJ |  12.767 mJ |
+|R5N1_3KEM_0d         |   5.063 mJ |   4.984 mJ |   5.731 mJ |  15.747 mJ |
+|LAC192               |   3.915 mJ |   5.222 mJ |   9.680 mJ |  18.823 mJ |
+|LAC256               |   4.079 mJ |   7.158 mJ |  11.709 mJ |  22.971 mJ |
+|NTRU-HPS2048509      |  34.424 mJ | 395.641 μJ | 479.611 μJ |  35.238 mJ |
+|R5N1_5KEM_0d (sneik) |  18.439 mJ |  11.671 mJ |  12.694 mJ |  42.764 mJ |
+|R5N1_5KEM_0d         |  20.821 mJ |  13.616 mJ |  16.095 mJ |  50.360 mJ |
+|NTRU-HPS2048677      |  60.518 mJ | 582.010 μJ | 738.151 μJ |  61.832 mJ |
+|NTRU-HRSS701         |  66.145 mJ | 329.634 μJ | 781.451 μJ |  67.203 mJ |
+|NTRU-HPS4096821      |  90.228 mJ | 732.298 μJ | 949.801 μJ |  91.964 mJ |
+|FrodoKEM-640-AES     |  37.184 mJ |  35.051 mJ |  34.475 mJ | 106.700 mJ |
+|ntrulpr653           |  27.734 mJ |  55.236 mJ |  82.591 mJ | 164.570 mJ |
+|FrodoKEM-640-SHAKE   |  65.816 mJ |  64.876 mJ |  64.375 mJ | 195.017 mJ |
+|ntrulpr761           |  38.159 mJ |  75.781 mJ | 112.258 mJ | 227.019 mJ |
+|ntrulpr857           |  47.703 mJ |  95.338 mJ | 142.195 mJ | 282.846 mJ |
+|sntrup653            | 289.820 mJ |  28.147 mJ |  83.878 mJ | 401.899 mJ |
+|sntrup761            | 392.530 mJ |  37.841 mJ | 112.584 mJ | 546.108 mJ |
+|sntrup857            | 499.477 mJ |  48.632 mJ | 141.440 mJ | 720.013 mJ |
+|SIKEp434             | 471.009 mJ | 774.717 mJ | 826.136 mJ |   2.069  J |
+|SIKEp503             | 718.763 mJ |   1.187  J |   1.266  J |   3.162  J |
+|SIKEp751             |   2.386  J | 868.082 mJ |   1.159  J |   4.391  J |
+|SIKEp610             |   1.350  J |   2.491  J |   2.504  J |   6.313  J |
+
+NB. The SIKE energy numbers may be little off if the power consumption
+drifts during processing (average power measurements is based only on first 10 
+seconds but SIKE doesn't necessarily manage even a single iteration during
+that time).
+
+## Signature Energy
 
 ##  Tools used
 
