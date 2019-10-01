@@ -34,9 +34,6 @@ algorithms have several implementations (check out the name).
 
 * See bottom of this page for initial summary.
 
-
-## Signature Energy
-
 ##  Tools used
 
 This little tutorial and software package explains how to use the
