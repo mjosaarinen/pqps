@@ -82,15 +82,20 @@ on/off switches for each ports (something like £10).
 
 ## Measurement Mods
 
-I followed the instructions in section 1.2. "Quick setup to measure current 
-on board Nucleo64" of UM2269. There are other measurement options.
+I followed the instructions in Section 1.2 of UM2269 "Quick setup to measure 
+current on board Nucleo64"  (AREF_ARD, 3V3_ARD, IDD, SB12) and additionally
+disconnected SB2; Section 6.3.3 of UM1724 "External power supply input: +3.3V".
 
-Setup to measure current consumption of MCU only:
+There are other measurement options, but this is the currenct configuration
+used in measurements.
 
-* On PowerShield: Jumpers of power supply pin: Close jumper AREF_ARD, open jumper 3V3_ARD.
+* On PowerShield: Jumpers of power supply pin: Close jumper AREF_ARD, 
+	open jumper 3V3_ARD.
 * On Nucleo64: Open Jumper IDD. 
 * On Nucleo64: Remove solder bridge SB12 to disconnect reset signal
 from ST-Link part.
+* On Nucleo64: Remove solder bridge SB2 disconnecting 3.3V voltage
+	regulator LD39050PU33R.
 
 UM1724 states that "SB12 NRST (target STM32 RESET) must be OFF if CN4 pin 5 is 
 used in the external application." Anyway, this is not your typical 
@@ -99,9 +104,9 @@ Just carefully heat both ends of the resistor until it comes off.
 Since there is some solder residue, I used a multimeter to check that
 the connection is really off.
 
-| <img src="assets/pqps_jumpers.jpg"> | <img src="assets/idd_jumper.jpg"> |<img src="assets/sb12_solder.jpg">
-|:---:|:---:|:---:|
-| Jumpers on PowerShield. | IDD Jumper on Nucleo64. | The SB12 Solder Bridge. |
+| <img src="assets/pqps_jumpers.jpg"> | <img src="assets/idd_jumper.jpg"> | <img src="assets/sb12_solder.jpg"> | <img src="assets/sb2_solder.jpg"> |
+|:---:|:---:|:---:|:---:|
+| Jumpers on PowerShield. | IDD Jumper on Nucleo64. | Solder Bridge SB12. || Solder Bridge SB2. 
 
 
 ## Note on the serial interface
