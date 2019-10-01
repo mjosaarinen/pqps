@@ -17,7 +17,8 @@ corresponding to 30 mW .. 114 mW range. Algorithms were clocked at
 96 MHz; cycle timing was used together with integrated average energy
 of each primitive to derive an energy profile for each tested algorithm.
 
-* Power consumption is not constant, but is largely dependant on the 
+* I can usually tell what algorithm you're running based on your wattage alone!
+Power consumption is not constant, but is largely dependant on the 
 instruction mix of the particular algorithm being tested. 
 Very consistently and unexpectedly e.g. the NTRU key generation
 routine requires only half of the wattage of decapsulation of the same
@@ -30,7 +31,6 @@ are quite consistent. You may look at the semiprocessed data
 [parsed_data.txt](parsed_data.txt) if you like. Note that many
 algorithms have several implementations (check out the name).
 
-* I can usually tell what algorithm you're running based on your wattage!
 
 * See bottom of this page for initial summary.
 
