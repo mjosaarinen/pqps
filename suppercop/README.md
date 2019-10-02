@@ -6,12 +6,12 @@ perform energy measurements in addition to cycle counts (performance).
 In other words, **SUPPERCOP** is a SUPERCOP that counts calories! 
 (easy conversion: 1 J = 0.23890295761862 cal) 
 
-**THIS IS AN EXPERIMENTAL AND TOTALLY NOT DJB-APPROVED MOD**
+**THIS IS AN EXPERIMENTAL AND COMPLETELY DJB-UNAPPROVED MOD**
 
 Hm. We could expand the acronym (due to Paul Bakker) as 
 "**S**ystem for **U**nified **P**erformance and **P**ower 
 **E**valuation **R**elated to **C**ryptographic **O**perations and 
-**P**rimitives". But probably won't and this will remain as an one-off.
+**P**rimitives". But probably won't and this will remain as a one-off.
 
 
 ## How
