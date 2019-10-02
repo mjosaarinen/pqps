@@ -31,7 +31,7 @@ static int energy_fd = -1;
 
 long long energy_uj()
 {
-	char buf[16];
+	char buf[20];
 	size_t n;
 	long long uj = 0;
 
@@ -207,6 +207,8 @@ static unsigned char randombyte[1];
 
 int main()
 {
+
+	//	=== XXX mjos
 	energy_fd = open(ENERGY_UJ_FN, O_RDONLY);
 	if (energy_fd < 0) {
 		perror(ENERGY_UJ_FN);
@@ -222,6 +224,7 @@ int main()
   allocate();
   measure();
 
+	//	=== XXX mjos
 	if (energy_fd >= 0)
 		close(energy_fd);
 
