@@ -3,34 +3,13 @@
 2019-10-01  Markku-Juhani O. Saarinen <mjos@pqshield.com>
 
 
-# Executive Summary and Findings
+# What's this about ?
 
 My motivation was to establish a straightforward model from "cycle counts" to 
 "Joules" for the Cortex M4 target in the context of new (post-quantum)
 asymmetric cryptographic algorithms. The null hypothesis was that the 
 relationship is linear and largely algorithm-independent. This turned
 out *not* to be true. 
-
-* In practice we
-saw current wander between 10 mA and 38 mA with stabilized 3V voltage,
-corresponding to 30 mW .. 114 mW range. Algorithms were clocked at
-96 MHz; cycle timing was used together with integrated average energy
-of each primitive to derive an energy profile for each tested algorithm.
-
-* I can usually tell what algorithm you're running based on your wattage alone!
-Power consumption is not constant, but is largely dependant on the 
-instruction mix of the particular algorithm being tested. 
-Very consistently and unexpectedly e.g. the NTRU key generation
-routine requires only half of the wattage of decapsulation of the same
-algorithm.
-
-* I did four randomized trials for each target algorithm, 
-running each component for at least 10 seconds in each (typically
-tens or hundreds of iterations), and the results
-are quite consistent. You may look at the semiprocessed data 
-[parsed_data.txt](parsed_data.txt) if you like. Note that many
-algorithms have several implementations (check out the name).
-
 
 * See bottom of this page for initial summary.
 
@@ -296,7 +275,32 @@ file `parsed_data.txt` with
 $ for f in log/*; do echo $f; cat $f | ./parselog.py;echo; done > parsed_data.txt
 ```
 
-### Summary: Signature Energy
+## Summary 
+
+Random notes
+
+* In practice we
+saw current wander between 10 mA and 38 mA with stabilized 3V voltage,
+corresponding to 30 mW .. 114 mW range. Algorithms were clocked at
+96 MHz; cycle timing was used together with integrated average energy
+of each primitive to derive an energy profile for each tested algorithm.
+
+* I can usually tell what algorithm you're running based on your wattage alone!
+Power consumption is not constant, but is largely dependant on the 
+instruction mix of the particular algorithm being tested. 
+Very consistently and unexpectedly e.g. the NTRU key generation
+routine requires only half of the wattage of decapsulation of the same
+algorithm.
+
+* I did four randomized trials for each target algorithm, 
+running each component for at least 10 seconds in each (typically
+tens or hundreds of iterations), and the results
+are quite consistent. You may look at the semiprocessed data 
+[parsed_data.txt](parsed_data.txt) if you like. Note that many
+algorithms have several implementations (check out the name).
+
+
+### Signature Energy
 
 Sorted by incresing verify energy.
 
@@ -310,7 +314,7 @@ Sorted by incresing verify energy.
 |Dilithium4           |   2.384 mJ |   5.825 mJ |   2.430 mJ |  10.645 mJ |
 
 
-### Summary: KEM Energy
+### KEM Energy
 
 Sorted by increasing total ("key exchange") energy.
 
