@@ -3,13 +3,13 @@
 This is a brief discussion about modding the
 [supercop](https://bench.cr.yp.to/supercop.html) cryptographic benchmark to
 perform energy measurements in addition to cycle counts (performance).
-In other words, **SUPPERCOP** is a SUPERCOP that counts calories 
-(easy conversion: 1 J = 0.23890295761862 cal) !
+In other words, **SUPPERCOP** is a SUPERCOP that counts calories! 
+(easy conversion: 1 J = 0.23890295761862 cal) 
 
 **THIS IS AN EXPERIMENTAL AND TOTALLY NOT DJB-APPROVED MOD**
 
 Hm. We could expand the acronym (due to Paul Bakker) as 
-**S**ystem for **U**nified **P**erformance and **P**ower 
+"**S**ystem for **U**nified **P**erformance and **P**ower 
 **E**valuation **R**elated to **C**ryptographic **O**perations and 
 **P**rimitives". But probably won't and this will remain as an one-off.
 
@@ -27,7 +27,7 @@ via the kernel virtual filesystem (more specifically the file
 `/sys/class/powercap/intel-rapl/intel-rapl:0/energy_uj`), which creates some 
 latency. Hence we are currently reading the counters before and after iterating 
 the target function for at least 1,000,000,000 cycles, and calculating
-an average.
+an average by dividing with the number of iterations. 
 
 The new measurements are average energy `_ujoule` and average cycles 
 `_avgcyc`:
@@ -48,9 +48,9 @@ Sorry for diverging from the supercop primitive operation naming convention,
 but this happened to be better for my simple parsing scripts.
 
 
-### How to do it
+### The Mod
 
-So, you can fetch supercop into this directory( `pqps/supercop`) and simply 
+Yu can fetch supercop into this directory( `pqps/supercop`) and simply 
 replace the relevant files that you want to replace. Check the current
 version [here](https://bench.cr.yp.to/supercop.html) -- replacing the
 date string in the following:
@@ -101,7 +101,8 @@ permissionless, the powercap interface (the one I'm using). Official, rather
 limited Linux kernel documentation of "Power Capping Framework" is contained in
 [powercap.txt](https://www.kernel.org/doc/Documentation/power/powercap/powercap.txt).
 
-## Caverats
+## Caveats
 
-For expert usage only.
+You need do know what you're doing and how to properly interpret the results.
 
+**NO WARRANTY WHATSOEVER**
