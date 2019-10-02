@@ -2,7 +2,7 @@
 
 2019-10-01  Markku-Juhani O. Saarinen <mjos@pqshield.com>
 
-Experimental tools for PQC energy measurement labs.
+**Experimental** tools for PQC energy measurements.
 
 # What's this about ?
 
