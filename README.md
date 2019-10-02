@@ -237,7 +237,7 @@ size: 18796
 
 **NOTE.**  The target board needs power to be programmed; on initial
 run you can allow this via the menus (and joystick) on the PowerShield;
-just press the big square "ENTER" button and check the LCD display.
+just press the big blue "ENTER" button and check the LCD display.
 
 You can try interacting with the default firmware with (replace the
 device identifier with that of your target):
