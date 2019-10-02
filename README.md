@@ -275,10 +275,10 @@ in random order and write results to `logs`.
 * A python script `parselog.py` is used to interpret these results.
 
 * After four randomized runs, which took a couple of days, I produced the 
-file `parsed_data.txt` with
+file [log/parsed_data.txt](log/parsed_data.txt) with
 
 ```
-$ for f in log/*; do echo $f; cat $f | ./parselog.py;echo; done > parsed_data.txt
+$ for f in log/*; do echo $f; cat $f | ./parselog.py;echo; done > log/parsed_data.txt
 ```
 
 ## Summary 
