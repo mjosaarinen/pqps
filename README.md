@@ -1,6 +1,8 @@
-# pqps (Post-Quantum Power Sandwich -- Tools for PQC Energy Measurement Labs)
+# pqps (Post-Quantum Power Sandwich)
 
 2019-10-01  Markku-Juhani O. Saarinen <mjos@pqshield.com>
+
+Experimental tools for PQC energy measurement labs.
 
 # What's this about ?
 
