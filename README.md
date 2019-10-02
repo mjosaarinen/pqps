@@ -140,8 +140,9 @@ disconnected SB2; Section 6.3.3 of UM1724 "External power supply input: +3.3V".
 |:---:|:---:|:---:|:---:|
 |Jumpers on PowerShield.|IDD Jumper on Nucleo64.|Solder Bridge SB12.|Solder Bridge SB2.|
 
-The current measurement script `main.cpp` uses D7 on the Nucleo64 board
-to trigger measurements. This is supported by the standard firmware.
+The current measurement program (`main.cpp`) uses pin D7 on the Nucleo64 board
+to trigger beginning of measurements. This is supported by the standard 
+firmware.
 
 
 ### Note on the serial interface
