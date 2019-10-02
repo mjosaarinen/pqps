@@ -23,17 +23,18 @@ the built-in RAPL energy counters. See the directory
 ##  Embedded Measurements
 
 This little tutorial and software package explains how to use the
-[X-NUCLEO-LPM01A](https://www.st.com/en/evaluation-tools/x-nucleo-lpm01a.html),
-a high-precision controlled power supply board to measure power consumption of 
-cryptographic algorithms of a Cortex M4 target. The board is commonly
-called "PowerShield" in ST documentation, and I'll it as self. Note that
-the PowerShield is used in the "industry standard" Ultra-Low Power (ULP)
+[X-NUCLEO-LPM01A](https://www.st.com/en/evaluation-tools/x-nucleo-lpm01a.html)
+-- a high-precision controlled power supply board -- to measure power 
+consumption of cryptographic algorithms of a Cortex M4 target. The board is 
+commonly called "PowerShield" in ST documentation, and I'll it as self. Note 
+that the PowerShield is used in the "industry standard" Ultra-Low Power (ULP)
 benchmark [ULPMark](https://www.eembc.org/ulpmark/) as well.
 
 The PowerShield can be used in many ways, but the main intended configuration
 is to create a development board **sandwich** with a STM32 Nucleo-32/64/144 
-board using Arduino connectors (the number refers to number of pins in the
-LQFP or UFQFPN packaging of the MCU chip; has nothing to do with "bits").
+board (the number refers to number of pins in the LQFP or UFQFPN packaging of 
+the MCU chip; has nothing to do with "bits") using Arduino connectors.
+So we have two boards on top of each other, the top one supplying power:
 
 ![PowerShield Sandwich](assets/powershield.jpg)
 
