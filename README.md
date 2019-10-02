@@ -31,8 +31,8 @@ the PowerShield is used in the "industry standard" Ultra-Low Power (ULP)
 benchmark [ULPMark](https://www.eembc.org/ulpmark/) as well.
 
 The PowerShield can be used in many ways, but the main intended configuration
-is to create a development board sandwich with a STM32 Nucleo-32/64/144 board
-using Arduino connectors (the number refers to number of pins in the
+is to create a development board **sandwich** with a STM32 Nucleo-32/64/144 
+board using Arduino connectors (the number refers to number of pins in the
 LQFP or UFQFPN packaging of the MCU chip; has nothing to do with "bits").
 
 ![PowerShield Sandwich](assets/powershield.jpg)
