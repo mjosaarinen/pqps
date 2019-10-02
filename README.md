@@ -76,8 +76,8 @@ Reference Manual: STM32F411xC/E advanced Arm-based 32-bit MCUs (big!)
 
 ### So.. What kind of gear do I need?
 
-I use [Ubuntu Linux](https://ubuntu.com/desktop) 18.04 LTS and (free) open 
-source tools in this lab.
+I use [Ubuntu Linux](https://ubuntu.com/desktop) 18.04 LTS and only open 
+source software tools for this lab.
 
 We paid £53.68 for the X-NUCLEO-LPM01A (PowerShield) board and £10.48 for 
 NUCLEO-F411RE (Target) with a local UK component retailer in September 2019.
