@@ -1,4 +1,4 @@
-# pqps (Originally Post-Quantum PowerShield)
+# pqps -- tools for PQC power measurement labs
 
 2019-10-01  Markku-Juhani O. Saarinen <mjos@pqshield.com>
 
