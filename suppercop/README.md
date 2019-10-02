@@ -1,18 +1,17 @@
 # pqps/suppercop
 
-This is a brief discussion for modding the
+This is a brief discussion about modding the
 [supercop](https://bench.cr.yp.to/supercop.html) cryptographic benchmark to
 perform energy measurements in addition to cycle counts (performance).
-
-In other words, **SUPPERCOP** is a supercop that counts calories 
-(easy conversion: 1 J = 0.23890295761862 cal).
+In other words, **SUPPERCOP** is a SUPERCOP that counts calories 
+(easy conversion: 1 J = 0.23890295761862 cal) !
 
 **THIS IS AN EXPERIMENTAL AND TOTALLY NOT DJB-APPROVED MOD**
 
-Nb. We could expand the acronym (due to Paul Bakker) as 
+Hm. We could expand the acronym (due to Paul Bakker) as 
 **S**ystem for **U**nified **P**erformance and **P**ower 
 **E**valuation **R**elated to **C**ryptographic **O**perations and 
-**P**rimitives". But probably won't and this will remain as one-off.
+**P**rimitives". But probably won't and this will remain as an one-off.
 
 
 ## How
@@ -31,7 +30,7 @@ the target function for at least 1,000,000,000 cycles, and calculating
 an average.
 
 The new measurements are average energy `_ujoule` and average cycles 
-`_avgcyc`. The measurements for KEMs are therefore
+`_avgcyc`:
 
 | **Primitive**		| **Energy** (μJ)	| **Time** (cycles)	|
 | ----------------- | ----------------- | ----------------- |
@@ -45,15 +44,16 @@ The new measurements are average energy `_ujoule` and average cycles
 | Make signature	| `sign_do_ujoule`	| `sign_do_avgcyc`	|
 | Verify signature	| `sign_vfy_ujoule`	| `sign_vfy_avgcyc`	|
 
-Sorry for diverging from the supercop primiting operation naming convention, 
+Sorry for diverging from the supercop primitive operation naming convention, 
 but this happened to be better for my simple parsing scripts.
 
 
 ### How to do it
 
-So, you can fetch supercop here (`pqps/supercop`) and simply replace the 
-relevant files that you want to replace. Check the current
-version [here](https://bench.cr.yp.to/supercop.html) first:
+So, you can fetch supercop into this directory( `pqps/supercop`) and simply 
+replace the relevant files that you want to replace. Check the current
+version [here](https://bench.cr.yp.to/supercop.html) -- replacing the
+date string in the following:
 
 ```
 curl https://bench.cr.yp.to/supercop/supercop-20190910.tar.xz | tar xfvJ -
@@ -73,14 +73,14 @@ long time so I suggest severely limiting the number of compilers etc.
 
 ### Results
 
-There's a little script `read_data.py` that can be used as a basis for
-a parser. This is basically a one-off 
+There's a little script `read_data.py` that I used as a basis for a parser. 
 
 I'm currently only gathering usable results, but you can see 
 [pke_example.txt](example/pke_example.txt) and
 [kem_example.txt](example/kem_example.txt) for examples of some algorithms
 measured under a single configuration, sorted by nanojoules/cycle
 (e.g. `./read_data.py < data.kem | sort -n -k 7 > kem_example.txt`).
+
 
 ### Notes
 
