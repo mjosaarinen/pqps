@@ -162,7 +162,8 @@ UM2269 states that the PowerShield baudrate is 3686400, but I really don't
 know how to make that work (it actually sounds crazy high). 
 `setserial -av <powershield device>` gives a base rate of 38400 anyway.
 
-The pqps firmware is 
+My pqps firmware is configured to communicate at 115200 baud; add `-b 115200`
+as a picocom parameter if needed. This is easily changed in `main.cpp`.
 
 ## Building and testing
 
