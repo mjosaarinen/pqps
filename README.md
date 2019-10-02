@@ -14,7 +14,7 @@ microcontrollers; there is 50+% variation in power use depending on what
 type of cryptographic task the MCU is doing. See bottom of this page for 
 initial summary.
 
-I also modded the SUPERCOP Cryptographic Benchmark
+I also "modded" the SUPERCOP Cryptographic Benchmark
 to do similar energy measurements on desktop/laptop/server systems using 
 the built-in RAPL energy counters. See the directory 
 [pqps/suppercop](suppercop) for discussion about that.
@@ -27,14 +27,15 @@ This little tutorial and software package explains how to use the
 -- a high-precision controlled power supply board -- to measure power 
 consumption of cryptographic algorithms of a Cortex M4 target. The board is 
 commonly called "PowerShield" in ST documentation, and I'll use that name 
-as well. Note that the PowerShield is used in the "industry standard" 
+as well. Note that PowerShield is also used in the "industry standard" 
 Ultra-Low Power (ULP) benchmark [ULPMark](https://www.eembc.org/ulpmark/).
 
-The PowerShield can be used in many ways, but the main intended configuration
+PowerShield can be used in many ways, but its main intended configuration
 is to create a development board **sandwich** with a STM32 Nucleo-32/64/144 
 board (the number refers to number of pins in the LQFP or UFQFPN packaging of 
-the MCU chip; has nothing to do with "bits") using Arduino connectors.
-So we have two boards on top of each other, the top one supplying power:
+the MCU chip) using Arduino connectors on both boards..
+So we have two boards on top of each other, PowerShield on top supplying 
+power to the target board:
 
 ![PowerShield Sandwich](assets/powershield.jpg)
 
@@ -45,12 +46,12 @@ be lifting most of the evaluation targets from. The "discovery board" is
 also little bit awkward as it requires an additional USB serial 
 dongle (or a hardware mod) for serial communications.
 
-So I chose to use the cheaper
+So I chose to use a little bit cheaper
 [NUCLEO-F411RE](https://www.st.com/en/evaluation-tools/nucleo-f411re.html)
-board. This board also has an external
-(SMPS) to generate Vcore logic supply, which is precisely what we want and
-use. Mostly the specs of STM32F411RE (this Nucleo) are similar to
-STM32F407VGT6 (Discovery); importantly both are Cortex M4 with 
+board. This board also supports external SMPS (switched-mode power supply)
+for Vcore logic supply, which is precisely what we want and use. 
+Mostly the specs of STM32F411RE (the chip on this Nucleo64) are similar to
+STM32F407VGT6 (the chip on Discovery); importantly both are Cortex M4 with 
 (single-precision) floating point and DSP instructions. The F411RE has
 only 512kB of Flash and 128kB of SRAM and lacks a TRNG, and can be
 clocked only to 100 MHz; however it comes from the "Dynamic Efficiency" 
