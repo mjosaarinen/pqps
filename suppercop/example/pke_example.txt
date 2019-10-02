@@ -1,4 +1,3 @@
-ledapkc51               pke_dec -2730529875 uJ     12344074 cc -221201.6774 nJ/cc
 mcnie4q2561             pke_kg    575567 uJ     58686388 cc       9.8075 nJ/cc
 mcnie3q1281             pke_kg    270381 uJ     27564279 cc       9.8091 nJ/cc
 mcnie4q1921             pke_enc   578751 uJ     58860103 cc       9.8327 nJ/cc
