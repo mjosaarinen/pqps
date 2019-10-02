@@ -27,4 +27,5 @@ for line in sys.stdin:
 			uj = float(vuj[8])
 			cyc = float(vac[8])
 			njc = 1E3*uj/cyc
+			# name, measurement, microjoules, cycles, nanojoules/cycle
 			print(f"{alg:24s}{mes:8s}{uj:8.0f} uJ {cyc:12.0f} cc {njc:12.4f} nJ/cc")

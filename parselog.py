@@ -115,20 +115,10 @@ for lin in lns:
 kem = ct_l > 0;
 
 if len(watt) < 4:
-	print("Not enough data")
+	print("(Not enough data.)")
 	exit(1)
 
-
-#	abbreviated format
-
-#if kem == False:
-#	s = "|" + alg_name.ljust(20) + " | "
-#	s += units(keygen*watt[1]/core_clk)+"J | "
-#	s += units(sign*watt[2]/core_clk)+"J | "
-#	s += units(verify*watt[3]/core_clk)+"J | "
-#	s += units((keygen+sign+verify)*watt[0]/core_clk)+"J |"
-#	print(s)
-#	exit(1)
+#	summary results
 
 if kem:
 	print(f"{alg_name} (sk={sk_l}, pk={pk_l}, ct={ct_l}, ss={data_l})")
