@@ -12,8 +12,7 @@ microcontrollers; there is 50+% variation in power use depending on what
 type of cryptographic task the MCU is doing. See bottom of this page for 
 initial summary.
 
-I also modded the 
-[SUPERCOP Cryptographic Benchmark](https://bench.cr.yp.to/supercop.html) 
+I also modded the SUPERCOP Cryptographic Benchmark
 to do similar energy measurements on desktop/laptop/server systems using 
 the built-in RAPL energy counters. See the directory 
 [pqps/suppercop](suppercop) for discussion about that.
