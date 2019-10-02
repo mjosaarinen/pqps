@@ -50,10 +50,10 @@ but this happened to be better for my simple parsing scripts.
 
 ### The Mod
 
-You can fetch supercop into this directory( `pqps/supercop`) and simply 
-replace the relevant files with ones supplied, and run it. Check the current
-version [here](https://bench.cr.yp.to/supercop.html) -- replacing the
-date string in the following:
+You can fetch supercop into this directory( `pqps/supercop`), simply 
+replace the relevant files with ones supplied here, and run it. Check the 
+current version [here](https://bench.cr.yp.to/supercop.html) -- replacing 
+the date/version string in the following:
 
 ```
 curl https://bench.cr.yp.to/supercop/supercop-20190910.tar.xz | tar xfvJ -
