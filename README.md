@@ -1,4 +1,4 @@
-# pqpowershield
+# pqps (Originally Post-Quantum PowerShield)
 
 2019-10-01  Markku-Juhani O. Saarinen <mjos@pqshield.com>
 
