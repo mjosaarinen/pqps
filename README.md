@@ -1,4 +1,4 @@
-# pqps -- tools for PQC power measurement labs
+# pqps (Tools for PQC Energy Measurement Labs)
 
 2019-10-01  Markku-Juhani O. Saarinen <mjos@pqshield.com>
 
