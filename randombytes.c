@@ -6,7 +6,7 @@
 
 #include "randombytes.h"
 
-//	really super duper quick-and-dirty (but deterministic) fibonacci
+//	super quick-and-dirty (but deterministic) fibonacci sequence
 
 static uint32_t fibo_a = 0xDEADBEEF, fibo_b = 0x01234567;
 
@@ -18,7 +18,7 @@ void my_random_seed(int seed)
 	fibo_b = seed;
 }
 
-//	simple/stupid fibonacci generator
+//	lightweight fibonacci generator
 
 int randombytes(uint8_t *obuf, size_t len)
 {
