@@ -209,8 +209,8 @@ arm-none-eabi-objcopy -O ihex pqps.elf pqps.hex
 ```
 
 The `PQALG` argument is needed and points to a directory containing
-the target implementation. If thigns were successful, 
-`BUILD/pqps.hex` contains a firmware image that can be flashed with
+the target implementation. If the build was successful, `BUILD/pqps.hex` 
+contains a firmware image that can be flashed with stlink:
 
 ```
 $ st-flash --format ihex write BUILD/pqps.hex
