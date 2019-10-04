@@ -25,9 +25,9 @@ RAPL updates the energy counters approximately every 1ms, which
 is quite coarse (few million cycles). Furthermore access is performed
 via the kernel virtual filesystem (more specifically the file 
 `/sys/class/powercap/intel-rapl/intel-rapl:0/energy_uj`), which creates some 
-latency. Hence we are currently reading the counters before and after iterating 
-the target function for at least 1,000,000,000 cycles, and calculating
-an average by dividing with the number of iterations. 
+latency. Hence we are currently reading the counters before and after 
+iterating the target function for at least 1,000,000,000 cycles, and 
+calculating an average by dividing with the number of iterations. 
 
 The new measurements are average energy `_ujoule` and average cycles 
 `_avgcyc`:
@@ -56,7 +56,7 @@ current version [here](https://bench.cr.yp.to/supercop.html) -- replacing
 the date/version string in the following:
 
 ```
-curl https://bench.cr.yp.to/supercop/supercop-20190910.tar.xz | tar xfvJ -
+curl https://bench.cr.yp.to/supercop/supercop-20190910.tar.xz | tar xfJ -
 cd supercop-20190910
 cp ../include/measure.h include
 cp ../measure-anything.c .
@@ -83,12 +83,13 @@ long time so I suggest severely limiting the number of compilers etc.
 
 ### Results
 
-There's a little script [read_data.py](read_data.py) that I used as a basis for a parser. 
+There's a little script [read_data.py](read_data.py) that I used as a basis 
+for a parser. 
 
 I'm currently only gathering usable results, but you can see 
 [blk_test.txt](example/blk_test.txt) for an examples of algorithms
-measured under a single configuration (blk is a "Intel(R) Core(TM) i7-8700 CPU 
-@ 3.20GHz" system). It was generated from a bunch of data files with:
+measured under a single configuration (blk is a "Intel(R) Core(TM) i7-8700 
+CPU @ 3.20GHz" system). It was generated from a bunch of data files with:
 ```
 cat data* | ./read_data.py | sort > example/test_example.txt
 ```
