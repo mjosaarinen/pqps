@@ -148,12 +148,13 @@ firmware.
 ### Note on the serial interface
 
 We will be dealing with two serial interfaces simultaneously; on my
-system the they appear as `/dev/ttyACM0` and  `/dev/ttyACM1`; in order to 
-find their unique identifier paths, list: `ls /dev/serial/by-id`. 
+system they appear as `/dev/ttyACM0` and  `/dev/ttyACM1`. In order to 
+find their unique identifier paths, you can list and access them by
+their unique identifiers: `ls /dev/serial/by-id`. 
 
 The PowerShield line feed dicipline is little strange. For direct access
 I use picocom (`sudo install picocom`) like this (as noted, the path
-can be different for you):
+is little different for you due to the unique identifier):
 
 ```
 picocom --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronics_PowerShield__Virtual_ComPort_in_FS_Mode__FFFFFFFEFFFF-if00
@@ -162,7 +163,7 @@ picocom --echo --imap lfcrlf --omap crlf /dev/serial/by-id/usb-STMicroelectronic
 Try issuing the `help` command to get a command summary. 
 
 UM2269 states that the PowerShield baudrate is 3686400, but I really don't 
-know how to make that work (it actually sounds crazy high). 
+know how to make that work (and it actually sounds littble bit crazy). 
 `setserial -av <powershield device>` gives a base rate of 38400 anyway.
 
 My pqps firmware is configured to communicate at 115200 baud; add `-b 115200`
