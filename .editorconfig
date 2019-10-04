@@ -8,7 +8,7 @@ root = true
 end_of_line = lf
 insert_final_newline = true
 
-[*.{c,h,s,S,v}]
+[*.{c,h,s,S,v,py}]
 charset = latin1
 indent_style = tab
 indent_size = 4
