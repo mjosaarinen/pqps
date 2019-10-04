@@ -90,7 +90,7 @@ I'm currently only gathering usable results, but you can see
 measured under a single configuration (blk is a "Intel(R) Core(TM) i7-8700 CPU 
 @ 3.20GHz" system). It was generated from a bunch of data files with:
 ```
-cat data* | ./read_data.py | sort > example/test_example.txt`
+cat data* | ./read_data.py | sort > example/test_example.txt
 ```
 
 ### Notes
