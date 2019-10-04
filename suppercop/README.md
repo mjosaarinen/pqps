@@ -17,9 +17,9 @@ Hm. We could expand the acronym (due to Paul Bakker) as
 ## How
 
 Here I'm using Intel's Running Average Power Limit (RAPL) built-in energy
-measurement feature. It's available in most recent CPUs (both my personal
-laptop and desktop systems have it, and they're not particularly new
-or expensive).
+measurement feature. It's available in most currently Intel CPUs (after 
+"Sandy Bridge" -- roughly 2011). AMD processors (eg. Ryzen) do not seem 
+to support it.
 
 RAPL updates the energy counters approximately every 1ms, which 
 is quite coarse (few million cycles). Furthermore access is performed
