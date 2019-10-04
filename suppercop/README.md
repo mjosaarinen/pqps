@@ -83,7 +83,7 @@ long time so I suggest severely limiting the number of compilers etc.
 
 ### Results
 
-There's a little script `read_data.py` that I used as a basis for a parser. 
+There's a little script [read_data.py](read_data.py) that I used as a basis for a parser. 
 
 I'm currently only gathering usable results, but you can see 
 [blk_test.txt](example/blk_test.txt) for an examples of algorithms
