@@ -103,6 +103,6 @@ limited Linux kernel documentation of "Power Capping Framework" is contained in
 
 ## Caveats
 
-You need do know what you're doing and how to properly interpret the results.
+You need to know what you're doing and how to properly interpret the results.
 
 **NO WARRANTY WHATSOEVER**
