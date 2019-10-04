@@ -85,6 +85,13 @@ long time so I suggest severely limiting the number of compilers etc.
 
 There's a little script `read_data.py` that I used as a basis for a parser. 
 
+I'm currently only gathering usable results, but you can see 
+[blk_test.txt](example/blk_test.txt) for an examples of algorithms
+measured under a single configuration (blk is a "Intel(R) Core(TM) i7-8700 CPU 
+@ 3.20GHz" system). It was generated from a bunch of data files with:
+```
+cat data* | ./read_data.py | sort > example/test_example.txt`
+```
 
 ### Notes
 

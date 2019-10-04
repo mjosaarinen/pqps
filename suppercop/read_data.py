@@ -7,25 +7,56 @@
 
 import sys
 import time
+import math
 
-lnum = 0
-vuj = []
-vac = []
+#	read in the data lines we want
+
+lnum = 0								# line number (debug)
+data = {}								# double dictionary
+
 for line in sys.stdin:
+
 	lnum = lnum + 1
 	v = line.split()
 	if len(v) < 9:
 		continue
-	if v[6][-7:] == "_ujoule":
-		vuj = v
-	if v[6][-7:] == "_avgcyc":
-		vac = v
-		# avgcyc comes usually right after ujoule
-		if vuj[0:5] == vac[0:5] and vuj[7] == vac[7] and vuj[6][:-7] == vac[6][:-7]:
-			alg = vuj[5]
-			mes = vuj[6][:-7]
-			uj = float(vuj[8])
-			cyc = float(vac[8])
-			njc = 1E3*uj/cyc
+
+	# we are only interested in these two types of data
+	if v[6][-7:] == "_ujoule" or v[6][-7:] == "_avgcyc":
+		
+		if v[5] in data:
+			if v[6] in data[v[5]]:
+				data[v[5]][v[6]].append(float(v[8]))
+			else:
+				data[v[5]][v[6]] = [ float(v[8]) ];
+		else:
+			data[v[5]] = { v[6] : [ float(v[8]) ] }
+
+#	"median filter average"
+
+def mfavg(l, c):
+	l.sort()
+	md = l[int(len(l) / 2)]
+	lo = md * c
+	hi = md / c
+	s = 0.0
+	n = 0.0
+	for x in l:
+		if x >= lo and x <= hi:
+			s += x
+			n += 1
+	return s / n
+
+#	process and output data
+
+for alg in data.items():
+	for x in alg[1].items():
+		if x[0][-7:] == "_ujoule":
+			mes = x[0][:-7]				# name of measurement
+			uj = mfavg(x[1], 0.75)		# get average joules
+			# get related cycles
+			cyc = mfavg(alg[1][mes+"_avgcyc"],0.75)
+			njc = 1E3*uj/cyc			# nanojoules per cycle
 			# name, measurement, microjoules, cycles, nanojoules/cycle
-			print(f"{alg:24s}{mes:8s}{uj:8.0f} uJ {cyc:12.0f} cc {njc:12.4f} nJ/cc")
+			print(f"{alg[0]:32s}{mes:8s}{uj:10.0f} uJ {cyc:11.0f} clk {njc:8.4f} nJ/clk")
+
