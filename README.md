@@ -393,9 +393,9 @@ There's a faster Cortex M4 SIKE implementation reported in
 [IACR ePrint 2019/535](https://eprint.iacr.org/2019/535), but the authors
 have not released their software so independent measurements are not possible. 
 This improved implementation still has a reported latency of several seconds, 
-so even its power consumption can be assumed to be hundreds of times higher
-than with most other candidates (if not thousands, as with the current,
-publicly  available implementation).
+so its power consumption can still be assumed to be hundreds of times higher
+than with most other candidates (if not thousands as is currently the case
+for currently available implementations.)
 
 ### NOTE
 
