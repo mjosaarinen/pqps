@@ -4,7 +4,7 @@ This is a brief discussion about modding the
 [supercop](https://bench.cr.yp.to/supercop.html) cryptographic benchmark to
 perform energy measurements in addition to cycle counts (performance).
 In other words, **SUPPERCOP** is a SUPERCOP that counts calories! 
-(easy conversion: 1 J = 0.23890295761862 cal) 
+(easy conversion: 1 cal = 4.184 J) 
 
 **THIS IS AN EXPERIMENTAL AND COMPLETELY DJB-UNAPPROVED MOD**
 
