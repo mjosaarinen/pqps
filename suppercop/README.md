@@ -58,13 +58,23 @@ the date/version string in the following:
 ```
 curl https://bench.cr.yp.to/supercop/supercop-20190910.tar.xz | tar xfvJ -
 cd supercop-20190910
-cp ../measure.h include
+cp ../include/measure.h include
 cp ../measure-anything.c .
-cp ../crypto_kem/measure.c crypto_kem
-cp ../crypto_sign/measure.c crypto_sign
-cp ../crypto_encrypt/measure.c crypto_encrypt
+cp ../crypto_kem/measure.c crypto_kem/measure.c
+cp ../crypto_sign/measure.c crypto_sign/measure.c
+cp ../crypto_encrypt/measure.c crypto_encrypt/measure.c
 ```
-That's it. Modify to your own taste.
+That's it. Modify to your own taste. The default supercop configuration
+is to test public key encryption and digital signatures for a range of
+message sizes; however this isn't terribly useful since most schemes
+that just sign a hash or encrypt a symmetric key. There are variants
+`measure.c.mlen16` that just fix the random payload at 16 bytes in the 
+directories. You can copy those instead, speeding up testing quite a bit.
+
+```
+cp ../crypto_sign/measure.c.mlen16 crypto_sign/measure.c
+cp ../crypto_encrypt/measure.c.mlen16 crypto_encrypt/measure.c
+```
 
 For actually running benchmarks you will want to look at the 
 [tips](https://bench.cr.yp.to/tips.html); a full run takes a really, really
@@ -74,12 +84,6 @@ long time so I suggest severely limiting the number of compilers etc.
 ### Results
 
 There's a little script `read_data.py` that I used as a basis for a parser. 
-
-I'm currently only gathering usable results, but you can see 
-[pke_example.txt](example/pke_example.txt) and
-[kem_example.txt](example/kem_example.txt) for examples of some algorithms
-measured under a single configuration, sorted by nanojoules/cycle
-(e.g. `./read_data.py < data.kem | sort -n -k 7 > kem_example.txt`).
 
 
 ### Notes

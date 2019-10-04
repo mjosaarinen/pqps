@@ -1,21 +1,24 @@
 #include <stdlib.h>
 #include "randombytes.h"
 #include "cpucycles.h"
-#include "crypto_encrypt.h"
+#include "crypto_sign.h"
 #include "measure.h"
 
-const char *primitiveimplementation = crypto_encrypt_IMPLEMENTATION;
-const char *implementationversion = crypto_encrypt_VERSION;
+const char *primitiveimplementation = crypto_sign_IMPLEMENTATION;
+const char *implementationversion = crypto_sign_VERSION;
 const char *sizenames[] = { "outputbytes", "publickeybytes", "secretkeybytes", 0 };
-const long long sizes[] = { crypto_encrypt_BYTES, crypto_encrypt_PUBLICKEYBYTES, crypto_encrypt_SECRETKEYBYTES };
+const long long sizes[] = { crypto_sign_BYTES, crypto_sign_PUBLICKEYBYTES, crypto_sign_SECRETKEYBYTES };
 
-#define MAXTEST_BYTES 100000
+//#define MAXTEST_BYTES 100000
+#define MAXTEST_BYTES 32
 
-static unsigned char *pk;
-static unsigned char *sk;
-static unsigned char *m; unsigned long long mlen;
-static unsigned char *c; unsigned long long clen;
-static unsigned char *t; unsigned long long tlen;
+#define TIMINGS 15
+
+static unsigned char *pk[TIMINGS + 1];
+static unsigned char *sk[TIMINGS + 1];
+static unsigned char *m[TIMINGS + 1]; unsigned long long mlen;
+static unsigned char *sm[TIMINGS + 1]; unsigned long long smlen[TIMINGS + 1];
+static unsigned char *t[TIMINGS + 1]; unsigned long long tlen;
 
 void preallocate(void)
 {
@@ -26,14 +29,16 @@ void preallocate(void)
 
 void allocate(void)
 {
-  pk = alignedcalloc(crypto_encrypt_PUBLICKEYBYTES);
-  sk = alignedcalloc(crypto_encrypt_SECRETKEYBYTES);
-  m = alignedcalloc(MAXTEST_BYTES + crypto_encrypt_BYTES);
-  c = alignedcalloc(MAXTEST_BYTES + crypto_encrypt_BYTES);
-  t = alignedcalloc(MAXTEST_BYTES + crypto_encrypt_BYTES);
+  int i;
+  for (i = 0;i <= TIMINGS;++i) {
+    pk[i] = alignedcalloc(crypto_sign_PUBLICKEYBYTES);
+    sk[i] = alignedcalloc(crypto_sign_SECRETKEYBYTES);
+    m[i] = alignedcalloc(MAXTEST_BYTES + crypto_sign_BYTES);
+    sm[i] = alignedcalloc(MAXTEST_BYTES + crypto_sign_BYTES);
+    t[i] = alignedcalloc(MAXTEST_BYTES + crypto_sign_BYTES);
+  }
 }
 
-#define TIMINGS 31
 static long long cycles[TIMINGS + 1];
 static long long bytes[TIMINGS + 1];
 static long long rbytes[TIMINGS + 1];
@@ -49,16 +54,13 @@ void measure(void)
   for (loop = 0;loop < LOOPS;++loop) {
 
 	ENERGY_BEGIN
-
-    for (i = 0;i <= TIMINGS;++i) {
-      cycles[i] = cpucycles();
-      rbytes[i] = randombytes_bytes;
-      rcalls[i] = randombytes_calls;
-      crypto_encrypt_keypair(pk,sk);
-    }
-
+	    for (i = 0;i <= TIMINGS;++i) {
+   		  cycles[i] = cpucycles();
+   		  rbytes[i] = randombytes_bytes;
+   		  rcalls[i] = randombytes_calls;
+   		  crypto_sign_keypair(pk[i],sk[i]);
+   		}
 	ENERGY_END
-
 
     for (i = 0;i < TIMINGS;++i) cycles[i] = cycles[i + 1] - cycles[i];
     for (i = 0;i < TIMINGS;++i) rbytes[i] = rbytes[i + 1] - rbytes[i];
@@ -67,26 +69,24 @@ void measure(void)
     printentry(-1,"keypair_randombytes",rbytes,TIMINGS);
     printentry(-1,"keypair_randomcalls",rcalls,TIMINGS);
 
-	printentry(-1,"pke_kg_ujoule", &uj, 1);
-	printentry(-1,"pke_kg_avgcyc", &cyc, 1);
+	printentry(-1,"sign_kg_ujoule", &uj, 1);
+	printentry(-1,"sign_kg_avgcyc", &cyc, 1);
 
-	//	loops the message length
-    for (mlen = 0;mlen <= MAXTEST_BYTES;mlen += 1 + mlen / 4) {
-      randombytes(m,mlen);
+//    for (mlen = 0;mlen <= MAXTEST_BYTES;mlen += 1 + mlen / 4) {
+	mlen = 16;
+	{
+      for (i = 0;i <= TIMINGS;++i)
+        randombytes(m[i],mlen);
 
 	ENERGY_BEGIN
-
-
       for (i = 0;i <= TIMINGS;++i) {
         cycles[i] = cpucycles();
         rbytes[i] = randombytes_bytes;
         rcalls[i] = randombytes_calls;
-        bytes[i] = crypto_encrypt(c,&clen,m,mlen,pk);
-	if (bytes[i] == 0) bytes[i] = clen;
+        bytes[i] = crypto_sign(sm[i],&smlen[i],m[i],mlen,sk[i]);
+			if (bytes[i] == 0) bytes[i] = smlen[i];
       }
-
 	ENERGY_END
-
 
       for (i = 0;i < TIMINGS;++i) cycles[i] = cycles[i + 1] - cycles[i];
       for (i = 0;i < TIMINGS;++i) rbytes[i] = rbytes[i + 1] - rbytes[i];
@@ -96,21 +96,17 @@ void measure(void)
       printentry(mlen,"randombytes",rbytes,TIMINGS);
       printentry(mlen,"randomcalls",rcalls,TIMINGS);
 
-	printentry(mlen,"pke_enc_ujoule", &uj, 1);
-	printentry(mlen,"pke_enc_avgcyc", &cyc, 1);
-
+	  printentry(mlen,"sign_do_ujoule", &uj, 1);
+	  printentry(mlen,"sign_do_avgcyc", &cyc, 1);
 
 	ENERGY_BEGIN
-
-
       for (i = 0;i <= TIMINGS;++i) {
         cycles[i] = cpucycles();
         rbytes[i] = randombytes_bytes;
         rcalls[i] = randombytes_calls;
-        bytes[i] = crypto_encrypt_open(t,&tlen,c,clen,sk);
+        bytes[i] = crypto_sign_open(t[i],&tlen,sm[i],smlen[i],pk[i]);
 	if (bytes[i] == 0) bytes[i] = tlen;
       }
-
 	ENERGY_END
 
       for (i = 0;i < TIMINGS;++i) cycles[i] = cycles[i + 1] - cycles[i];
@@ -121,8 +117,8 @@ void measure(void)
       printentry(mlen,"open_randombytes",rbytes,TIMINGS);
       printentry(mlen,"open_randomcalls",rcalls,TIMINGS);
 
-	printentry(mlen,"pke_dec_ujoule", &uj, 1);
-	printentry(mlen,"pke_dec_avgcyc", &cyc, 1);
+	  printentry(mlen,"sign_vfy_ujoule", &uj, 1);
+	  printentry(mlen,"sign_vfy_avgcyc", &cyc, 1);
 
     }
   }
