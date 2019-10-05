@@ -88,9 +88,9 @@ for a parser.
 
 I'm currently only gathering usable results, but you can see 
 [blk_test.txt](example/blk_test.txt) and [pad_test.txt](example/pad_test.txt)
-for examples of algorithms measured under a single configuration (blk is a 
-"Core i7-8700 CPU @ 3.20GHz" desktop system wile pad is a "Core i5-8250U 
-CPU @ 1.60GHz" laptop). they were generated from a bunch of data files with:
+for examples of algorithms measured under two different configurations (blk is 
+a  "Core i7-8700 CPU @ 3.20GHz" desktop system wile pad is a "Core i5-8250U 
+CPU @ 1.60GHz" laptop). They were generated from a bunch of data files with:
 ```
 cat data* | ./read_data.py | sort > example/xxx_test.txt
 ```
