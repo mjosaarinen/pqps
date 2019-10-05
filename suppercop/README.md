@@ -87,12 +87,14 @@ There's a little script [read_data.py](read_data.py) that I used as a basis
 for a parser. 
 
 I'm currently only gathering usable results, but you can see 
-[blk_test.txt](example/blk_test.txt) for an examples of algorithms
-measured under a single configuration (blk is a "Intel(R) Core(TM) i7-8700 
-CPU @ 3.20GHz" system). It was generated from a bunch of data files with:
+[blk_test.txt](example/blk_test.txt) and [pad_test.txt](example/pad_test.txt)
+for examples of algorithms measured under a single configuration (blk is a 
+"Core i7-8700 CPU @ 3.20GHz" desktop system wile pad is a "Core i5-8250U 
+CPU @ 1.60GHz" laptop). they were generated from a bunch of data files with:
 ```
-cat data* | ./read_data.py | sort > example/test_example.txt
+cat data* | ./read_data.py | sort > example/xxx_test.txt
 ```
+Not all algorithms were enabled in these runs.
 
 ### Notes
 
