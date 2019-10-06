@@ -88,9 +88,9 @@ for a parser.
 
 I'm currently only gathering usable results, but you can see 
 [blk_test.txt](example/blk_test.txt) and [pad_test.txt](example/pad_test.txt)
-for examples of algorithms measured under two different configurations (blk is 
-a  "Core i7-8700 CPU @ 3.20GHz" desktop system wile pad is a "Core i5-8250U 
-CPU @ 1.60GHz" laptop). They were generated from a bunch of data files with:
+for examples of algorithms measured under two different configurations ("blk" 
+is a Core i7-8700 - 3.20GHz desktop system while "pad" is a Core i5-8250U 
+CPU - 1.60GHz laptop). They were generated from a bunch of data files with:
 ```
 cat data* | ./read_data.py | sort > example/xxx_test.txt
 ```
@@ -100,8 +100,7 @@ Not all algorithms were enabled in these runs.
 
 The official source of information on RAPL is Volume 3 of 
 [Intel® 64 and IA-32 Architectures Software Developer Manual](https://software.intel.com/en-us/articles/intel-sdm).
-However this is really low-level and you should be accessing the power 
-measurement/managemenent features through your operating system instead anyway.
+However this is really low-level.
 
 For practical discussion on the matter, I suggest getting hold of a this paper 
 by K.N. Khan, M. Hirki, T. Niemi, J.K. Nurminen, Z. Ou:
