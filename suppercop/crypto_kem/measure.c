@@ -64,7 +64,7 @@ void measure(void)
     printentry(-1,"keypair_cycles",cycles,TIMINGS);
     printentry(-1,"keypair_randombytes",rbytes,TIMINGS);
     printentry(-1,"keypair_randomcalls",rcalls,TIMINGS);
-	printentry(-1,"kem_kg_ujoule", &uj, 1);
+	printentry(-1,"kem_kg_njoule", &nj, 1);
 	printentry(-1,"kem_kg_avgcyc", &cyc, 1);
 
 	ENERGY_BEGIN
@@ -84,7 +84,7 @@ void measure(void)
     printentry(-1,"enc_cycles",cycles,TIMINGS);
     printentry(-1,"enc_randombytes",rbytes,TIMINGS);
     printentry(-1,"enc_randomcalls",rcalls,TIMINGS);
-	printentry(-1,"kem_enc_ujoule", &uj, 1);
+	printentry(-1,"kem_enc_njoule", &nj, 1);
 	printentry(-1,"kem_enc_avgcyc", &cyc, 1);
 
 	ENERGY_BEGIN
@@ -104,7 +104,7 @@ void measure(void)
     printentry(-1,"dec_cycles",cycles,TIMINGS);
     printentry(-1,"dec_randombytes",rbytes,TIMINGS);
     printentry(-1,"dec_randomcalls",rcalls,TIMINGS);
-	printentry(-1,"kem_dec_ujoule", &uj, 1);
+	printentry(-1,"kem_dec_njoule", &nj, 1);
 	printentry(-1,"kem_dec_avgcyc", &cyc, 1);
 
   }

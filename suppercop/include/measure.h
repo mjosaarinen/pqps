@@ -15,19 +15,20 @@ extern void measure(void);
 long long energy_uj();
 
 #define ENERGY_VARS					\
-  long long n, uj, cc0, cyc;
+  long long num, nj, cc0, cyc;
 
 #define ENERGY_BEGIN	 			\
-	n = 0;							\
-	uj = energy_uj();				\
+	num = 0;						\
+	nj = energy_uj();				\
 	cc0 = cpucycles();				\
 	do {
 
 #define ENERGY_END					\
-		n += TIMINGS + 1;			\
+		num += TIMINGS + 1;			\
 		cyc = cpucycles() - cc0;	\
 	} while (cyc < 1000000000);		\
-	uj = (energy_uj() - uj) / n;	\
-	cyc /= n;
+	nj = energy_uj() - nj;			\
+	nj = 1000 * nj / num;			\
+	cyc /= num;
 
 #endif

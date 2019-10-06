@@ -67,7 +67,7 @@ void measure(void)
     printentry(-1,"keypair_randombytes",rbytes,TIMINGS);
     printentry(-1,"keypair_randomcalls",rcalls,TIMINGS);
 
-	printentry(-1,"pke_kg_ujoule", &uj, 1);
+	printentry(-1,"pke_kg_njoule", &nj, 1);
 	printentry(-1,"pke_kg_avgcyc", &cyc, 1);
 
 	//	loops the message length
@@ -96,7 +96,7 @@ void measure(void)
       printentry(mlen,"randombytes",rbytes,TIMINGS);
       printentry(mlen,"randomcalls",rcalls,TIMINGS);
 
-	printentry(mlen,"pke_enc_ujoule", &uj, 1);
+	printentry(mlen,"pke_enc_njoule", &nj, 1);
 	printentry(mlen,"pke_enc_avgcyc", &cyc, 1);
 
 
@@ -121,7 +121,7 @@ void measure(void)
       printentry(mlen,"open_randombytes",rbytes,TIMINGS);
       printentry(mlen,"open_randomcalls",rcalls,TIMINGS);
 
-	printentry(mlen,"pke_dec_ujoule", &uj, 1);
+	printentry(mlen,"pke_dec_njoule", &nj, 1);
 	printentry(mlen,"pke_dec_avgcyc", &cyc, 1);
 
     }

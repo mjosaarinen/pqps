@@ -68,7 +68,7 @@ void measure(void)
     printentry(-1,"keypair_randombytes",rbytes,TIMINGS);
     printentry(-1,"keypair_randomcalls",rcalls,TIMINGS);
 
-	printentry(-1,"sign_kg_ujoule", &uj, 1);
+	printentry(-1,"sign_kg_njoule", &nj, 1);
 	printentry(-1,"sign_kg_avgcyc", &cyc, 1);
 
     for (mlen = 0;mlen <= MAXTEST_BYTES;mlen += 1 + mlen / 4) {
@@ -93,7 +93,7 @@ void measure(void)
       printentry(mlen,"randombytes",rbytes,TIMINGS);
       printentry(mlen,"randomcalls",rcalls,TIMINGS);
 
-	  printentry(mlen,"sign_do_ujoule", &uj, 1);
+	  printentry(mlen,"sign_do_njoule", &nj, 1);
 	  printentry(mlen,"sign_do_avgcyc", &cyc, 1);
 
 	ENERGY_BEGIN
@@ -114,7 +114,7 @@ void measure(void)
       printentry(mlen,"open_randombytes",rbytes,TIMINGS);
       printentry(mlen,"open_randomcalls",rcalls,TIMINGS);
 
-	  printentry(mlen,"sign_vfy_ujoule", &uj, 1);
+	  printentry(mlen,"sign_vfy_njoule", &nj, 1);
 	  printentry(mlen,"sign_vfy_avgcyc", &cyc, 1);
 
     }

@@ -22,15 +22,18 @@ for line in sys.stdin:
 		continue
 
 	# we are only interested in these two types of data
-	if v[6][-7:] == "_ujoule" or v[6][-7:] == "_avgcyc":
-		
+	if v[6][-7:] == "_njoule" or v[6][-7:] == "_avgcyc":
+		if v[7] == "-":
+			mes = v[6]
+		else:
+			mes = v[7]+"."+v[6]		
 		if v[5] in data:
 			if v[6] in data[v[5]]:
-				data[v[5]][v[6]].append(float(v[8]))
+				data[v[5]][mes].append(float(v[8]))
 			else:
-				data[v[5]][v[6]] = [ float(v[8]) ];
+				data[v[5]][mes] = [ float(v[8]) ];
 		else:
-			data[v[5]] = { v[6] : [ float(v[8]) ] }
+			data[v[5]] = { mes : [ float(v[8]) ] }
 
 #	"median filter average"
 
@@ -51,12 +54,28 @@ def mfavg(l, c):
 
 for alg in data.items():
 	for x in alg[1].items():
-		if x[0][-7:] == "_ujoule":
+		if x[0][-7:] == "_njoule":
 			mes = x[0][:-7]				# name of measurement
-			uj = mfavg(x[1], 0.75)		# get average joules
+			nj = mfavg(x[1], 0.75)		# get average joules
 			# get related cycles
 			cyc = mfavg(alg[1][mes+"_avgcyc"],0.75)
-			njc = 1E3*uj/cyc			# nanojoules per cycle
-			# name, measurement, microjoules, cycles, nanojoules/cycle
-			print(f"{alg[0]:32s}{mes:8s}{uj:10.0f} uJ {cyc:11.0f} clk {njc:8.4f} nJ/clk")
+			njc = nj/cyc				# nanojoules per cycle
+			# name, measurement, 
+
+			print(f"{alg[0]:32s}", end='')
+
+			mss=mes.split(".")
+			if len(mss) == 2:
+				x = int(mss[0])
+				if x < 1000000:
+					print(f"{mss[1]:9s} {x:9d} ", end='')
+				else:
+					y = int(x / 1000000)
+					x = int(x % 1000000)
+					print(f"{mss[1]:9s} {y:4d},{x:4d} ", end='')
+			else:
+				print(f"{mes:9s} {0:9d} ", end='')
+
+			# nanojoules, cycles, nanojoules/cycle
+			print(f"{nj:12.0f} nJ {cyc:12.0f} clk {njc:8.4f} nJ/clk")
 
