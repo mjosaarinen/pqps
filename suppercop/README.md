@@ -29,20 +29,20 @@ latency. Hence we are currently reading the counters before and after
 iterating the target function for at least 1,000,000,000 cycles, and 
 calculating an average by dividing with the number of iterations. 
 
-The new measurements are average energy `_ujoule` and average cycles 
-`_avgcyc`:
+The new measurements are average energy in nanojoules `_njoule` and average 
+cycles `_avgcyc`:
 
-| **Primitive**		| **Energy** (μJ)	| **Time** (cycles)	|
+| **Primitive**		| **Energy** (nJ)	| **Time** (cycles)	|
 | ----------------- | ----------------- | ----------------- |
-| KEM Keypair 		| `kem_kg_ujoule`	| `kem_kg_avgcyc`	|
-| KEM Encaps		| `kem_enc_ujoule`	| `kem_enc_avgcyc`	|
-| KEM Decaps		| `kem_dec_ujoule`	| `kem_dec_avgcyc`	|
-| PKE Keypair		| `pke_kg_ujoule`	| `pke_kg_avgcyc`	|
-| PKE Encrypt		| `pke_enc_ujoule`	| `pke_enc_avgcyc`	|
-| PKE Decrypt		| `pke_dec_ujoule`	| `pke_dec_avgcyc`	|
-| Sign Keypair		| `sign_kg_ujoule`	| `sign_kg_avgcyc`	|
-| Make signature	| `sign_do_ujoule`	| `sign_do_avgcyc`	|
-| Verify signature	| `sign_vfy_ujoule`	| `sign_vfy_avgcyc`	|
+| KEM Keypair 		| `kem_kg_njoule`	| `kem_kg_avgcyc`	|
+| KEM Encaps		| `kem_enc_njoule`	| `kem_enc_avgcyc`	|
+| KEM Decaps		| `kem_dec_njoule`	| `kem_dec_avgcyc`	|
+| PKE Keypair		| `pke_kg_njoule`	| `pke_kg_avgcyc`	|
+| PKE Encrypt		| `pke_enc_njoule`	| `pke_enc_avgcyc`	|
+| PKE Decrypt		| `pke_dec_njoule`	| `pke_dec_avgcyc`	|
+| Sign Keypair		| `sign_kg_njoule`	| `sign_kg_avgcyc`	|
+| Make signature	| `sign_do_njoule`	| `sign_do_avgcyc`	|
+| Verify signature	| `sign_vfy_njoule`	| `sign_vfy_avgcyc`	|
 
 Sorry for diverging from the supercop primitive operation naming convention, 
 but this happened to be better for my simple parsing scripts.
@@ -95,6 +95,8 @@ CPU - 1.60GHz laptop). They were generated from a bunch of data files with:
 cat data* | ./read_data.py | sort > example/xxx_test.txt
 ```
 Not all algorithms were enabled in these runs.
+
+XXX currently this data is from an earlier version.
 
 ### Notes
 
