@@ -1,19 +1,23 @@
 #!/bin/bash
 
+#	do_stuff.sh
+#	2019-10-07	Markku-Juhani O. Saarinen <mjos@pqshield.com>
+
+#	a hacky data gathering script..
+
 cd supercop-20??????
 
 # these are our benchmark targets atm
 
-du -ak | grep nistpqc2 | colrm 1 10 | sed 's/\/nistpqc2//g' > test.tmp
+echo crypto_*/*/nistpqc2 | sed 's/\/nistpqc2//g' > test.tmp
 echo crypto_aead/aes???gcmv1 \
-	crypto_stream/aes???ctr \
-	crypto_stream/chacha20 \
-	crypto_hash/sha??? \
-	crypto_hash/sha3??? \
-	crypto_sign/ed25519 \
-	crypto_sign/ecdonaldp??? \
+	crypto_stream/aes???ctr crypto_stream/chacha20 \
+	crypto_hash/sha??? crypto_hash/sha3??? \
+	crypto_sign/ed25519 crypto_sign/ecdonaldp??? \
 	crypto_encrypt/rsa2048 \
 	crypto_kem/rsa2048 >> test.tmp
+
+exit 1
 
 mkdir -p ../data
 
