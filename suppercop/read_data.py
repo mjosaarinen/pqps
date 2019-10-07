@@ -60,21 +60,18 @@ for alg in data.items():
 			# get related cycles
 			cyc = mfavg(alg[1][mes+"_avgcyc"],0.75)
 			njc = nj/cyc				# nanojoules per cycle
-			# name, measurement, 
 
-			print(f"{alg[0]:32s}", end='')
-
+			# name, measurement
 			mss=mes.split(".")
 			if len(mss) == 2:
-				x = int(mss[0])
-				if x < 1000000:
-					print(f"{mss[1]:9s} {x:9d} ", end='')
-				else:
-					y = int(x / 1000000)
-					x = int(x % 1000000)
-					print(f"{mss[1]:9s} {y:4d},{x:4d} ", end='')
+				y = int(int(mss[0]) / 1000000)
+				x = int(int(mss[0]) % 1000000)
+				mes = mss[1]
 			else:
-				print(f"{mes:9s} {0:9d} ", end='')
+				x = 0
+				y = 0
+
+			print(f"{alg[0]:32s} {mes:10s} {x:5d} {y:5d} ", end='')
 
 			# nanojoules, cycles, nanojoules/cycle
 			print(f"{nj:12.0f} nJ {cyc:12.0f} clk {njc:8.4f} nJ/clk")

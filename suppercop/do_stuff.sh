@@ -1,38 +1,31 @@
 #!/bin/bash
 
 cd supercop-20??????
+
+# these are our benchmark targets atm
+
+du -ak | grep nistpqc2 | colrm 1 10 | sed 's/\/nistpqc2//g' > test.tmp
+echo crypto_aead/aes???gcmv1 \
+	crypto_stream/aes???ctr \
+	crypto_stream/chacha20 \
+	crypto_hash/sha??? \
+	crypto_hash/sha3??? \
+	crypto_sign/ed25519 \
+	crypto_sign/ecdonaldp??? \
+	crypto_encrypt/rsa2048 \
+	crypto_kem/rsa2048 >> test.tmp
+
+mkdir -p ../data
+
 for i in {1..9}
 do
-	./do-part crypto_aead aes128gcmv1
-	cat bench/pad/data >> ../data/data.aes.$i
-	./do-part crypto_aead aes256gcmv1
-	cat bench/pad/data >> ../data/data.aes.$i
-
-	./do-part crypto_stream aes128ctr
-	cat bench/pad/data >> ../data/data.aes.$i
-	./do-part crypto_stream aes256ctr
-	cat bench/pad/data >> ../data/data.aes.$i
-	./do-part crypto_stream chacha20
-	cat bench/pad/data >> ../data/data.c20.$i
-
-	./do-part crypto_hash sha256
-	cat bench/pad/data >> ../data/data.sha.$i
-	./do-part crypto_hash sha384
-	cat bench/pad/data >> ../data/data.sha.$i
-	./do-part crypto_hash sha512
-	cat bench/pad/data >> ../data/data.sha.$i
-	./do-part crypto_hash sha3256
-	cat bench/pad/data >> ../data/data.sha.$i
-	./do-part crypto_hash sha3384
-	cat bench/pad/data >> ../data/data.sha.$i
-	./do-part crypto_hash sha3512
-	cat bench/pad/data >> ../data/data.sha.$i
-
-	./do-part crypto_kem
-	cat bench/pad/data >> ../data/data.kem.$i
-	./do-part crypto_sign
-	cat bench/pad/data >> ../data/data.sgn.$i
-	./do-part crypto_encrypt
-	cat bench/pad/data >> ../data/data.pke.$i
+	# randomize order
+	algs=`cat test.tmp | tr ' /' '\n.' | uniq | shuf`
+	for x in $algs
+	do
+		echo $x.$i
+		./do-part `echo $x | tr '.' ' '`
+		cp bench/$HOSTNAME/data ../data/data.$x.$i
+	done
 done
 
