@@ -17,8 +17,6 @@ echo crypto_aead/aes???gcmv1 \
 	crypto_encrypt/rsa2048 \
 	crypto_kem/rsa2048 >> test.tmp
 
-exit 1
-
 mkdir -p ../data
 
 for i in {1..9}
