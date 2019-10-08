@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#	do_stuff.sh
+#	qad_run.sh
 #	2019-10-07	Markku-Juhani O. Saarinen <mjos@pqshield.com>
 
-#	a hacky data gathering script..
+#	qad (quick-and-dirty) run script for supercop
 
 cd supercop-20??????
 
