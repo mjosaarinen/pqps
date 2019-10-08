@@ -1,9 +1,9 @@
 #!/bin/bash
 
-#	copy_measure.sh
+#	qad_prepare.sh
 #	2019-10-07	Markku-Juhani O. Saarinen <mjos@pqhshield.com>
 
-#	prepare supercop. this is super hacky, i know
+#	qad (quick-and-dirty) prepare supercop. this is super hacky, i know
 
 url=https://bench.cr.yp.to/`curl -s https://bench.cr.yp.to/supercop.html | \
 	grep wget | grep -o '".*"' | tr -d '"' | head -1`
