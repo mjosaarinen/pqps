@@ -29,7 +29,7 @@ Or use the measurement script if a PowerShield is present::
 $ ./test_alg.sh mecc/ecdsa-secp256r1
 ```
 
-My power and energy measurements were:
+My initial performance, power and energy measurements were:
 
 ```
 ECDH-secp256k1 (sk=32, pk=64, ct=64, ss=32)
@@ -58,7 +58,10 @@ TOTAL:   18.639 Mcycles	194.153 ms	 59.703 mW	 11.592 mJ
 ```
 
 ECDH is little bit more expensive than one might expect since it checks
-if the public points are on the curve etc.
+if the public points are on the curve etc. Power is pretty constantly at 
+65 mW for Koblitz curves and 60 mW for random curves, and ring-based
+lattice PQC algorithms outperform these curve implementations despite
+assembly optimizations.
 
 Cheers,
 - markku
