@@ -6,14 +6,14 @@ Some NIST PQC API wrappers for Kenneth MacKay's
 [micro-ecc](https://github.com/kmackay/micro-ecc).
 
 | Name | Type |
-|:----:|:----:|
+| ---- | ---- |
 | [ecdsa-secp256k1](ecdsa-secp256k1) | ECDSA (sign), 256-bit Koblitz curve. |
 | [ecdsa-secp256r1](ecdsa-secp256r1) | ECDSA (sign), 256-bit Random curve.  |
 | [ecdh-secp256k1](ecdh-secp256k1) 	 | ECDH (as KEM), 256-bit Koblitz curve.|
 | [ecdh-secp256r1](ecdh-secp256r1)   | ECDH (as KEM), 256-bit Random curve. |
 
 To compile, first clone the "static" branch of micro-ecc into this
-directory (`mecc`):
+directory (pqps/mecc):
 ```
 git clone -b static https://github.com/kmackay/micro-ecc.git
 ```
@@ -56,6 +56,9 @@ Sign:     6.185 Mcycles	 64.428 ms	 59.954 mW	  3.863 mJ
 Verify:   6.639 Mcycles	 69.160 ms	 59.826 mW	  4.138 mJ
 TOTAL:   18.639 Mcycles	194.153 ms	 59.703 mW	 11.592 mJ
 ```
+
+ECDH is little bit more expensive than one might expect since it checks
+if the public points are on the curve etc.
 
 Cheers,
 - markku
