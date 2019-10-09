@@ -5,12 +5,40 @@ Encaps:   8.215 Mcycles	 85.577 ms	 65.374 mW	  5.595 mJ
 Decaps:   4.108 Mcycles	 42.791 ms	 65.310 mW	  2.795 mJ
 TOTAL:   16.432 Mcycles	171.163 ms	 65.363 mW	 11.188 mJ
 
+log/mecc_ecdh-secp256k1.20191009153328
+ECDH-secp256k1 (sk=32, pk=64, ct=64, ss=32)
+KeyGen:   4.108 Mcycles	 42.794 ms	 65.444 mW	  2.801 mJ
+Encaps:   8.215 Mcycles	 85.578 ms	 65.354 mW	  5.593 mJ
+Decaps:   4.108 Mcycles	 42.791 ms	 65.367 mW	  2.797 mJ
+TOTAL:   16.432 Mcycles	171.163 ms	 65.266 mW	 11.171 mJ
+
+log/mecc_ecdh-secp256k1.20191009154129
+ECDH-secp256k1 (sk=32, pk=64, ct=64, ss=32)
+KeyGen:   4.108 Mcycles	 42.794 ms	 65.416 mW	  2.799 mJ
+Encaps:   8.215 Mcycles	 85.578 ms	 65.366 mW	  5.594 mJ
+Decaps:   4.108 Mcycles	 42.791 ms	 65.457 mW	  2.801 mJ
+TOTAL:   16.432 Mcycles	171.162 ms	 65.333 mW	 11.183 mJ
+
 log/mecc_ecdh-secp256r1.20191009150723
 ECDH-secp256r1 (sk=32, pk=64, ct=64, ss=32)
 KeyGen:   5.814 Mcycles	 60.567 ms	 60.461 mW	  3.662 mJ
 Encaps:  11.630 Mcycles	121.143 ms	 60.004 mW	  7.269 mJ
 Decaps:   5.815 Mcycles	 60.572 ms	 60.328 mW	  3.654 mJ
 TOTAL:   23.259 Mcycles	242.281 ms	 59.823 mW	 14.494 mJ
+
+log/mecc_ecdh-secp256r1.20191009153506
+ECDH-secp256r1 (sk=32, pk=64, ct=64, ss=32)
+KeyGen:   5.814 Mcycles	 60.567 ms	 60.405 mW	  3.659 mJ
+Encaps:  11.630 Mcycles	121.142 ms	 59.971 mW	  7.265 mJ
+Decaps:   5.815 Mcycles	 60.572 ms	 60.286 mW	  3.652 mJ
+TOTAL:   23.259 Mcycles	242.280 ms	 59.790 mW	 14.486 mJ
+
+log/mecc_ecdh-secp256r1.20191009154307
+ECDH-secp256r1 (sk=32, pk=64, ct=64, ss=32)
+KeyGen:   5.814 Mcycles	 60.567 ms	 60.472 mW	  3.663 mJ
+Encaps:  11.630 Mcycles	121.142 ms	 59.990 mW	  7.267 mJ
+Decaps:   5.815 Mcycles	 60.571 ms	 60.356 mW	  3.656 mJ
+TOTAL:   23.259 Mcycles	242.280 ms	 59.802 mW	 14.489 mJ
 
 log/mecc_ecdsa-secp256k1.20191009140207
 ECDSA-secp256k1 (sk=32, pk=64, sl=64)
@@ -19,12 +47,40 @@ Sign:     4.475 Mcycles	 46.616 ms	 64.925 mW	  3.027 mJ
 Verify:   4.546 Mcycles	 47.351 ms	 65.018 mW	  3.079 mJ
 TOTAL:   13.130 Mcycles	136.773 ms	 64.683 mW	  8.847 mJ
 
+log/mecc_ecdsa-secp256k1.20191009153644
+ECDSA-secp256k1 (sk=32, pk=64, sl=64)
+KeyGen:   4.109 Mcycles	 42.806 ms	 64.026 mW	  2.741 mJ
+Sign:     4.475 Mcycles	 46.615 ms	 64.965 mW	  3.028 mJ
+Verify:   4.546 Mcycles	 47.351 ms	 65.004 mW	  3.078 mJ
+TOTAL:   13.130 Mcycles	136.773 ms	 64.697 mW	  8.849 mJ
+
+log/mecc_ecdsa-secp256k1.20191009154446
+ECDSA-secp256k1 (sk=32, pk=64, sl=64)
+KeyGen:   4.109 Mcycles	 42.807 ms	 64.083 mW	  2.743 mJ
+Sign:     4.475 Mcycles	 46.616 ms	 64.940 mW	  3.027 mJ
+Verify:   4.546 Mcycles	 47.351 ms	 65.047 mW	  3.080 mJ
+TOTAL:   13.130 Mcycles	136.773 ms	 64.721 mW	  8.852 mJ
+
 log/mecc_ecdsa-secp256r1.20191009140359
 ECDSA-secp256r1 (sk=32, pk=64, sl=64)
 KeyGen:   5.814 Mcycles	 60.565 ms	 59.129 mW	  3.581 mJ
 Sign:     6.185 Mcycles	 64.428 ms	 59.954 mW	  3.863 mJ
 Verify:   6.639 Mcycles	 69.160 ms	 59.826 mW	  4.138 mJ
 TOTAL:   18.639 Mcycles	194.153 ms	 59.703 mW	 11.592 mJ
+
+log/mecc_ecdsa-secp256r1.20191009153823
+ECDSA-secp256r1 (sk=32, pk=64, sl=64)
+KeyGen:   5.814 Mcycles	 60.566 ms	 59.142 mW	  3.582 mJ
+Sign:     6.185 Mcycles	 64.428 ms	 59.986 mW	  3.865 mJ
+Verify:   6.639 Mcycles	 69.160 ms	 59.835 mW	  4.138 mJ
+TOTAL:   18.639 Mcycles	194.153 ms	 59.615 mW	 11.574 mJ
+
+log/mecc_ecdsa-secp256r1.20191009154624
+ECDSA-secp256r1 (sk=32, pk=64, sl=64)
+KeyGen:   5.814 Mcycles	 60.565 ms	 59.143 mW	  3.582 mJ
+Sign:     6.185 Mcycles	 64.428 ms	 59.972 mW	  3.864 mJ
+Verify:   6.639 Mcycles	 69.160 ms	 59.884 mW	  4.142 mJ
+TOTAL:   18.639 Mcycles	194.153 ms	 59.636 mW	 11.578 mJ
 
 log/pqm4_crypto_kem_firesaber_m4.20190930111533
 FireSaber (sk=3040, pk=1312, ct=1472, ss=32)
