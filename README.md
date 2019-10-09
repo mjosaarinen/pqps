@@ -167,13 +167,13 @@ know how to make that work (and it actually sounds littble bit crazy).
 My pqps firmware is configured to communicate at 115200 baud; add `-b 115200`
 as a picocom parameter if needed. This is easily changed in `main.cpp`.
 
-### Building PQM4
+### Compiling PQC implementations from PQM4
 
-The measurement wass ran on implementations from the 
+The measurement was ran on implementations from the 
 [pqm4](https://github.com/mupq/pqm4) "Post-quantum crypto library for the 
 ARM Cortex-M4". However I'm using a different target board and the 
 [ARM Mbed OS v2](https://os.mbed.com/) runtime libraries instead of
-[libopencm3](https://github.com/libopencm3). 
+[libopencm3](https://github.com/libopencm3) that the pqm4 uses. 
 
 So, first get the distribution and unpack pqm4 inside it:
 ```
@@ -198,13 +198,13 @@ arm-none-eabi-objcopy -O ihex pqps.elf pqps.hex
 The `PQALG` argument is needed and points to a directory containing
 the target implementation. 
 
-### ECDSA and ECDH
+### Compiling ECDSA and ECDH from "micro-ecc"
 
 The directory [mecc](mecc) contains wrappers that I wrote for Kem MacKay's 
 [micro-ecc](https://github.com/kmackay/micro-ecc), which may be used 
 as a reference point. The compilation and testing mechanism is exactly the
 same as for PQM4 algorithms (ECDH is modeled as a KEM).
-
+See the [mecc](mecc) README for more information.
 
 ### Flashing
 
