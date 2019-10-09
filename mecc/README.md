@@ -22,7 +22,7 @@ You can then test the signature algorithms and KEMs from pqps (parent
 directory) normally, with something like
 ```
 $ make clean
-$ make PQALG=mecc/ecdsa-secp256r1 flash
+$ make PQALG=mecc/ecdsa-secp256r1
 ```
 Or use the measurement script if a PowerShield is present::
 ```
