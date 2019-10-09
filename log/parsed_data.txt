@@ -1,3 +1,31 @@
+log/mecc_ecdh-secp256k1.20191009150924
+ECDH-secp256k1 (sk=32, pk=64, ct=64, ss=32)
+KeyGen:   4.108 Mcycles	 42.795 ms	 65.429 mW	  2.800 mJ
+Encaps:   8.215 Mcycles	 85.577 ms	 65.374 mW	  5.595 mJ
+Decaps:   4.108 Mcycles	 42.791 ms	 65.310 mW	  2.795 mJ
+TOTAL:   16.432 Mcycles	171.163 ms	 65.363 mW	 11.188 mJ
+
+log/mecc_ecdh-secp256r1.20191009150723
+ECDH-secp256r1 (sk=32, pk=64, ct=64, ss=32)
+KeyGen:   5.814 Mcycles	 60.567 ms	 60.461 mW	  3.662 mJ
+Encaps:  11.630 Mcycles	121.143 ms	 60.004 mW	  7.269 mJ
+Decaps:   5.815 Mcycles	 60.572 ms	 60.328 mW	  3.654 mJ
+TOTAL:   23.259 Mcycles	242.281 ms	 59.823 mW	 14.494 mJ
+
+log/mecc_ecdsa-secp256k1.20191009140207
+ECDSA-secp256k1 (sk=32, pk=64, sl=64)
+KeyGen:   4.109 Mcycles	 42.806 ms	 64.082 mW	  2.743 mJ
+Sign:     4.475 Mcycles	 46.616 ms	 64.925 mW	  3.027 mJ
+Verify:   4.546 Mcycles	 47.351 ms	 65.018 mW	  3.079 mJ
+TOTAL:   13.130 Mcycles	136.773 ms	 64.683 mW	  8.847 mJ
+
+log/mecc_ecdsa-secp256r1.20191009140359
+ECDSA-secp256r1 (sk=32, pk=64, sl=64)
+KeyGen:   5.814 Mcycles	 60.565 ms	 59.129 mW	  3.581 mJ
+Sign:     6.185 Mcycles	 64.428 ms	 59.954 mW	  3.863 mJ
+Verify:   6.639 Mcycles	 69.160 ms	 59.826 mW	  4.138 mJ
+TOTAL:   18.639 Mcycles	194.153 ms	 59.703 mW	 11.592 mJ
+
 log/pqm4_crypto_kem_firesaber_m4.20190930111533
 FireSaber (sk=3040, pk=1312, ct=1472, ss=32)
 KeyGen:   1.455 Mcycles	 15.155 ms	 81.754 mW	  1.239 mJ
@@ -31,56 +59,56 @@ FrodoKEM-640-AES (sk=19888, pk=9616, ct=9720, ss=16)
 KeyGen:  48.388 Mcycles	504.041 ms	 73.653 mW	 37.124 mJ
 Encaps:  47.206 Mcycles	491.728 ms	 71.147 mW	 34.985 mJ
 Decaps:  46.651 Mcycles	485.949 ms	 70.863 mW	 34.436 mJ
-TOTAL:  142.245 Mcycles	  1.482 s	 71.915 mW	106.558 mJ
+TOTAL:  142.245 Mcycles	  1.482  s	 71.915 mW	106.558 mJ
 
 log/pqm4_crypto_kem_frodokem640aes_m4.20190930120547
 FrodoKEM-640-AES (sk=19888, pk=9616, ct=9720, ss=16)
 KeyGen:  48.388 Mcycles	504.041 ms	 73.771 mW	 37.184 mJ
 Encaps:  47.206 Mcycles	491.729 ms	 71.281 mW	 35.051 mJ
 Decaps:  46.651 Mcycles	485.949 ms	 70.944 mW	 34.475 mJ
-TOTAL:  142.245 Mcycles	  1.482 s	 72.011 mW	106.700 mJ
+TOTAL:  142.245 Mcycles	  1.482  s	 72.011 mW	106.700 mJ
 
 log/pqm4_crypto_kem_frodokem640aes_m4.20190930152314
 FrodoKEM-640-AES (sk=19888, pk=9616, ct=9720, ss=16)
 KeyGen:  48.388 Mcycles	504.041 ms	 73.961 mW	 37.279 mJ
 Encaps:  47.206 Mcycles	491.728 ms	 71.346 mW	 35.083 mJ
 Decaps:  46.651 Mcycles	485.949 ms	 71.040 mW	 34.522 mJ
-TOTAL:  142.245 Mcycles	  1.482 s	 72.046 mW	106.753 mJ
+TOTAL:  142.245 Mcycles	  1.482  s	 72.046 mW	106.753 mJ
 
 log/pqm4_crypto_kem_frodokem640aes_m4.20191001122819
 FrodoKEM-640-AES (sk=19888, pk=9616, ct=9720, ss=16)
 KeyGen:  48.388 Mcycles	504.042 ms	 73.897 mW	 37.247 mJ
 Encaps:  47.206 Mcycles	491.729 ms	 71.346 mW	 35.083 mJ
 Decaps:  46.651 Mcycles	485.949 ms	 71.035 mW	 34.520 mJ
-TOTAL:  142.245 Mcycles	  1.482 s	 72.064 mW	106.778 mJ
+TOTAL:  142.245 Mcycles	  1.482  s	 72.064 mW	106.778 mJ
 
 log/pqm4_crypto_kem_frodokem640shake_m4.20190930093319
 FrodoKEM-640-SHAKE (sk=19888, pk=9616, ct=9720, ss=16)
 KeyGen:  80.017 Mcycles	833.506 ms	 79.398 mW	 66.179 mJ
 Encaps:  80.005 Mcycles	833.385 ms	 77.837 mW	 64.868 mJ
 Decaps:  79.444 Mcycles	827.538 ms	 77.683 mW	 64.286 mJ
-TOTAL:  239.465 Mcycles	  2.494 s	 78.058 mW	194.711 mJ
+TOTAL:  239.465 Mcycles	  2.494  s	 78.058 mW	194.711 mJ
 
 log/pqm4_crypto_kem_frodokem640shake_m4.20190930130910
 FrodoKEM-640-SHAKE (sk=19888, pk=9616, ct=9720, ss=16)
 KeyGen:  80.017 Mcycles	833.506 ms	 78.963 mW	 65.816 mJ
 Encaps:  80.005 Mcycles	833.381 ms	 77.846 mW	 64.876 mJ
 Decaps:  79.444 Mcycles	827.537 ms	 77.792 mW	 64.375 mJ
-TOTAL:  239.465 Mcycles	  2.494 s	 78.181 mW	195.017 mJ
+TOTAL:  239.465 Mcycles	  2.494  s	 78.181 mW	195.017 mJ
 
 log/pqm4_crypto_kem_frodokem640shake_m4.20190930162446
 FrodoKEM-640-SHAKE (sk=19888, pk=9616, ct=9720, ss=16)
 KeyGen:  80.017 Mcycles	833.508 ms	 79.063 mW	 65.899 mJ
 Encaps:  80.004 Mcycles	833.379 ms	 77.946 mW	 64.959 mJ
 Decaps:  79.444 Mcycles	827.537 ms	 77.887 mW	 64.454 mJ
-TOTAL:  239.465 Mcycles	  2.494 s	 78.264 mW	195.223 mJ
+TOTAL:  239.465 Mcycles	  2.494  s	 78.264 mW	195.223 mJ
 
 log/pqm4_crypto_kem_frodokem640shake_m4.20191001124254
 FrodoKEM-640-SHAKE (sk=19888, pk=9616, ct=9720, ss=16)
 KeyGen:  80.017 Mcycles	833.507 ms	 79.030 mW	 65.872 mJ
 Encaps:  80.004 Mcycles	833.377 ms	 77.926 mW	 64.942 mJ
 Decaps:  79.444 Mcycles	827.538 ms	 77.841 mW	 64.416 mJ
-TOTAL:  239.464 Mcycles	  2.494 s	 78.219 mW	195.112 mJ
+TOTAL:  239.464 Mcycles	  2.494  s	 78.219 mW	195.112 mJ
 
 log/pqm4_crypto_kem_kyber1024_m4.20190930085747
 Kyber1024 (sk=3168, pk=1568, ct=1568, ss=32)
@@ -336,87 +364,87 @@ TOTAL:   79.976 Mcycles	833.086 ms	 42.314 mW	 35.251 mJ
 
 log/pqm4_crypto_kem_ntruhps2048677_m4.20190930111347
 NTRU-HPS2048677 (sk=1234, pk=930, ct=930, ss=32)
-KeyGen: 141.319 Mcycles	  1.472 s	 41.111 mW	 60.518 mJ
+KeyGen: 141.319 Mcycles	  1.472  s	 41.111 mW	 60.518 mJ
 Encaps: 943.410 kcycles	  9.827 ms	 59.224 mW	582.010 μJ
 Decaps: 849.431 kcycles	  8.848 ms	 83.424 mW	738.151 μJ
-TOTAL:  143.112 Mcycles	  1.491 s	 41.477 mW	 61.832 mJ
+TOTAL:  143.112 Mcycles	  1.491  s	 41.477 mW	 61.832 mJ
 
 log/pqm4_crypto_kem_ntruhps2048677_m4.20190930125035
 NTRU-HPS2048677 (sk=1234, pk=930, ct=930, ss=32)
-KeyGen: 141.319 Mcycles	  1.472 s	 41.108 mW	 60.514 mJ
+KeyGen: 141.319 Mcycles	  1.472  s	 41.108 mW	 60.514 mJ
 Encaps: 943.410 kcycles	  9.827 ms	 59.244 mW	582.205 μJ
 Decaps: 849.432 kcycles	  8.848 ms	 83.409 mW	738.025 μJ
-TOTAL:  143.112 Mcycles	  1.491 s	 41.413 mW	 61.737 mJ
+TOTAL:  143.112 Mcycles	  1.491  s	 41.413 mW	 61.737 mJ
 
 log/pqm4_crypto_kem_ntruhps2048677_m4.20190930145622
 NTRU-HPS2048677 (sk=1234, pk=930, ct=930, ss=32)
-KeyGen: 141.319 Mcycles	  1.472 s	 41.183 mW	 60.625 mJ
+KeyGen: 141.319 Mcycles	  1.472  s	 41.183 mW	 60.625 mJ
 Encaps: 943.411 kcycles	  9.827 ms	 59.304 mW	582.792 μJ
 Decaps: 849.432 kcycles	  8.848 ms	 83.523 mW	739.031 μJ
-TOTAL:  143.112 Mcycles	  1.491 s	 41.489 mW	 61.850 mJ
+TOTAL:  143.112 Mcycles	  1.491  s	 41.489 mW	 61.850 mJ
 
 log/pqm4_crypto_kem_ntruhps2048677_m4.20191001120505
 NTRU-HPS2048677 (sk=1234, pk=930, ct=930, ss=32)
-KeyGen: 141.319 Mcycles	  1.472 s	 41.296 mW	 60.790 mJ
+KeyGen: 141.319 Mcycles	  1.472  s	 41.296 mW	 60.790 mJ
 Encaps: 943.411 kcycles	  9.827 ms	 59.391 mW	583.647 μJ
 Decaps: 849.431 kcycles	  8.848 ms	 83.577 mW	739.508 μJ
-TOTAL:  143.112 Mcycles	  1.491 s	 41.618 mW	 62.042 mJ
+TOTAL:  143.112 Mcycles	  1.491  s	 41.618 mW	 62.042 mJ
 
 log/pqm4_crypto_kem_ntruhps4096821_m4.20190930094811
 NTRU-HPS4096821 (sk=1590, pk=1230, ct=1230, ss=32)
-KeyGen: 211.958 Mcycles	  2.208 s	 40.905 mW	 90.313 mJ
+KeyGen: 211.958 Mcycles	  2.208  s	 40.905 mW	 90.313 mJ
 Encaps:   1.189 Mcycles	 12.386 ms	 59.026 mW	731.073 μJ
 Decaps:   1.079 Mcycles	 11.238 ms	 84.498 mW	949.618 μJ
-TOTAL:  214.226 Mcycles	  2.232 s	 41.220 mW	 91.983 mJ
+TOTAL:  214.226 Mcycles	  2.232  s	 41.220 mW	 91.983 mJ
 
 log/pqm4_crypto_kem_ntruhps4096821_m4.20190930133450
 NTRU-HPS4096821 (sk=1590, pk=1230, ct=1230, ss=32)
-KeyGen: 211.958 Mcycles	  2.208 s	 40.866 mW	 90.228 mJ
+KeyGen: 211.958 Mcycles	  2.208  s	 40.866 mW	 90.228 mJ
 Encaps:   1.189 Mcycles	 12.386 ms	 59.125 mW	732.298 μJ
 Decaps:   1.079 Mcycles	 11.238 ms	 84.515 mW	949.801 μJ
-TOTAL:  214.226 Mcycles	  2.232 s	 41.211 mW	 91.964 mJ
+TOTAL:  214.226 Mcycles	  2.232  s	 41.211 mW	 91.964 mJ
 
 log/pqm4_crypto_kem_ntruhps4096821_m4.20190930145258
 NTRU-HPS4096821 (sk=1590, pk=1230, ct=1230, ss=32)
-KeyGen: 211.958 Mcycles	  2.208 s	 40.895 mW	 90.291 mJ
+KeyGen: 211.958 Mcycles	  2.208  s	 40.895 mW	 90.291 mJ
 Encaps:   1.189 Mcycles	 12.386 ms	 59.199 mW	733.218 μJ
 Decaps:   1.079 Mcycles	 11.238 ms	 84.666 mW	951.504 μJ
-TOTAL:  214.226 Mcycles	  2.232 s	 41.198 mW	 91.934 mJ
+TOTAL:  214.226 Mcycles	  2.232  s	 41.198 mW	 91.934 mJ
 
 log/pqm4_crypto_kem_ntruhps4096821_m4.20191001124435
 NTRU-HPS4096821 (sk=1590, pk=1230, ct=1230, ss=32)
-KeyGen: 211.959 Mcycles	  2.208 s	 40.933 mW	 90.377 mJ
+KeyGen: 211.959 Mcycles	  2.208  s	 40.933 mW	 90.377 mJ
 Encaps:   1.189 Mcycles	 12.386 ms	 59.201 mW	733.247 μJ
 Decaps:   1.079 Mcycles	 11.238 ms	 84.680 mW	951.661 μJ
-TOTAL:  214.226 Mcycles	  2.232 s	 41.257 mW	 92.066 mJ
+TOTAL:  214.226 Mcycles	  2.232  s	 41.257 mW	 92.066 mJ
 
 log/pqm4_crypto_kem_ntruhrss701_m4.20190930104657
 NTRU-HRSS701 (sk=1450, pk=1138, ct=1138, ss=32)
-KeyGen: 154.189 Mcycles	  1.606 s	 41.129 mW	 66.059 mJ
+KeyGen: 154.189 Mcycles	  1.606  s	 41.129 mW	 66.059 mJ
 Encaps: 398.320 kcycles	  4.149 ms	 79.280 mW	328.946 μJ
 Decaps: 898.527 kcycles	  9.360 ms	 82.792 mW	774.907 μJ
-TOTAL:  155.486 Mcycles	  1.620 s	 41.430 mW	 67.101 mJ
+TOTAL:  155.486 Mcycles	  1.620  s	 41.430 mW	 67.101 mJ
 
 log/pqm4_crypto_kem_ntruhrss701_m4.20190930133950
 NTRU-HRSS701 (sk=1450, pk=1138, ct=1138, ss=32)
-KeyGen: 154.189 Mcycles	  1.606 s	 41.133 mW	 66.066 mJ
+KeyGen: 154.189 Mcycles	  1.606  s	 41.133 mW	 66.066 mJ
 Encaps: 398.320 kcycles	  4.149 ms	 79.303 mW	329.043 μJ
 Decaps: 898.526 kcycles	  9.360 ms	 82.774 mW	774.735 μJ
-TOTAL:  155.486 Mcycles	  1.620 s	 41.498 mW	 67.212 mJ
+TOTAL:  155.486 Mcycles	  1.620  s	 41.498 mW	 67.212 mJ
 
 log/pqm4_crypto_kem_ntruhrss701_m4.20190930151812
 NTRU-HRSS701 (sk=1450, pk=1138, ct=1138, ss=32)
-KeyGen: 154.189 Mcycles	  1.606 s	 41.183 mW	 66.145 mJ
+KeyGen: 154.189 Mcycles	  1.606  s	 41.183 mW	 66.145 mJ
 Encaps: 398.320 kcycles	  4.149 ms	 79.446 mW	329.634 μJ
 Decaps: 898.526 kcycles	  9.360 ms	 83.491 mW	781.451 μJ
-TOTAL:  155.486 Mcycles	  1.620 s	 41.493 mW	 67.203 mJ
+TOTAL:  155.486 Mcycles	  1.620  s	 41.493 mW	 67.203 mJ
 
 log/pqm4_crypto_kem_ntruhrss701_m4.20191001104952
 NTRU-HRSS701 (sk=1450, pk=1138, ct=1138, ss=32)
-KeyGen: 154.189 Mcycles	  1.606 s	 41.187 mW	 66.152 mJ
+KeyGen: 154.189 Mcycles	  1.606  s	 41.187 mW	 66.152 mJ
 Encaps: 398.320 kcycles	  4.149 ms	 79.252 mW	328.829 μJ
 Decaps: 898.526 kcycles	  9.360 ms	 82.911 mW	776.016 μJ
-TOTAL:  155.486 Mcycles	  1.620 s	 41.503 mW	 67.220 mJ
+TOTAL:  155.486 Mcycles	  1.620  s	 41.503 mW	 67.220 mJ
 
 log/pqm4_crypto_kem_r5n1-1kemcca-0d_m4.20190930112924
 R5N1_1KEM_0d (sk=5246, pk=5214, ct=5252, ss=16)
@@ -1036,87 +1064,87 @@ TOTAL:   13.191 Mcycles	137.408 ms	 77.468 mW	 10.645 mJ
 
 log/pqm4_crypto_sign_falcon1024_m4-ct.20190930112728
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 421.317 Mcycles	  4.389 s	 58.771 mW	257.930 mJ
+KeyGen: 421.317 Mcycles	  4.389  s	 58.771 mW	257.930 mJ
 Sign:    86.237 Mcycles	898.302 ms	 54.090 mW	 48.589 mJ
 Verify:   1.011 Mcycles	 10.533 ms	 65.372 mW	688.539 μJ
-TOTAL:  508.565 Mcycles	  5.298 s	 58.081 mW	307.688 mJ
+TOTAL:  508.565 Mcycles	  5.298  s	 58.081 mW	307.688 mJ
 
 log/pqm4_crypto_sign_falcon1024_m4-ct.20190930132420
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 421.315 Mcycles	  4.389 s	 58.767 mW	257.909 mJ
+KeyGen: 421.315 Mcycles	  4.389  s	 58.767 mW	257.909 mJ
 Sign:    86.237 Mcycles	898.303 ms	 54.019 mW	 48.525 mJ
 Verify:   1.011 Mcycles	 10.533 ms	 65.470 mW	689.570 μJ
-TOTAL:  508.564 Mcycles	  5.298 s	 58.197 mW	308.301 mJ
+TOTAL:  508.564 Mcycles	  5.298  s	 58.197 mW	308.301 mJ
 
 log/pqm4_crypto_sign_falcon1024_m4-ct.20190930155820
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 421.317 Mcycles	  4.389 s	 58.659 mW	257.437 mJ
+KeyGen: 421.317 Mcycles	  4.389  s	 58.659 mW	257.437 mJ
 Sign:    86.237 Mcycles	898.303 ms	 54.226 mW	 48.711 mJ
 Verify:   1.011 Mcycles	 10.533 ms	 65.551 mW	690.425 μJ
-TOTAL:  508.565 Mcycles	  5.298 s	 58.258 mW	308.624 mJ
+TOTAL:  508.565 Mcycles	  5.298  s	 58.258 mW	308.624 mJ
 
 log/pqm4_crypto_sign_falcon1024_m4-ct.20191001110001
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 421.317 Mcycles	  4.389 s	 58.772 mW	257.933 mJ
+KeyGen: 421.317 Mcycles	  4.389  s	 58.772 mW	257.933 mJ
 Sign:    86.237 Mcycles	898.307 ms	 54.221 mW	 48.707 mJ
 Verify:   1.011 Mcycles	 10.533 ms	 65.421 mW	689.050 μJ
-TOTAL:  508.565 Mcycles	  5.298 s	 58.108 mW	307.828 mJ
+TOTAL:  508.565 Mcycles	  5.298  s	 58.108 mW	307.828 mJ
 
 log/pqm4_crypto_sign_falcon512_m4-ct.20190930092129
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 182.179 Mcycles	  1.898 s	 62.497 mW	118.601 mJ
+KeyGen: 182.179 Mcycles	  1.898  s	 62.497 mW	118.601 mJ
 Sign:    39.569 Mcycles	412.181 ms	 55.788 mW	 22.995 mJ
 Verify: 493.504 kcycles	  5.141 ms	 66.831 mW	343.554 μJ
-TOTAL:  222.242 Mcycles	  2.315 s	 60.945 mW	141.089 mJ
+TOTAL:  222.242 Mcycles	  2.315  s	 60.945 mW	141.089 mJ
 
 log/pqm4_crypto_sign_falcon512_m4-ct.20190930124532
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 182.179 Mcycles	  1.898 s	 62.590 mW	118.776 mJ
+KeyGen: 182.179 Mcycles	  1.898  s	 62.590 mW	118.776 mJ
 Sign:    39.569 Mcycles	412.181 ms	 55.899 mW	 23.041 mJ
 Verify: 493.504 kcycles	  5.141 ms	 66.978 mW	344.311 μJ
-TOTAL:  222.242 Mcycles	  2.315 s	 61.155 mW	141.575 mJ
+TOTAL:  222.242 Mcycles	  2.315  s	 61.155 mW	141.575 mJ
 
 log/pqm4_crypto_sign_falcon512_m4-ct.20190930163819
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 182.179 Mcycles	  1.898 s	 62.573 mW	118.744 mJ
+KeyGen: 182.179 Mcycles	  1.898  s	 62.573 mW	118.744 mJ
 Sign:    39.569 Mcycles	412.180 ms	 56.046 mW	 23.101 mJ
 Verify: 493.503 kcycles	  5.141 ms	 67.040 mW	344.628 μJ
-TOTAL:  222.242 Mcycles	  2.315 s	 61.087 mW	141.417 mJ
+TOTAL:  222.242 Mcycles	  2.315  s	 61.087 mW	141.417 mJ
 
 log/pqm4_crypto_sign_falcon512_m4-ct.20191001130453
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 182.179 Mcycles	  1.898 s	 62.772 mW	119.122 mJ
+KeyGen: 182.179 Mcycles	  1.898  s	 62.772 mW	119.122 mJ
 Sign:    39.569 Mcycles	412.179 ms	 56.154 mW	 23.145 mJ
 Verify: 493.504 kcycles	  5.141 ms	 67.142 mW	345.156 μJ
-TOTAL:  222.242 Mcycles	  2.315 s	 61.106 mW	141.462 mJ
+TOTAL:  222.242 Mcycles	  2.315  s	 61.106 mW	141.462 mJ
 
 log/pqm4_crypto_sign_falcon512-tree_m4-ct.20190930093130
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 200.930 Mcycles	  2.093 s	 62.127 mW	130.032 mJ
+KeyGen: 200.930 Mcycles	  2.093  s	 62.127 mW	130.032 mJ
 Sign:    18.187 Mcycles	189.451 ms	 60.003 mW	 11.368 mJ
 Verify: 492.416 kcycles	  5.129 ms	 67.252 mW	344.956 μJ
-TOTAL:  219.610 Mcycles	  2.288 s	 61.458 mW	140.592 mJ
+TOTAL:  219.610 Mcycles	  2.288  s	 61.458 mW	140.592 mJ
 
 log/pqm4_crypto_sign_falcon512-tree_m4-ct.20190930140129
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 200.930 Mcycles	  2.093 s	 62.130 mW	130.040 mJ
+KeyGen: 200.930 Mcycles	  2.093  s	 62.130 mW	130.040 mJ
 Sign:    18.187 Mcycles	189.450 ms	 60.165 mW	 11.398 mJ
 Verify: 492.423 kcycles	  5.129 ms	 67.272 mW	345.065 μJ
-TOTAL:  219.610 Mcycles	  2.288 s	 61.603 mW	140.924 mJ
+TOTAL:  219.610 Mcycles	  2.288  s	 61.603 mW	140.924 mJ
 
 log/pqm4_crypto_sign_falcon512-tree_m4-ct.20190930165713
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 200.929 Mcycles	  2.093 s	 62.316 mW	130.429 mJ
+KeyGen: 200.929 Mcycles	  2.093  s	 62.316 mW	130.429 mJ
 Sign:    18.187 Mcycles	189.450 ms	 60.182 mW	 11.401 mJ
 Verify: 492.423 kcycles	  5.129 ms	 66.804 mW	342.666 μJ
-TOTAL:  219.608 Mcycles	  2.288 s	 61.765 mW	141.292 mJ
+TOTAL:  219.608 Mcycles	  2.288  s	 61.765 mW	141.292 mJ
 
 log/pqm4_crypto_sign_falcon512-tree_m4-ct.20191001131746
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 200.931 Mcycles	  2.093 s	 62.157 mW	130.097 mJ
+KeyGen: 200.931 Mcycles	  2.093  s	 62.157 mW	130.097 mJ
 Sign:    18.187 Mcycles	189.451 ms	 60.106 mW	 11.387 mJ
 Verify: 492.423 kcycles	  5.129 ms	 67.004 mW	343.691 μJ
-TOTAL:  219.610 Mcycles	  2.288 s	 61.632 mW	140.991 mJ
+TOTAL:  219.610 Mcycles	  2.288  s	 61.632 mW	140.991 mJ
 
 log/pqm4_mupq_crypto_kem_babybear-ephem_opt.20190930110355
 BabyBearEphem (sk=40, pk=804, ct=917, ss=32)
@@ -1485,86 +1513,86 @@ TOTAL:   43.845 Mcycles	456.716 ms	 54.876 mW	 25.063 mJ
 log/pqm4_mupq_crypto_kem_ntrulpr653_ref.20190930101453
 ntrulpr653 (sk=1125, pk=897, ct=1025, ss=32)
 KeyGen:  56.567 Mcycles	589.239 ms	 47.068 mW	 27.734 mJ
-Encaps: 112.643 Mcycles	  1.173 s	 47.075 mW	 55.236 mJ
-Decaps: 168.371 Mcycles	  1.754 s	 47.091 mW	 82.591 mJ
-TOTAL:  337.581 Mcycles	  3.516 s	 46.800 mW	164.570 mJ
+Encaps: 112.643 Mcycles	  1.173  s	 47.075 mW	 55.236 mJ
+Decaps: 168.371 Mcycles	  1.754  s	 47.091 mW	 82.591 mJ
+TOTAL:  337.581 Mcycles	  3.516  s	 46.800 mW	164.570 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr653_ref.20190930122048
 ntrulpr653 (sk=1125, pk=897, ct=1025, ss=32)
 KeyGen:  56.567 Mcycles	589.240 ms	 47.092 mW	 27.749 mJ
-Encaps: 112.643 Mcycles	  1.173 s	 47.103 mW	 55.269 mJ
-Decaps: 168.371 Mcycles	  1.754 s	 47.114 mW	 82.632 mJ
-TOTAL:  337.581 Mcycles	  3.516 s	 47.127 mW	165.722 mJ
+Encaps: 112.643 Mcycles	  1.173  s	 47.103 mW	 55.269 mJ
+Decaps: 168.371 Mcycles	  1.754  s	 47.114 mW	 82.632 mJ
+TOTAL:  337.581 Mcycles	  3.516  s	 47.127 mW	165.722 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr653_ref.20190930154640
 ntrulpr653 (sk=1125, pk=897, ct=1025, ss=32)
 KeyGen:  56.567 Mcycles	589.240 ms	 46.625 mW	 27.473 mJ
-Encaps: 112.643 Mcycles	  1.173 s	 47.149 mW	 55.323 mJ
-Decaps: 168.371 Mcycles	  1.754 s	 47.155 mW	 82.703 mJ
-TOTAL:  337.581 Mcycles	  3.516 s	 46.914 mW	164.970 mJ
+Encaps: 112.643 Mcycles	  1.173  s	 47.149 mW	 55.323 mJ
+Decaps: 168.371 Mcycles	  1.754  s	 47.155 mW	 82.703 mJ
+TOTAL:  337.581 Mcycles	  3.516  s	 46.914 mW	164.970 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr653_ref.20191001104813
 ntrulpr653 (sk=1125, pk=897, ct=1025, ss=32)
 KeyGen:  56.567 Mcycles	589.239 ms	 46.843 mW	 27.602 mJ
-Encaps: 112.643 Mcycles	  1.173 s	 47.151 mW	 55.325 mJ
-Decaps: 168.371 Mcycles	  1.754 s	 47.112 mW	 82.628 mJ
-TOTAL:  337.581 Mcycles	  3.516 s	 46.612 mW	163.909 mJ
+Encaps: 112.643 Mcycles	  1.173  s	 47.151 mW	 55.325 mJ
+Decaps: 168.371 Mcycles	  1.754  s	 47.112 mW	 82.628 mJ
+TOTAL:  337.581 Mcycles	  3.516  s	 46.612 mW	163.909 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr761_ref.20190930105335
 ntrulpr761 (sk=1294, pk=1039, ct=1167, ss=32)
 KeyGen:  76.635 Mcycles	798.282 ms	 47.802 mW	 38.159 mJ
-Encaps: 152.665 Mcycles	  1.590 s	 47.653 mW	 75.781 mJ
-Decaps: 228.299 Mcycles	  2.378 s	 47.205 mW	112.258 mJ
-TOTAL:  457.599 Mcycles	  4.767 s	 47.627 mW	227.019 mJ
+Encaps: 152.665 Mcycles	  1.590  s	 47.653 mW	 75.781 mJ
+Decaps: 228.299 Mcycles	  2.378  s	 47.205 mW	112.258 mJ
+TOTAL:  457.599 Mcycles	  4.767  s	 47.627 mW	227.019 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr761_ref.20190930123215
 ntrulpr761 (sk=1294, pk=1039, ct=1167, ss=32)
 KeyGen:  76.635 Mcycles	798.282 ms	 47.748 mW	 38.117 mJ
-Encaps: 152.665 Mcycles	  1.590 s	 47.878 mW	 76.138 mJ
-Decaps: 228.299 Mcycles	  2.378 s	 47.239 mW	112.341 mJ
-TOTAL:  457.599 Mcycles	  4.767 s	 47.406 mW	225.966 mJ
+Encaps: 152.665 Mcycles	  1.590  s	 47.878 mW	 76.138 mJ
+Decaps: 228.299 Mcycles	  2.378  s	 47.239 mW	112.341 mJ
+TOTAL:  457.599 Mcycles	  4.767  s	 47.406 mW	225.966 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr761_ref.20190930144304
 ntrulpr761 (sk=1294, pk=1039, ct=1167, ss=32)
 KeyGen:  76.635 Mcycles	798.281 ms	 47.392 mW	 37.832 mJ
-Encaps: 152.665 Mcycles	  1.590 s	 47.545 mW	 75.609 mJ
-Decaps: 228.299 Mcycles	  2.378 s	 47.652 mW	113.322 mJ
-TOTAL:  457.599 Mcycles	  4.767 s	 48.056 mW	229.067 mJ
+Encaps: 152.665 Mcycles	  1.590  s	 47.545 mW	 75.609 mJ
+Decaps: 228.299 Mcycles	  2.378  s	 47.652 mW	113.322 mJ
+TOTAL:  457.599 Mcycles	  4.767  s	 48.056 mW	229.067 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr761_ref.20191001111032
 ntrulpr761 (sk=1294, pk=1039, ct=1167, ss=32)
 KeyGen:  76.635 Mcycles	798.282 ms	 47.923 mW	 38.256 mJ
-Encaps: 152.665 Mcycles	  1.590 s	 47.372 mW	 75.334 mJ
-Decaps: 228.299 Mcycles	  2.378 s	 47.403 mW	112.731 mJ
-TOTAL:  457.599 Mcycles	  4.767 s	 47.757 mW	227.640 mJ
+Encaps: 152.665 Mcycles	  1.590  s	 47.372 mW	 75.334 mJ
+Decaps: 228.299 Mcycles	  2.378  s	 47.403 mW	112.731 mJ
+TOTAL:  457.599 Mcycles	  4.767  s	 47.757 mW	227.640 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr857_ref.20190930111712
 ntrulpr857 (sk=1463, pk=1184, ct=1312, ss=32)
-KeyGen:  97.026 Mcycles	  1.011 s	 47.134 mW	 47.638 mJ
-Encaps: 193.334 Mcycles	  2.014 s	 47.251 mW	 95.158 mJ
-Decaps: 289.211 Mcycles	  3.013 s	 47.112 mW	141.930 mJ
-TOTAL:  579.572 Mcycles	  6.037 s	 46.792 mW	282.490 mJ
+KeyGen:  97.026 Mcycles	  1.011  s	 47.134 mW	 47.638 mJ
+Encaps: 193.334 Mcycles	  2.014  s	 47.251 mW	 95.158 mJ
+Decaps: 289.211 Mcycles	  3.013  s	 47.112 mW	141.930 mJ
+TOTAL:  579.572 Mcycles	  6.037  s	 46.792 mW	282.490 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr857_ref.20190930134313
 ntrulpr857 (sk=1463, pk=1184, ct=1312, ss=32)
-KeyGen:  97.026 Mcycles	  1.011 s	 47.179 mW	 47.683 mJ
-Encaps: 193.335 Mcycles	  2.014 s	 47.275 mW	 95.208 mJ
-Decaps: 289.211 Mcycles	  3.013 s	 47.154 mW	142.058 mJ
-TOTAL:  579.572 Mcycles	  6.037 s	 47.186 mW	284.873 mJ
+KeyGen:  97.026 Mcycles	  1.011  s	 47.179 mW	 47.683 mJ
+Encaps: 193.335 Mcycles	  2.014  s	 47.275 mW	 95.208 mJ
+Decaps: 289.211 Mcycles	  3.013  s	 47.154 mW	142.058 mJ
+TOTAL:  579.572 Mcycles	  6.037  s	 47.186 mW	284.873 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr857_ref.20190930160018
 ntrulpr857 (sk=1463, pk=1184, ct=1312, ss=32)
-KeyGen:  97.026 Mcycles	  1.011 s	 47.198 mW	 47.703 mJ
-Encaps: 193.334 Mcycles	  2.014 s	 47.340 mW	 95.338 mJ
-Decaps: 289.211 Mcycles	  3.013 s	 47.200 mW	142.195 mJ
-TOTAL:  579.572 Mcycles	  6.037 s	 46.850 mW	282.846 mJ
+KeyGen:  97.026 Mcycles	  1.011  s	 47.198 mW	 47.703 mJ
+Encaps: 193.334 Mcycles	  2.014  s	 47.340 mW	 95.338 mJ
+Decaps: 289.211 Mcycles	  3.013  s	 47.200 mW	142.195 mJ
+TOTAL:  579.572 Mcycles	  6.037  s	 46.850 mW	282.846 mJ
 
 log/pqm4_mupq_crypto_kem_ntrulpr857_ref.20191001111535
 ntrulpr857 (sk=1463, pk=1184, ct=1312, ss=32)
-KeyGen:  97.027 Mcycles	  1.011 s	 46.764 mW	 47.264 mJ
-Encaps: 193.335 Mcycles	  2.014 s	 47.268 mW	 95.193 mJ
-Decaps: 289.211 Mcycles	  3.013 s	 47.154 mW	142.057 mJ
-TOTAL:  579.572 Mcycles	  6.037 s	 47.242 mW	285.209 mJ
+KeyGen:  97.027 Mcycles	  1.011  s	 46.764 mW	 47.264 mJ
+Encaps: 193.335 Mcycles	  2.014  s	 47.268 mW	 95.193 mJ
+Decaps: 289.211 Mcycles	  3.013  s	 47.154 mW	142.057 mJ
+TOTAL:  579.572 Mcycles	  6.037  s	 47.242 mW	285.209 mJ
 
 log/pqm4_mupq_crypto_kem_papabear-ephem_opt.20190930101002
 PapaBearEphem (sk=40, pk=1584, ct=1697, ss=32)
@@ -1795,28 +1823,28 @@ R5N1_5KEM_0d (sk=14328, pk=14264, ct=14320, ss=32)
 KeyGen:  31.701 Mcycles	330.217 ms	 51.599 mW	 17.039 mJ
 Encaps:  30.413 Mcycles	316.804 ms	 61.112 mW	 19.360 mJ
 Decaps:  33.965 Mcycles	353.804 ms	 61.175 mW	 21.644 mJ
-TOTAL:   96.079 Mcycles	  1.001 s	 57.995 mW	 58.042 mJ
+TOTAL:   96.079 Mcycles	  1.001  s	 57.995 mW	 58.042 mJ
 
 log/pqm4_mupq_crypto_kem_r5n1-5kemcca-0d_opt.20190930131927
 R5N1_5KEM_0d (sk=14328, pk=14264, ct=14320, ss=32)
 KeyGen:  31.701 Mcycles	330.217 ms	 51.639 mW	 17.052 mJ
 Encaps:  30.413 Mcycles	316.804 ms	 61.357 mW	 19.438 mJ
 Decaps:  33.965 Mcycles	353.804 ms	 61.220 mW	 21.660 mJ
-TOTAL:   96.079 Mcycles	  1.001 s	 58.111 mW	 58.159 mJ
+TOTAL:   96.079 Mcycles	  1.001  s	 58.111 mW	 58.159 mJ
 
 log/pqm4_mupq_crypto_kem_r5n1-5kemcca-0d_opt.20190930161511
 R5N1_5KEM_0d (sk=14328, pk=14264, ct=14320, ss=32)
 KeyGen:  31.701 Mcycles	330.217 ms	 51.680 mW	 17.066 mJ
 Encaps:  30.413 Mcycles	316.804 ms	 61.229 mW	 19.398 mJ
 Decaps:  33.965 Mcycles	353.804 ms	 61.229 mW	 21.663 mJ
-TOTAL:   96.079 Mcycles	  1.001 s	 58.097 mW	 58.145 mJ
+TOTAL:   96.079 Mcycles	  1.001  s	 58.097 mW	 58.145 mJ
 
 log/pqm4_mupq_crypto_kem_r5n1-5kemcca-0d_opt.20191001121835
 R5N1_5KEM_0d (sk=14328, pk=14264, ct=14320, ss=32)
 KeyGen:  31.701 Mcycles	330.217 ms	 51.779 mW	 17.098 mJ
 Encaps:  30.413 Mcycles	316.804 ms	 61.757 mW	 19.565 mJ
 Decaps:  33.965 Mcycles	353.804 ms	 61.320 mW	 21.695 mJ
-TOTAL:   96.079 Mcycles	  1.001 s	 58.192 mW	 58.240 mJ
+TOTAL:   96.079 Mcycles	  1.001  s	 58.192 mW	 58.240 mJ
 
 log/pqm4_mupq_crypto_kem_r5n1-5kemcca-0d-sneik_opt.20190930084708
 R5N1_5KEM_0d (sk=14328, pk=14264, ct=14320, ss=32)
@@ -2183,7 +2211,7 @@ Decaps:   3.227 Mcycles	 33.615 ms	 60.493 mW	  2.033 mJ
 TOTAL:    7.228 Mcycles	 75.290 ms	 61.295 mW	  4.615 mJ
 
 log/pqm4_mupq_crypto_kem_saber_ref.20190930085022
-Not enough data
+(Not enough data.)
 
 log/pqm4_mupq_crypto_kem_saber_ref.20190930131749
 Saber (sk=2304, pk=992, ct=1088, ss=32)
@@ -2208,365 +2236,365 @@ TOTAL:    8.079 Mcycles	 84.151 ms	 75.540 mW	  6.357 mJ
 
 log/pqm4_mupq_crypto_kem_sikep434_opt.20190930091358
 SIKEp434 (sk=374, pk=330, ct=346, ss=16)
-KeyGen: 665.979 Mcycles	  6.937 s	 67.685 mW	469.551 mJ
-Encaps:   1.091 Gcycles	 11.361 s	 67.990 mW	772.458 mJ
-Decaps:   1.163 Gcycles	 12.118 s	 67.987 mW	823.900 mJ
-TOTAL:    2.920 Gcycles	 30.417 s	 67.840 mW	  2.063 J
+KeyGen: 665.979 Mcycles	  6.937  s	 67.685 mW	469.551 mJ
+Encaps:   1.091 Gcycles	 11.361  s	 67.990 mW	772.458 mJ
+Decaps:   1.163 Gcycles	 12.118  s	 67.987 mW	823.900 mJ
+TOTAL:    2.920 Gcycles	 30.417  s	 67.840 mW	  2.063  J
 
 log/pqm4_mupq_crypto_kem_sikep434_opt.20190930141119
 SIKEp434 (sk=374, pk=330, ct=346, ss=16)
-KeyGen: 665.976 Mcycles	  6.937 s	 67.896 mW	471.009 mJ
-Encaps:   1.091 Gcycles	 11.361 s	 68.189 mW	774.717 mJ
-Decaps:   1.163 Gcycles	 12.118 s	 68.172 mW	826.136 mJ
-TOTAL:    2.920 Gcycles	 30.417 s	 68.009 mW	  2.069 J
+KeyGen: 665.976 Mcycles	  6.937  s	 67.896 mW	471.009 mJ
+Encaps:   1.091 Gcycles	 11.361  s	 68.189 mW	774.717 mJ
+Decaps:   1.163 Gcycles	 12.118  s	 68.172 mW	826.136 mJ
+TOTAL:    2.920 Gcycles	 30.417  s	 68.009 mW	  2.069  J
 
 log/pqm4_mupq_crypto_kem_sikep434_opt.20190930144040
 SIKEp434 (sk=374, pk=330, ct=346, ss=16)
-KeyGen: 665.978 Mcycles	  6.937 s	 68.011 mW	471.812 mJ
-Encaps:   1.091 Gcycles	 11.361 s	 68.223 mW	775.102 mJ
-Decaps:   1.163 Gcycles	 12.119 s	 68.178 mW	826.221 mJ
-TOTAL:    2.920 Gcycles	 30.417 s	 68.060 mW	  2.070 J
+KeyGen: 665.978 Mcycles	  6.937  s	 68.011 mW	471.812 mJ
+Encaps:   1.091 Gcycles	 11.361  s	 68.223 mW	775.102 mJ
+Decaps:   1.163 Gcycles	 12.119  s	 68.178 mW	826.221 mJ
+TOTAL:    2.920 Gcycles	 30.417  s	 68.060 mW	  2.070  J
 
 log/pqm4_mupq_crypto_kem_sikep434_opt.20191001130644
 SIKEp434 (sk=374, pk=330, ct=346, ss=16)
-KeyGen: 665.978 Mcycles	  6.937 s	 67.885 mW	470.938 mJ
-Encaps:   1.091 Gcycles	 11.361 s	 68.196 mW	774.792 mJ
-Decaps:   1.163 Gcycles	 12.118 s	 68.214 mW	826.651 mJ
-TOTAL:    2.920 Gcycles	 30.417 s	 68.041 mW	  2.070 J
+KeyGen: 665.978 Mcycles	  6.937  s	 67.885 mW	470.938 mJ
+Encaps:   1.091 Gcycles	 11.361  s	 68.196 mW	774.792 mJ
+Decaps:   1.163 Gcycles	 12.118  s	 68.214 mW	826.651 mJ
+TOTAL:    2.920 Gcycles	 30.417  s	 68.041 mW	  2.070  J
 
 log/pqm4_mupq_crypto_kem_sikep503_opt.20190930085924
 SIKEp503 (sk=434, pk=378, ct=402, ss=24)
-KeyGen:   1.004 Gcycles	 10.463 s	 68.512 mW	716.868 mJ
-Encaps:   1.656 Gcycles	 17.248 s	 68.622 mW	  1.184 J
-Decaps:   1.761 Gcycles	 18.339 s	 68.600 mW	  1.258 J
-TOTAL:    4.421 Gcycles	 46.051 s	 68.489 mW	  3.154 J
+KeyGen:   1.004 Gcycles	 10.463  s	 68.512 mW	716.868 mJ
+Encaps:   1.656 Gcycles	 17.248  s	 68.622 mW	  1.184  J
+Decaps:   1.761 Gcycles	 18.339  s	 68.600 mW	  1.258  J
+TOTAL:    4.421 Gcycles	 46.051  s	 68.489 mW	  3.154  J
 
 log/pqm4_mupq_crypto_kem_sikep503_opt.20190930140635
 SIKEp503 (sk=434, pk=378, ct=402, ss=24)
-KeyGen:   1.004 Gcycles	 10.463 s	 68.717 mW	719.010 mJ
-Encaps:   1.656 Gcycles	 17.249 s	 68.827 mW	  1.187 J
-Decaps:   1.761 Gcycles	 18.339 s	 68.792 mW	  1.262 J
-TOTAL:    4.421 Gcycles	 46.051 s	 68.689 mW	  3.163 J
+KeyGen:   1.004 Gcycles	 10.463  s	 68.717 mW	719.010 mJ
+Encaps:   1.656 Gcycles	 17.249  s	 68.827 mW	  1.187  J
+Decaps:   1.761 Gcycles	 18.339  s	 68.792 mW	  1.262  J
+TOTAL:    4.421 Gcycles	 46.051  s	 68.689 mW	  3.163  J
 
 log/pqm4_mupq_crypto_kem_sikep503_opt.20190930161825
 SIKEp503 (sk=434, pk=378, ct=402, ss=24)
-KeyGen:   1.004 Gcycles	 10.463 s	 68.726 mW	719.102 mJ
-Encaps:   1.656 Gcycles	 17.249 s	 68.866 mW	  1.188 J
-Decaps:   1.761 Gcycles	 18.339 s	 68.810 mW	  1.262 J
-TOTAL:    4.421 Gcycles	 46.051 s	 68.737 mW	  3.165 J
+KeyGen:   1.004 Gcycles	 10.463  s	 68.726 mW	719.102 mJ
+Encaps:   1.656 Gcycles	 17.249  s	 68.866 mW	  1.188  J
+Decaps:   1.761 Gcycles	 18.339  s	 68.810 mW	  1.262  J
+TOTAL:    4.421 Gcycles	 46.051  s	 68.737 mW	  3.165  J
 
 log/pqm4_mupq_crypto_kem_sikep503_opt.20191001115708
 SIKEp503 (sk=434, pk=378, ct=402, ss=24)
-KeyGen:   1.004 Gcycles	 10.463 s	 68.693 mW	718.763 mJ
-Encaps:   1.656 Gcycles	 17.248 s	 68.811 mW	  1.187 J
-Decaps:   1.761 Gcycles	 18.339 s	 69.019 mW	  1.266 J
-TOTAL:    4.421 Gcycles	 46.051 s	 68.673 mW	  3.162 J
+KeyGen:   1.004 Gcycles	 10.463  s	 68.693 mW	718.763 mJ
+Encaps:   1.656 Gcycles	 17.248  s	 68.811 mW	  1.187  J
+Decaps:   1.761 Gcycles	 18.339  s	 69.019 mW	  1.266  J
+TOTAL:    4.421 Gcycles	 46.051  s	 68.673 mW	  3.162  J
 
 log/pqm4_mupq_crypto_kem_sikep610_opt.20190930112209
 SIKEp610 (sk=524, pk=462, ct=486, ss=24)
-KeyGen:   1.880 Gcycles	 19.587 s	 68.935 mW	  1.350 J
-Encaps:   3.460 Gcycles	 36.042 s	 69.102 mW	  2.491 J
-Decaps:   3.480 Gcycles	 36.253 s	 69.075 mW	  2.504 J
-TOTAL:    8.821 Gcycles	 91.883 s	 68.706 mW	  6.313 J
+KeyGen:   1.880 Gcycles	 19.587  s	 68.935 mW	  1.350  J
+Encaps:   3.460 Gcycles	 36.042  s	 69.102 mW	  2.491  J
+Decaps:   3.480 Gcycles	 36.253  s	 69.075 mW	  2.504  J
+TOTAL:    8.821 Gcycles	 91.883  s	 68.706 mW	  6.313  J
 
 log/pqm4_mupq_crypto_kem_sikep610_opt.20190930132617
 SIKEp610 (sk=524, pk=462, ct=486, ss=24)
-KeyGen:   1.880 Gcycles	 19.587 s	 68.722 mW	  1.346 J
-Encaps:   3.460 Gcycles	 36.042 s	 69.119 mW	  2.491 J
-Decaps:   3.480 Gcycles	 36.253 s	 69.105 mW	  2.505 J
-TOTAL:    8.821 Gcycles	 91.883 s	 68.747 mW	  6.317 J
+KeyGen:   1.880 Gcycles	 19.587  s	 68.722 mW	  1.346  J
+Encaps:   3.460 Gcycles	 36.042  s	 69.119 mW	  2.491  J
+Decaps:   3.480 Gcycles	 36.253  s	 69.105 mW	  2.505  J
+TOTAL:    8.821 Gcycles	 91.883  s	 68.747 mW	  6.317  J
 
 log/pqm4_mupq_crypto_kem_sikep610_opt.20190930153625
 SIKEp610 (sk=524, pk=462, ct=486, ss=24)
-KeyGen:   1.880 Gcycles	 19.587 s	 68.801 mW	  1.348 J
-Encaps:   3.460 Gcycles	 36.042 s	 69.197 mW	  2.494 J
-Decaps:   3.480 Gcycles	 36.253 s	 69.170 mW	  2.508 J
-TOTAL:    8.821 Gcycles	 91.883 s	 68.824 mW	  6.324 J
+KeyGen:   1.880 Gcycles	 19.587  s	 68.801 mW	  1.348  J
+Encaps:   3.460 Gcycles	 36.042  s	 69.197 mW	  2.494  J
+Decaps:   3.480 Gcycles	 36.253  s	 69.170 mW	  2.508  J
+TOTAL:    8.821 Gcycles	 91.883  s	 68.824 mW	  6.324  J
 
 log/pqm4_mupq_crypto_kem_sikep610_opt.20191001104116
 SIKEp610 (sk=524, pk=462, ct=486, ss=24)
-KeyGen:   1.880 Gcycles	 19.587 s	 68.701 mW	  1.346 J
-Encaps:   3.460 Gcycles	 36.042 s	 69.102 mW	  2.491 J
-Decaps:   3.480 Gcycles	 36.253 s	 69.106 mW	  2.505 J
-TOTAL:    8.821 Gcycles	 91.883 s	 68.664 mW	  6.309 J
+KeyGen:   1.880 Gcycles	 19.587  s	 68.701 mW	  1.346  J
+Encaps:   3.460 Gcycles	 36.042  s	 69.102 mW	  2.491  J
+Decaps:   3.480 Gcycles	 36.253  s	 69.106 mW	  2.505  J
+TOTAL:    8.821 Gcycles	 91.883  s	 68.664 mW	  6.309  J
 
 log/pqm4_mupq_crypto_kem_sikep751_opt.20190930095137
 SIKEp751 (sk=644, pk=564, ct=596, ss=32)
-KeyGen:   3.404 Gcycles	 35.461 s	 67.206 mW	  2.383 J
-Encaps:   1.226 Gcycles	 12.776 s	 67.881 mW	867.229 mJ
-Decaps:   1.635 Gcycles	 17.035 s	 67.938 mW	  1.157 J
-TOTAL:    6.266 Gcycles	 65.271 s	 67.198 mW	  4.386 J
+KeyGen:   3.404 Gcycles	 35.461  s	 67.206 mW	  2.383  J
+Encaps:   1.226 Gcycles	 12.776  s	 67.881 mW	867.229 mJ
+Decaps:   1.635 Gcycles	 17.035  s	 67.938 mW	  1.157  J
+TOTAL:    6.266 Gcycles	 65.271  s	 67.198 mW	  4.386  J
 
 log/pqm4_mupq_crypto_kem_sikep751_opt.20190930125356
 SIKEp751 (sk=644, pk=564, ct=596, ss=32)
-KeyGen:   3.404 Gcycles	 35.461 s	 67.273 mW	  2.386 J
-Encaps:   1.226 Gcycles	 12.776 s	 67.948 mW	868.082 mJ
-Decaps:   1.635 Gcycles	 17.035 s	 68.010 mW	  1.159 J
-TOTAL:    6.266 Gcycles	 65.271 s	 67.278 mW	  4.391 J
+KeyGen:   3.404 Gcycles	 35.461  s	 67.273 mW	  2.386  J
+Encaps:   1.226 Gcycles	 12.776  s	 67.948 mW	868.082 mJ
+Decaps:   1.635 Gcycles	 17.035  s	 68.010 mW	  1.159  J
+TOTAL:    6.266 Gcycles	 65.271  s	 67.278 mW	  4.391  J
 
 log/pqm4_mupq_crypto_kem_sikep751_opt.20190930170042
 SIKEp751 (sk=644, pk=564, ct=596, ss=32)
-KeyGen:   3.404 Gcycles	 35.461 s	 67.326 mW	  2.387 J
-Encaps:   1.226 Gcycles	 12.776 s	 68.048 mW	869.368 mJ
-Decaps:   1.635 Gcycles	 17.035 s	 68.102 mW	  1.160 J
-TOTAL:    6.266 Gcycles	 65.271 s	 67.436 mW	  4.402 J
+KeyGen:   3.404 Gcycles	 35.461  s	 67.326 mW	  2.387  J
+Encaps:   1.226 Gcycles	 12.776  s	 68.048 mW	869.368 mJ
+Decaps:   1.635 Gcycles	 17.035  s	 68.102 mW	  1.160  J
+TOTAL:    6.266 Gcycles	 65.271  s	 67.436 mW	  4.402  J
 
 log/pqm4_mupq_crypto_kem_sikep751_opt.20191001125447
 SIKEp751 (sk=644, pk=564, ct=596, ss=32)
-KeyGen:   3.404 Gcycles	 35.461 s	 67.323 mW	  2.387 J
-Encaps:   1.226 Gcycles	 12.776 s	 68.003 mW	868.794 mJ
-Decaps:   1.635 Gcycles	 17.035 s	 68.078 mW	  1.160 J
-TOTAL:    6.266 Gcycles	 65.271 s	 67.296 mW	  4.393 J
+KeyGen:   3.404 Gcycles	 35.461  s	 67.323 mW	  2.387  J
+Encaps:   1.226 Gcycles	 12.776  s	 68.003 mW	868.794 mJ
+Decaps:   1.635 Gcycles	 17.035  s	 68.078 mW	  1.160  J
+TOTAL:    6.266 Gcycles	 65.271  s	 67.296 mW	  4.393  J
 
 log/pqm4_mupq_crypto_kem_sntrup653_ref.20190930104137
 sntrup653 (sk=1518, pk=994, ct=897, ss=32)
-KeyGen: 600.349 Mcycles	  6.254 s	 46.352 mW	289.866 mJ
+KeyGen: 600.349 Mcycles	  6.254  s	 46.352 mW	289.866 mJ
 Encaps:  56.684 Mcycles	590.456 ms	 48.035 mW	 28.363 mJ
-Decaps: 171.355 Mcycles	  1.785 s	 46.410 mW	 82.839 mJ
-TOTAL:  828.388 Mcycles	  8.629 s	 46.611 mW	402.204 mJ
+Decaps: 171.355 Mcycles	  1.785  s	 46.410 mW	 82.839 mJ
+TOTAL:  828.388 Mcycles	  8.629  s	 46.611 mW	402.204 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup653_ref.20190930114212
 sntrup653 (sk=1518, pk=994, ct=897, ss=32)
-KeyGen: 600.349 Mcycles	  6.254 s	 46.344 mW	289.820 mJ
+KeyGen: 600.349 Mcycles	  6.254  s	 46.344 mW	289.820 mJ
 Encaps:  56.684 Mcycles	590.456 ms	 47.670 mW	 28.147 mJ
-Decaps: 171.355 Mcycles	  1.785 s	 46.992 mW	 83.878 mJ
-TOTAL:  828.387 Mcycles	  8.629 s	 46.575 mW	401.899 mJ
+Decaps: 171.355 Mcycles	  1.785  s	 46.992 mW	 83.878 mJ
+TOTAL:  828.387 Mcycles	  8.629  s	 46.575 mW	401.899 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup653_ref.20190930163615
 sntrup653 (sk=1518, pk=994, ct=897, ss=32)
-KeyGen: 600.349 Mcycles	  6.254 s	 46.382 mW	290.056 mJ
+KeyGen: 600.349 Mcycles	  6.254  s	 46.382 mW	290.056 mJ
 Encaps:  56.684 Mcycles	590.456 ms	 47.662 mW	 28.142 mJ
-Decaps: 171.355 Mcycles	  1.785 s	 46.550 mW	 83.089 mJ
-TOTAL:  828.388 Mcycles	  8.629 s	 46.764 mW	403.531 mJ
+Decaps: 171.355 Mcycles	  1.785  s	 46.550 mW	 83.089 mJ
+TOTAL:  828.388 Mcycles	  8.629  s	 46.764 mW	403.531 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup653_ref.20191001112712
 sntrup653 (sk=1518, pk=994, ct=897, ss=32)
-KeyGen: 600.349 Mcycles	  6.254 s	 46.387 mW	290.085 mJ
+KeyGen: 600.349 Mcycles	  6.254  s	 46.387 mW	290.085 mJ
 Encaps:  56.684 Mcycles	590.456 ms	 47.768 mW	 28.205 mJ
-Decaps: 171.355 Mcycles	  1.785 s	 46.693 mW	 83.343 mJ
-TOTAL:  828.387 Mcycles	  8.629 s	 46.518 mW	401.405 mJ
+Decaps: 171.355 Mcycles	  1.785  s	 46.693 mW	 83.343 mJ
+TOTAL:  828.387 Mcycles	  8.629  s	 46.518 mW	401.405 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup761_ref.20190930101632
 sntrup761 (sk=1763, pk=1158, ct=1039, ss=32)
-KeyGen: 813.485 Mcycles	  8.474 s	 46.323 mW	392.530 mJ
+KeyGen: 813.485 Mcycles	  8.474  s	 46.323 mW	392.530 mJ
 Encaps:  76.768 Mcycles	799.665 ms	 47.321 mW	 37.841 mJ
-Decaps: 232.466 Mcycles	  2.422 s	 46.493 mW	112.584 mJ
-TOTAL:    1.123 Gcycles	 11.695 s	 46.696 mW	546.108 mJ
+Decaps: 232.466 Mcycles	  2.422  s	 46.493 mW	112.584 mJ
+TOTAL:    1.123 Gcycles	 11.695  s	 46.696 mW	546.108 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup761_ref.20190930121723
 sntrup761 (sk=1763, pk=1158, ct=1039, ss=32)
-KeyGen: 813.485 Mcycles	  8.474 s	 46.333 mW	392.615 mJ
+KeyGen: 813.485 Mcycles	  8.474  s	 46.333 mW	392.615 mJ
 Encaps:  76.768 Mcycles	799.666 ms	 47.500 mW	 37.984 mJ
-Decaps: 232.466 Mcycles	  2.422 s	 45.894 mW	111.135 mJ
-TOTAL:    1.123 Gcycles	 11.695 s	 46.709 mW	546.256 mJ
+Decaps: 232.466 Mcycles	  2.422  s	 45.894 mW	111.135 mJ
+TOTAL:    1.123 Gcycles	 11.695  s	 46.709 mW	546.256 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup761_ref.20190930145944
 sntrup761 (sk=1763, pk=1158, ct=1039, ss=32)
-KeyGen: 813.485 Mcycles	  8.474 s	 46.353 mW	392.785 mJ
+KeyGen: 813.485 Mcycles	  8.474  s	 46.353 mW	392.785 mJ
 Encaps:  76.768 Mcycles	799.666 ms	 47.752 mW	 38.186 mJ
-Decaps: 232.466 Mcycles	  2.422 s	 46.590 mW	112.818 mJ
-TOTAL:    1.123 Gcycles	 11.695 s	 46.121 mW	539.387 mJ
+Decaps: 232.466 Mcycles	  2.422  s	 46.590 mW	112.818 mJ
+TOTAL:    1.123 Gcycles	 11.695  s	 46.121 mW	539.387 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup761_ref.20191001120650
 sntrup761 (sk=1763, pk=1158, ct=1039, ss=32)
-KeyGen: 813.485 Mcycles	  8.474 s	 46.420 mW	393.354 mJ
+KeyGen: 813.485 Mcycles	  8.474  s	 46.420 mW	393.354 mJ
 Encaps:  76.768 Mcycles	799.665 ms	 46.816 mW	 37.437 mJ
-Decaps: 232.466 Mcycles	  2.422 s	 46.554 mW	112.731 mJ
-TOTAL:    1.123 Gcycles	 11.695 s	 46.816 mW	547.514 mJ
+Decaps: 232.466 Mcycles	  2.422  s	 46.554 mW	112.731 mJ
+TOTAL:    1.123 Gcycles	 11.695  s	 46.816 mW	547.514 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup857_ref.20190930110029
 sntrup857 (sk=1999, pk=1322, ct=1184, ss=32)
-KeyGen:   1.027 Gcycles	 10.697 s	 46.712 mW	499.655 mJ
-Encaps:  97.160 Mcycles	  1.012 s	 47.682 mW	 48.258 mJ
-Decaps: 293.861 Mcycles	  3.061 s	 47.127 mW	144.258 mJ
-TOTAL:    1.418 Gcycles	 14.770 s	 47.267 mW	698.118 mJ
+KeyGen:   1.027 Gcycles	 10.697  s	 46.712 mW	499.655 mJ
+Encaps:  97.160 Mcycles	  1.012  s	 47.682 mW	 48.258 mJ
+Decaps: 293.861 Mcycles	  3.061  s	 47.127 mW	144.258 mJ
+TOTAL:    1.418 Gcycles	 14.770  s	 47.267 mW	698.118 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup857_ref.20190930141521
 sntrup857 (sk=1999, pk=1322, ct=1184, ss=32)
-KeyGen:   1.027 Gcycles	 10.697 s	 46.695 mW	499.477 mJ
-Encaps:  97.160 Mcycles	  1.012 s	 48.051 mW	 48.632 mJ
-Decaps: 293.861 Mcycles	  3.061 s	 46.206 mW	141.440 mJ
-TOTAL:    1.418 Gcycles	 14.770 s	 48.749 mW	720.013 mJ
+KeyGen:   1.027 Gcycles	 10.697  s	 46.695 mW	499.477 mJ
+Encaps:  97.160 Mcycles	  1.012  s	 48.051 mW	 48.632 mJ
+Decaps: 293.861 Mcycles	  3.061  s	 46.206 mW	141.440 mJ
+TOTAL:    1.418 Gcycles	 14.770  s	 48.749 mW	720.013 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup857_ref.20190930152452
 sntrup857 (sk=1999, pk=1322, ct=1184, ss=32)
-KeyGen:   1.027 Gcycles	 10.697 s	 46.715 mW	499.689 mJ
-Encaps:  97.160 Mcycles	  1.012 s	 48.045 mW	 48.625 mJ
-Decaps: 293.861 Mcycles	  3.061 s	 47.324 mW	144.863 mJ
-TOTAL:    1.418 Gcycles	 14.770 s	 48.777 mW	720.425 mJ
+KeyGen:   1.027 Gcycles	 10.697  s	 46.715 mW	499.689 mJ
+Encaps:  97.160 Mcycles	  1.012  s	 48.045 mW	 48.625 mJ
+Decaps: 293.861 Mcycles	  3.061  s	 47.324 mW	144.863 mJ
+TOTAL:    1.418 Gcycles	 14.770  s	 48.777 mW	720.425 mJ
 
 log/pqm4_mupq_crypto_kem_sntrup857_ref.20191001111854
 sntrup857 (sk=1999, pk=1322, ct=1184, ss=32)
-KeyGen:   1.027 Gcycles	 10.697 s	 46.714 mW	499.681 mJ
-Encaps:  97.160 Mcycles	  1.012 s	 47.936 mW	 48.516 mJ
-Decaps: 293.861 Mcycles	  3.061 s	 47.245 mW	144.621 mJ
-TOTAL:    1.418 Gcycles	 14.770 s	 48.754 mW	720.087 mJ
+KeyGen:   1.027 Gcycles	 10.697  s	 46.714 mW	499.681 mJ
+Encaps:  97.160 Mcycles	  1.012  s	 47.936 mW	 48.516 mJ
+Decaps: 293.861 Mcycles	  3.061  s	 47.245 mW	144.621 mJ
+TOTAL:    1.418 Gcycles	 14.770  s	 48.754 mW	720.087 mJ
 
 log/pqm4_mupq_crypto_sign_falcon1024_opt-ct.20190930113102
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 421.317 Mcycles	  4.389 s	 58.659 mW	257.436 mJ
+KeyGen: 421.317 Mcycles	  4.389  s	 58.659 mW	257.436 mJ
 Sign:    86.237 Mcycles	898.307 ms	 54.078 mW	 48.579 mJ
 Verify:   1.011 Mcycles	 10.533 ms	 65.409 mW	688.921 μJ
-TOTAL:  508.565 Mcycles	  5.298 s	 58.162 mW	308.116 mJ
+TOTAL:  508.565 Mcycles	  5.298  s	 58.162 mW	308.116 mJ
 
 log/pqm4_mupq_crypto_sign_falcon1024_opt-ct.20190930113701
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 421.316 Mcycles	  4.389 s	 58.649 mW	257.391 mJ
+KeyGen: 421.316 Mcycles	  4.389  s	 58.649 mW	257.391 mJ
 Sign:    86.237 Mcycles	898.300 ms	 54.224 mW	 48.710 mJ
 Verify:   1.011 Mcycles	 10.533 ms	 65.434 mW	689.190 μJ
-TOTAL:  508.564 Mcycles	  5.298 s	 58.191 mW	308.268 mJ
+TOTAL:  508.564 Mcycles	  5.298  s	 58.191 mW	308.268 mJ
 
 log/pqm4_mupq_crypto_sign_falcon1024_opt-ct.20190930164842
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 421.316 Mcycles	  4.389 s	 58.842 mW	258.238 mJ
+KeyGen: 421.316 Mcycles	  4.389  s	 58.842 mW	258.238 mJ
 Sign:    86.237 Mcycles	898.303 ms	 54.180 mW	 48.670 mJ
 Verify:   1.011 Mcycles	 10.533 ms	 65.473 mW	689.597 μJ
-TOTAL:  508.564 Mcycles	  5.298 s	 58.417 mW	309.466 mJ
+TOTAL:  508.564 Mcycles	  5.298  s	 58.417 mW	309.466 mJ
 
 log/pqm4_mupq_crypto_sign_falcon1024_opt-ct.20191001132427
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 421.317 Mcycles	  4.389 s	 58.728 mW	257.739 mJ
+KeyGen: 421.317 Mcycles	  4.389  s	 58.728 mW	257.739 mJ
 Sign:    86.237 Mcycles	898.302 ms	 54.150 mW	 48.643 mJ
 Verify:   1.011 Mcycles	 10.533 ms	 65.433 mW	689.174 μJ
-TOTAL:  508.565 Mcycles	  5.298 s	 58.193 mW	308.281 mJ
+TOTAL:  508.565 Mcycles	  5.298  s	 58.193 mW	308.281 mJ
 
 log/pqm4_mupq_crypto_sign_falcon1024_opt-leaktime.20190930102642
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 380.222 Mcycles	  3.961 s	 58.684 mW	232.427 mJ
+KeyGen: 380.222 Mcycles	  3.961  s	 58.684 mW	232.427 mJ
 Sign:    79.355 Mcycles	826.614 ms	 54.614 mW	 45.144 mJ
 Verify:   1.013 Mcycles	 10.555 ms	 65.271 mW	688.917 μJ
-TOTAL:  460.590 Mcycles	  4.798 s	 58.095 mW	278.726 mJ
+TOTAL:  460.590 Mcycles	  4.798  s	 58.095 mW	278.726 mJ
 
 log/pqm4_mupq_crypto_sign_falcon1024_opt-leaktime.20190930134633
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 380.246 Mcycles	  3.961 s	 58.841 mW	233.062 mJ
+KeyGen: 380.246 Mcycles	  3.961  s	 58.841 mW	233.062 mJ
 Sign:    79.357 Mcycles	826.639 ms	 54.699 mW	 45.217 mJ
 Verify:   1.013 Mcycles	 10.555 ms	 65.357 mW	689.823 μJ
-TOTAL:  460.616 Mcycles	  4.798 s	 58.155 mW	279.033 mJ
+TOTAL:  460.616 Mcycles	  4.798  s	 58.155 mW	279.033 mJ
 
 log/pqm4_mupq_crypto_sign_falcon1024_opt-leaktime.20190930170911
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 380.193 Mcycles	  3.960 s	 58.724 mW	232.567 mJ
+KeyGen: 380.193 Mcycles	  3.960  s	 58.724 mW	232.567 mJ
 Sign:    79.355 Mcycles	826.612 ms	 54.671 mW	 45.192 mJ
 Verify:   1.013 Mcycles	 10.555 ms	 65.376 mW	690.020 μJ
-TOTAL:  460.561 Mcycles	  4.798 s	 58.279 mW	279.593 mJ
+TOTAL:  460.561 Mcycles	  4.798  s	 58.279 mW	279.593 mJ
 
 log/pqm4_mupq_crypto_sign_falcon1024_opt-leaktime.20191001105317
 Falcon-1024 (sk=2305, pk=1793, sl=1330)
-KeyGen: 380.245 Mcycles	  3.961 s	 58.814 mW	232.955 mJ
+KeyGen: 380.245 Mcycles	  3.961  s	 58.814 mW	232.955 mJ
 Sign:    79.360 Mcycles	826.666 ms	 54.746 mW	 45.257 mJ
 Verify:   1.013 Mcycles	 10.555 ms	 65.332 mW	689.552 μJ
-TOTAL:  460.618 Mcycles	  4.798 s	 58.101 mW	278.773 mJ
+TOTAL:  460.618 Mcycles	  4.798  s	 58.101 mW	278.773 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512_opt-ct.20190930101819
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 182.179 Mcycles	  1.898 s	 62.584 mW	118.766 mJ
+KeyGen: 182.179 Mcycles	  1.898  s	 62.584 mW	118.766 mJ
 Sign:    39.569 Mcycles	412.182 ms	 55.926 mW	 23.052 mJ
 Verify: 493.504 kcycles	  5.141 ms	 67.114 mW	345.010 μJ
-TOTAL:  222.242 Mcycles	  2.315 s	 61.407 mW	142.159 mJ
+TOTAL:  222.242 Mcycles	  2.315  s	 61.407 mW	142.159 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512_opt-ct.20190930120902
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 182.179 Mcycles	  1.898 s	 62.526 mW	118.655 mJ
+KeyGen: 182.179 Mcycles	  1.898  s	 62.526 mW	118.655 mJ
 Sign:    39.569 Mcycles	412.179 ms	 55.770 mW	 22.987 mJ
 Verify: 493.504 kcycles	  5.141 ms	 67.081 mW	344.838 μJ
-TOTAL:  222.242 Mcycles	  2.315 s	 61.055 mW	141.343 mJ
+TOTAL:  222.242 Mcycles	  2.315  s	 61.055 mW	141.343 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512_opt-ct.20190930150132
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 182.179 Mcycles	  1.898 s	 62.615 mW	118.824 mJ
+KeyGen: 182.179 Mcycles	  1.898  s	 62.615 mW	118.824 mJ
 Sign:    39.569 Mcycles	412.181 ms	 55.886 mW	 23.035 mJ
 Verify: 493.504 kcycles	  5.141 ms	 67.048 mW	344.673 μJ
-TOTAL:  222.242 Mcycles	  2.315 s	 61.046 mW	141.323 mJ
+TOTAL:  222.242 Mcycles	  2.315  s	 61.046 mW	141.323 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512_opt-ct.20191001125120
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 182.179 Mcycles	  1.898 s	 62.534 mW	118.671 mJ
+KeyGen: 182.179 Mcycles	  1.898  s	 62.534 mW	118.671 mJ
 Sign:    39.569 Mcycles	412.180 ms	 55.911 mW	 23.045 mJ
 Verify: 493.504 kcycles	  5.141 ms	 67.121 mW	345.049 μJ
-TOTAL:  222.242 Mcycles	  2.315 s	 61.115 mW	141.481 mJ
+TOTAL:  222.242 Mcycles	  2.315  s	 61.115 mW	141.481 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512_opt-leaktime.20190930093816
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 194.456 Mcycles	  2.026 s	 62.050 mW	125.687 mJ
+KeyGen: 194.456 Mcycles	  2.026  s	 62.050 mW	125.687 mJ
 Sign:    37.004 Mcycles	385.456 ms	 55.374 mW	 21.344 mJ
 Verify: 492.866 kcycles	  5.134 ms	 66.733 mW	342.607 μJ
-TOTAL:  231.953 Mcycles	  2.416 s	 59.872 mW	144.662 mJ
+TOTAL:  231.953 Mcycles	  2.416  s	 59.872 mW	144.662 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512_opt-leaktime.20190930130721
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 194.453 Mcycles	  2.026 s	 62.087 mW	125.761 mJ
+KeyGen: 194.453 Mcycles	  2.026  s	 62.087 mW	125.761 mJ
 Sign:    37.002 Mcycles	385.442 ms	 55.614 mW	 21.436 mJ
 Verify: 492.866 kcycles	  5.134 ms	 66.847 mW	343.194 μJ
-TOTAL:  231.949 Mcycles	  2.416 s	 59.933 mW	144.806 mJ
+TOTAL:  231.949 Mcycles	  2.416  s	 59.933 mW	144.806 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512_opt-leaktime.20190930164323
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 194.458 Mcycles	  2.026 s	 62.220 mW	126.033 mJ
+KeyGen: 194.458 Mcycles	  2.026  s	 62.220 mW	126.033 mJ
 Sign:    37.004 Mcycles	385.453 ms	 55.540 mW	 21.408 mJ
 Verify: 492.866 kcycles	  5.134 ms	 66.880 mW	343.362 μJ
-TOTAL:  231.955 Mcycles	  2.416 s	 60.042 mW	145.072 mJ
+TOTAL:  231.955 Mcycles	  2.416  s	 60.042 mW	145.072 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512_opt-leaktime.20191001130909
 Falcon-512 (sk=1281, pk=897, sl=690)
-KeyGen: 194.462 Mcycles	  2.026 s	 62.131 mW	125.855 mJ
+KeyGen: 194.462 Mcycles	  2.026  s	 62.131 mW	125.855 mJ
 Sign:    37.002 Mcycles	385.435 ms	 55.506 mW	 21.394 mJ
 Verify: 492.867 kcycles	  5.134 ms	 66.923 mW	343.583 μJ
-TOTAL:  231.956 Mcycles	  2.416 s	 59.960 mW	144.875 mJ
+TOTAL:  231.956 Mcycles	  2.416  s	 59.960 mW	144.875 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512-tree_opt-ct.20190930091623
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 200.931 Mcycles	  2.093 s	 61.892 mW	129.542 mJ
+KeyGen: 200.931 Mcycles	  2.093  s	 61.892 mW	129.542 mJ
 Sign:    18.187 Mcycles	189.450 ms	 60.062 mW	 11.379 mJ
 Verify: 492.423 kcycles	  5.129 ms	 66.993 mW	343.632 μJ
-TOTAL:  219.611 Mcycles	  2.288 s	 61.306 mW	140.244 mJ
+TOTAL:  219.611 Mcycles	  2.288  s	 61.306 mW	140.244 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512-tree_opt-ct.20190930131243
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 200.929 Mcycles	  2.093 s	 62.165 mW	130.112 mJ
+KeyGen: 200.929 Mcycles	  2.093  s	 62.165 mW	130.112 mJ
 Sign:    18.187 Mcycles	189.450 ms	 60.067 mW	 11.380 mJ
 Verify: 492.423 kcycles	  5.129 ms	 67.136 mW	344.367 μJ
-TOTAL:  219.609 Mcycles	  2.288 s	 61.516 mW	140.723 mJ
+TOTAL:  219.609 Mcycles	  2.288  s	 61.516 mW	140.723 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512-tree_opt-ct.20190930155455
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 200.931 Mcycles	  2.093 s	 62.116 mW	130.011 mJ
+KeyGen: 200.931 Mcycles	  2.093  s	 62.116 mW	130.011 mJ
 Sign:    18.187 Mcycles	189.450 ms	 60.274 mW	 11.419 mJ
 Verify: 492.423 kcycles	  5.129 ms	 67.230 mW	344.848 μJ
-TOTAL:  219.610 Mcycles	  2.288 s	 61.542 mW	140.783 mJ
+TOTAL:  219.610 Mcycles	  2.288  s	 61.542 mW	140.783 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512-tree_opt-ct.20191001131059
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 200.930 Mcycles	  2.093 s	 62.080 mW	129.934 mJ
+KeyGen: 200.930 Mcycles	  2.093  s	 62.080 mW	129.934 mJ
 Sign:    18.187 Mcycles	189.450 ms	 60.178 mW	 11.401 mJ
 Verify: 492.416 kcycles	  5.129 ms	 66.868 mW	342.989 μJ
-TOTAL:  219.610 Mcycles	  2.288 s	 61.754 mW	141.267 mJ
+TOTAL:  219.610 Mcycles	  2.288  s	 61.754 mW	141.267 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512-tree_opt-leaktime.20190930100322
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 199.371 Mcycles	  2.077 s	 60.725 mW	126.112 mJ
+KeyGen: 199.371 Mcycles	  2.077  s	 60.725 mW	126.112 mJ
 Sign:    20.277 Mcycles	211.218 ms	 57.150 mW	 12.071 mJ
 Verify: 493.468 kcycles	  5.140 ms	 67.061 mW	344.715 μJ
-TOTAL:  220.141 Mcycles	  2.293 s	 59.483 mW	136.403 mJ
+TOTAL:  220.141 Mcycles	  2.293  s	 59.483 mW	136.403 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512-tree_opt-leaktime.20190930120040
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 199.381 Mcycles	  2.077 s	 60.857 mW	126.393 mJ
+KeyGen: 199.381 Mcycles	  2.077  s	 60.857 mW	126.393 mJ
 Sign:    20.278 Mcycles	211.230 ms	 57.271 mW	 12.097 mJ
 Verify: 493.468 kcycles	  5.140 ms	 67.126 mW	345.047 μJ
-TOTAL:  220.153 Mcycles	  2.293 s	 59.574 mW	136.619 mJ
+TOTAL:  220.153 Mcycles	  2.293  s	 59.574 mW	136.619 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512-tree_opt-leaktime.20190930150459
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 199.383 Mcycles	  2.077 s	 60.952 mW	126.592 mJ
+KeyGen: 199.383 Mcycles	  2.077  s	 60.952 mW	126.592 mJ
 Sign:    20.281 Mcycles	211.258 ms	 57.353 mW	 12.116 mJ
 Verify: 493.468 kcycles	  5.140 ms	 67.187 mW	345.359 μJ
-TOTAL:  220.157 Mcycles	  2.293 s	 59.629 mW	136.748 mJ
+TOTAL:  220.157 Mcycles	  2.293  s	 59.629 mW	136.748 mJ
 
 log/pqm4_mupq_crypto_sign_falcon512-tree_opt-leaktime.20191001110347
 Falcon-512-tree (sk=57344, pk=897, sl=690)
-KeyGen: 199.382 Mcycles	  2.077 s	 60.856 mW	126.392 mJ
+KeyGen: 199.382 Mcycles	  2.077  s	 60.856 mW	126.392 mJ
 Sign:    20.282 Mcycles	211.267 ms	 57.313 mW	 12.108 mJ
 Verify: 493.468 kcycles	  5.140 ms	 67.166 mW	345.255 μJ
-TOTAL:  220.157 Mcycles	  2.293 s	 59.619 mW	136.724 mJ
+TOTAL:  220.157 Mcycles	  2.293  s	 59.619 mW	136.724 mJ
 

@@ -403,7 +403,7 @@ int main()
 	int ch;
 
 	ser.baud(115200);
-	ser.printf("\n[RESET] This is PQPowerShield! Welcome.\n\n");
+	ser.printf("\n[RESET] This is PQPowerSandwich! Welcome.\n\n");
  	ser.printf("SystemCoreClock         %lu\n", SystemCoreClock); 
 
 	//	set so that cycle counter can be read from  DWT->CYCCNT

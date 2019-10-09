@@ -19,7 +19,6 @@ to do similar energy measurements on desktop/laptop/server systems using
 Intel's built-in RAPL energy counters. See the directory 
 [pqps/suppercop](suppercop) for a discussion about that.
 
-
 ##  Embedded Measurements
 
 This little tutorial and software package explains how to use the
@@ -144,7 +143,6 @@ The current measurement program (`main.cpp`) uses pin D7 on the Nucleo64 board
 to trigger beginning of measurements. This is supported by the standard 
 firmware.
 
-
 ### Note on the serial interface
 
 We will be dealing with two serial interfaces simultaneously; on my
@@ -169,9 +167,9 @@ know how to make that work (and it actually sounds littble bit crazy).
 My pqps firmware is configured to communicate at 115200 baud; add `-b 115200`
 as a picocom parameter if needed. This is easily changed in `main.cpp`.
 
-## Building and testing
+### Building PQM4
 
-The measurement is ran on implementations from the 
+The measurement wass ran on implementations from the 
 [pqm4](https://github.com/mupq/pqm4) "Post-quantum crypto library for the 
 ARM Cortex-M4". However I'm using a different target board and the 
 [ARM Mbed OS v2](https://os.mbed.com/) runtime libraries instead of
@@ -190,22 +188,7 @@ If everything is fine, you can attempt to build some target with
 $ make PQALG=pqm4/crypto_kem/kyber768/m4
 
 [CPP] main.cpp
-[AS] aes.S
-[AS] keccakf1600.S
-[CC] randombytes.c
-[CC] aes.c
-[CC] sha2.c
-[CC] fips202.c
-[CC] sp800-185.c
-[CC] cbd.c
-[CC] polyvec.c
-[CC] ntt.c
-[CC] reduce.c
-[CC] symmetric-fips202.c
-[CC] poly.c
-[CC] verify.c
-[CC] kem.c
-[CC] indcpa.c
+[..]
 [AS] fastntt.S
 cp ../mbed/TARGET_NUCLEO_F411RE/TOOLCHAIN_GCC_ARM/STM32F411XE.ld pqps.link_script.ld
 link: pqps.elf
@@ -213,7 +196,19 @@ arm-none-eabi-objcopy -O ihex pqps.elf pqps.hex
 ```
 
 The `PQALG` argument is needed and points to a directory containing
-the target implementation. If the build was successful, `BUILD/pqps.hex` 
+the target implementation. 
+
+### ECDSA and ECDH
+
+The directory [mecc](mecc) contains wrappers that I wrote for Kem MacKay's 
+[micro-ecc](https://github.com/kmackay/micro-ecc), which may be used 
+as a reference point. The compilation and testing mechanism is exactly the
+same as for PQM4 algorithms (ECDH is modeled as a KEM).
+
+
+### Flashing
+
+If the build was successful, `BUILD/pqps.hex` 
 contains a firmware image that can be flashed with stlink:
 
 ```
@@ -268,7 +263,7 @@ a
 [INPUT] a = all, k = keygen, e = encaps, d = decaps
 ```
 
-## Measurements
+### Measurements
 
 * Take a look at `main.cpp` to see what you want to actually measure.
 
@@ -284,7 +279,7 @@ in random order and write results to `logs`.
 file [log/parsed_data.txt](log/parsed_data.txt) with
 
 ```
-$ for f in log/*; do echo $f; cat $f | ./parselog.py;echo; done > log/parsed_data.txt
+$ for f in log/*; do echo $f; cat $f | ./parselog.py; echo; done > log/parsed_data.txt
 ```
 
 ## Summary 
@@ -306,7 +301,7 @@ algorithm.
 running each component for at least 10 seconds in each (typically
 tens or hundreds of iterations), and the results
 are quite consistent. You may look at the semi-processed data 
-[parsed_data.txt](parsed_data.txt) if you like. Note that many
+[parsed_data.txt](log/parsed_data.txt) if you like. Note that many
 algorithms have several implementations (check out the name).
 
 
@@ -322,7 +317,8 @@ Sorted by incresing verify energy.
 |Dilithium2           |   1.074 mJ |   3.780 mJ |   1.131 mJ |   5.973 mJ |
 |Dilithium3           |   1.760 mJ |   5.748 mJ |   1.706 mJ |   9.219 mJ |
 |Dilithium4           |   2.384 mJ |   5.825 mJ |   2.430 mJ |  10.645 mJ |
-
+|*ECDSA-secp256k1*    |   2.743 mJ |   3.027 mJ |   3.079 mJ |   8.847 mJ |
+|*ECDSA-secp256r1*    |   3.581 mJ |   3.863 mJ |   4.138 mJ |  11.592 mJ |
 
 ### KEM Energy
 
@@ -361,7 +357,9 @@ Sorted by increasing total ("key exchange") energy.
 |LAC128               |   1.177 mJ |   2.043 mJ |   3.195 mJ |   6.413 mJ |
 |R5N1_1KEM_0d (sneik) |   2.578 mJ |   2.064 mJ |   2.318 mJ |   6.943 mJ |
 |R5N1_1KEM_0d         |   3.232 mJ |   3.065 mJ |   3.650 mJ |   9.948 mJ |
+|*ECDH-secp256k1*     |	  2.800 mJ |   5.595 mJ |   2.795 mJ |  11.188 mJ |
 |R5N1_3KEM_0d (sneik) |   4.228 mJ |   4.111 mJ |   4.447 mJ |  12.767 mJ |
+|*ECDH-secp256r1*     |   3.662 mJ |   7.269 mJ |   3.654 mJ |  14.494 mJ |
 |R5N1_3KEM_0d         |   5.063 mJ |   4.984 mJ |   5.731 mJ |  15.747 mJ |
 |LAC192               |   3.915 mJ |   5.222 mJ |   9.680 mJ |  18.823 mJ |
 |LAC256               |   4.079 mJ |   7.158 mJ |  11.709 mJ |  22.971 mJ |
