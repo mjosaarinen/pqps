@@ -279,7 +279,7 @@ in random order and write results to `logs`.
 file [log/parsed_data.txt](log/parsed_data.txt) with
 
 ```
-$ for f in log/*; do echo $f; cat $f | ./parselog.py; echo; done > log/parsed_data.txt
+$ ./parselog.py log/* > log/parsed_data.txt
 ```
 
 ## Summary 
