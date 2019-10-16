@@ -36,6 +36,27 @@ void my_random_seed(int seed);
 #define MESSAGE_BYTES sizeof(uint64_t) 
 #endif
 
+uint64_t scc_ms = 96000;					//	clocks per millisecond
+uint64_t ofl_ms = 44739;					//	milliseconds per overflow
+
+#define CYCLES_VARS							\
+	int ms;									\
+	uint32_t t;
+
+
+#define CYCLES_START {						\
+	ms = timer.read_ms();					\
+	t = DWT->CYCCNT;						\
+}
+
+#define CYCLES_ADD(cc) {					\
+	t = DWT->CYCCNT - t;					\
+	cc += (uint64_t) t;						\
+	ms = timer.read_ms() - ms;				\
+	ms -= ((uint64_t) t) / scc_ms;			\
+	cc += ((uint64_t) (ms / ofl_ms)) << 32;	\
+}
+
 //	mbed
 
 Serial ser(SERIAL_TX, SERIAL_RX);
@@ -163,10 +184,9 @@ int test_alg(int ms_time)
 
 int measure(int ms_time, int do_kg, int do_sg, int do_so)
 {
-	int r, ms;
-	uint32_t t;
-
+	int r;
 	uint64_t n, kg, sg, so;
+	CYCLES_VARS
 
 	//	make sure that there is a keypair
 	if (!do_kg && !init_sign)
@@ -189,27 +209,24 @@ int measure(int ms_time, int do_kg, int do_sg, int do_so)
 		memcpy(m, &n, sizeof(n));
 
 		if (do_kg) {
-			t = DWT->CYCCNT;
+			CYCLES_START
 			if (crypto_sign_keypair(pk, sk))
 				r++;
-			t = DWT->CYCCNT - t;
-			kg += (uint64_t) t;
+			CYCLES_ADD(kg)
 		}
 
 		if (do_sg) {
-			t = DWT->CYCCNT;
+			CYCLES_START
 			if (crypto_sign(sm, &sm_len, m, MESSAGE_BYTES, sk))
 				r++;
-			t = DWT->CYCCNT - t;
-			sg += (uint64_t) t;
+			CYCLES_ADD(sg)
 		}
 	
 		if (do_so) {
-			t = DWT->CYCCNT;
+			CYCLES_START
 			if (crypto_sign_open(m, &m_len, sm, sm_len, pk))
 				r++;
-			t = DWT->CYCCNT - t;
-			so += (uint64_t) t;
+			CYCLES_ADD(so)
 		}
 
 		ms = timer.read_ms();
@@ -321,10 +338,9 @@ int test_alg(int ms_time)
 
 int measure(int ms_time, int do_kg, int do_enc, int do_dec)
 {
-	int r, ms;
-	uint32_t t;
-
+	int r;
 	uint64_t n, kg, enc, dec;
+	CYCLES_VARS
 
 	//	make sure that there is a keypair
 	if (!do_kg && !init_kem)
@@ -347,27 +363,24 @@ int measure(int ms_time, int do_kg, int do_enc, int do_dec)
 		n++;
 
 		if (do_kg) {
-			t = DWT->CYCCNT;
+			CYCLES_START
 			if (crypto_kem_keypair(pk, sk))
 				r++;
-			t = DWT->CYCCNT - t;
-			kg += (uint64_t) t;
+			CYCLES_ADD(kg)
 		}
 
 		if (do_enc) {
-			t = DWT->CYCCNT;
+			CYCLES_START
 			if (crypto_kem_enc(ct, s1, pk))
 				r++;
-			t = DWT->CYCCNT - t;
-			enc += (uint64_t) t;
+			CYCLES_ADD(enc)
 		}
 
 		if (do_dec) {
-			t = DWT->CYCCNT;
+			CYCLES_START
 			if (crypto_kem_dec(s2, ct, sk))
 				r++;
-			t = DWT->CYCCNT - t;
-			dec += (uint64_t) t;
+			CYCLES_ADD(dec)
 		}
 
 		ms = timer.read_ms();
@@ -397,7 +410,6 @@ int measure(int ms_time, int do_kg, int do_enc, int do_dec)
 
 #endif	/* TEST_KEM */
 
-
 int main()
 {
 	int ch;
@@ -405,6 +417,9 @@ int main()
 	ser.baud(115200);
 	ser.printf("\n[RESET] This is PQPowerSandwich! Welcome.\n\n");
  	ser.printf("SystemCoreClock         %lu\n", SystemCoreClock); 
+	
+	scc_ms = SystemCoreClock / 1000;
+	ofl_ms = 4294967295 / scc_ms;
 
 	//	set so that cycle counter can be read from  DWT->CYCCNT
 	CoreDebug->DEMCR |= CoreDebug_DEMCR_TRCENA_Msk;

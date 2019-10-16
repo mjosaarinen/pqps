@@ -126,7 +126,15 @@ for fn in sys.argv[1:]:
 	kem = ct_l > 0
 
 	if fn.find("sneik") != -1:
-		algn = algn + "-sneik"		
+		algn = algn + "-sneik"		# add identifier (otherwise same)
+
+	#	only cca
+#	if algn.find("Ephem") != -1:
+#		continue
+#	if algn.find("CPAKEM") != -1:
+#		continue
+
+	#	take the best implementation
 
 	if kem:
 		tot = keygen + encaps + decaps
@@ -140,6 +148,18 @@ for fn in sys.argv[1:]:
 			continue
 		sgns[algn] = ( (tot, keygen, sign, verify), tuple(watt),
 						(sk_l, pk_l, ss_l) )
+
+#	really short summaries
+#for x in sgns:
+#	s = f"| {x:20} |"
+#	for i in [ 1, 2, 3, 0 ]:
+#		s += " " + units(sgns[x][0][i] * sgns[x][1][i] / cclk) + "J |"
+#	print(s)
+#for x in kems:
+#	s = f"| {x:20} |"
+#	for i in [ 1, 2, 3, 0 ]:
+#		s += " " + units(kems[x][0][i] * kems[x][1][i] / cclk) + "J |"
+#	print(s)
 
 #	summary results
 

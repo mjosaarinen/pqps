@@ -305,10 +305,10 @@ Decaps:   3.480 Gclk	 36.253  s	 69.105 mW	  2.505  J
 TOTAL:    8.821 Gclk	 91.883  s	 68.747 mW	  6.317  J
 
 SIKEp751 (sk=644, pk=564, ct=596, ss=32)
-KeyGen:   3.404 Gclk	 35.461  s	 67.206 mW	  2.383  J
-Encaps:   1.226 Gclk	 12.776  s	 67.881 mW	867.229 mJ
-Decaps:   1.635 Gclk	 17.035  s	 67.938 mW	  1.157  J
-TOTAL:    6.266 Gclk	 65.271  s	 67.198 mW	  4.386  J
+KeyGen:   3.404 Gclk	 35.461  s	 67.765 mW	  2.403  J
+Encaps:   5.521 Gclk	 57.515  s	 68.408 mW	  3.934  J
+Decaps:   5.930 Gclk	 61.774  s	 68.590 mW	  4.237  J
+TOTAL:   14.856 Gclk	154.750  s	 67.714 mW	 10.479  J
 
 sntrup653 (sk=1518, pk=994, ct=897, ss=32)
 KeyGen: 600.349 Mclk	  6.254  s	 46.387 mW	290.085 mJ

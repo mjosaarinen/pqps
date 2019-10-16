@@ -282,7 +282,7 @@ file [log/parsed_data.txt](log/parsed_data.txt) with
 $ ./parselog.py log/* > log/parsed_data.txt
 ```
 
-## Summary 
+## Preliminary Summary 
 
 * In practice we
 saw current wander between 10 mA and 38 mA with stabilized 3V voltage,
@@ -301,86 +301,84 @@ algorithm.
 running each component for at least 10 seconds in each (typically
 tens or hundreds of iterations), and the results
 are quite consistent. You may look at the semi-processed data 
-[parsed_data.txt](log/parsed_data.txt) if you like. Note that many
-algorithms have several implementations (check out the name).
-
+[log/parsed_data.txt](log/parsed_data.txt) if you like. 
 
 ### Signature Energy
 
-Sorted by incresing verify energy.
+Sorted by increasing verify energy.
 
-| Algorithm	          | KeyGen     | Sign       | Verify     |     TOTAL  |
-| ------------------- | ---------: | ---------: | ---------: | ---------: |
-|Falcon-512           | 118.655 mJ |  22.987 mJ | 344.838 μJ | 141.343 mJ |
-|Falcon-512-tree      | 126.393 mJ |  12.097 mJ | 345.047 μJ | 136.619 mJ |
-|Falcon-1024          | 257.909 mJ |  48.525 mJ | 689.570 μJ | 308.301 mJ |
-|Dilithium2           |   1.074 mJ |   3.780 mJ |   1.131 mJ |   5.973 mJ |
-|Dilithium3           |   1.760 mJ |   5.748 mJ |   1.706 mJ |   9.219 mJ |
-|Dilithium4           |   2.384 mJ |   5.825 mJ |   2.430 mJ |  10.645 mJ |
-|*ECDSA-secp256k1*    |   2.743 mJ |   3.027 mJ |   3.079 mJ |   8.847 mJ |
-|*ECDSA-secp256r1*    |   3.581 mJ |   3.863 mJ |   4.138 mJ |  11.592 mJ |
+| Algorithm	           | KeyGen     | Sign       | Verify     |     TOTAL  |
+| -------------------- | ---------: | ---------: | ---------: | ---------: |
+| Falcon-512-tree      | 130.429 mJ |  11.401 mJ | 342.666 μJ | 141.292 mJ | 
+| Falcon-512           | 118.671 mJ |  23.045 mJ | 345.049 μJ | 141.481 mJ | 
+| Falcon-1024          | 232.567 mJ |  45.192 mJ | 690.020 μJ | 279.593 mJ | 
+| Dilithium2           |   1.073 mJ |   3.777 mJ |   1.121 mJ |   5.969 mJ | 
+| Dilithium3           |   1.760 mJ |   5.746 mJ |   1.705 mJ |   9.216 mJ | 
+| Dilithium4           |   2.389 mJ |   5.834 mJ |   2.436 mJ |  10.659 mJ | 
+| ECDSA-secp256k1      |   2.741 mJ |   3.028 mJ |   3.078 mJ |   8.849 mJ | 
+| ECDSA-secp256r1      |   3.582 mJ |   3.864 mJ |   4.142 mJ |  11.578 mJ | 
 
 ### KEM Energy
 
 Sorted by increasing total ("key exchange") energy.
 
-| Algorithm	          | KeyGen     | Encaps     | Decaps     |     TOTAL  |
-| ------------------- | ---------: | ---------: | ---------: | ---------: |
-|R5ND_1KEM_0d (sneik) | 141.772 μJ | 217.855 μJ | 249.400 μJ | 608.979 μJ |
-|R5ND_1KEM_0d         | 198.684 μJ | 302.225 μJ | 350.382 μJ | 850.914 μJ |
-|NewHope512-CPAKEM    | 406.786 μJ | 565.863 μJ |  73.115 μJ |   1.045 mJ |
-|R5ND_1KEM_5d         | 263.490 μJ | 407.069 μJ | 527.827 μJ |   1.198 mJ |
-|BabyBearEphem        | 486.618 μJ | 620.858 μJ | 195.841 μJ |   1.303 mJ |
-|Kyber512             | 414.146 μJ | 534.836 μJ | 509.484 μJ |   1.458 mJ |
-|LightSaber           | 394.382 μJ | 561.079 μJ | 589.476 μJ |   1.545 mJ |
-|R5ND_3KEM_5d (sneik) | 345.262 μJ | 595.979 μJ | 723.238 μJ |   1.664 mJ |
-|NewHope512-CCAKEM    | 484.444 μJ | 751.010 μJ | 735.068 μJ |   1.969 mJ |
-|BabyBear             | 486.745 μJ | 598.762 μJ | 904.495 μJ |   1.990 mJ |
-|NewHope1024-CPAKEM   | 801.470 μJ |   1.110 mJ | 132.155 μJ |   2.043 mJ |
-|R5ND_3KEM_5d         | 493.941 μJ | 749.414 μJ | 945.253 μJ |   2.186 mJ |
-|MamaBearEphem        | 949.155 μJ |   1.116 mJ | 266.321 μJ |   2.331 mJ |
-|R5ND_3KEM_0d (sneik) | 520.033 μJ | 844.171 μJ |   1.046 mJ |   2.413 mJ |
-|R5ND_3KEM_5d (sneik) | 484.466 μJ | 868.059 μJ |   1.095 mJ |   2.447 mJ |
-|Kyber768             | 772.271 μJ | 920.445 μJ | 876.267 μJ |   2.568 mJ |
-|Saber                | 771.151 μJ |   1.008 mJ |   1.051 mJ |   2.829 mJ |
-|R5ND_5KEM_5d (sneik) | 659.994 μJ |   1.037 mJ |   1.310 mJ |   2.992 mJ |
-|R5ND_3KEM_0d         | 718.093 μJ |   1.030 mJ |   1.315 mJ |   3.061 mJ |
-|LightSaber           | 752.380 μJ |   1.105 mJ |   1.320 mJ |   3.172 mJ |
-|MamaBear             | 941.644 μJ |   1.085 mJ |   1.519 mJ |   3.546 mJ |
-|R5ND_5KEM_5d         | 850.040 μJ |   1.227 mJ |   1.571 mJ |   3.647 mJ |
-|PapaBearEphem        |   1.563 mJ |   1.760 mJ | 338.313 μJ |   3.662 mJ |
-|NewHope1024-CCAKEM   | 957.152 μJ |   1.452 mJ |   1.433 mJ |   3.840 mJ |
-|R5ND_5KEM_0d         | 929.557 μJ |   1.346 mJ |   1.730 mJ |   4.001 mJ |
-|Kyber1024            |   1.265 mJ |   1.443 mJ |   1.383 mJ |   4.089 mJ |
-|FireSaber            |   1.239 mJ |   1.530 mJ |   1.592 mJ |   4.359 mJ |
-|PapaBear             |   1.553 mJ |   1.729 mJ |   2.298 mJ |   5.580 mJ |
-|LAC128               |   1.177 mJ |   2.043 mJ |   3.195 mJ |   6.413 mJ |
-|R5N1_1KEM_0d (sneik) |   2.578 mJ |   2.064 mJ |   2.318 mJ |   6.943 mJ |
-|R5N1_1KEM_0d         |   3.232 mJ |   3.065 mJ |   3.650 mJ |   9.948 mJ |
-|*ECDH-secp256k1*     |	  2.800 mJ |   5.595 mJ |   2.795 mJ |  11.188 mJ |
-|R5N1_3KEM_0d (sneik) |   4.228 mJ |   4.111 mJ |   4.447 mJ |  12.767 mJ |
-|*ECDH-secp256r1*     |   3.662 mJ |   7.269 mJ |   3.654 mJ |  14.494 mJ |
-|R5N1_3KEM_0d         |   5.063 mJ |   4.984 mJ |   5.731 mJ |  15.747 mJ |
-|LAC192               |   3.915 mJ |   5.222 mJ |   9.680 mJ |  18.823 mJ |
-|LAC256               |   4.079 mJ |   7.158 mJ |  11.709 mJ |  22.971 mJ |
-|NTRU-HPS2048509      |  34.424 mJ | 395.641 μJ | 479.611 μJ |  35.238 mJ |
-|R5N1_5KEM_0d (sneik) |  18.439 mJ |  11.671 mJ |  12.694 mJ |  42.764 mJ |
-|R5N1_5KEM_0d         |  20.821 mJ |  13.616 mJ |  16.095 mJ |  50.360 mJ |
-|NTRU-HPS2048677      |  60.518 mJ | 582.010 μJ | 738.151 μJ |  61.832 mJ |
-|NTRU-HRSS701         |  66.145 mJ | 329.634 μJ | 781.451 μJ |  67.203 mJ |
-|NTRU-HPS4096821      |  90.228 mJ | 732.298 μJ | 949.801 μJ |  91.964 mJ |
-|FrodoKEM-640-AES     |  37.184 mJ |  35.051 mJ |  34.475 mJ | 106.700 mJ |
-|ntrulpr653           |  27.734 mJ |  55.236 mJ |  82.591 mJ | 164.570 mJ |
-|FrodoKEM-640-SHAKE   |  65.816 mJ |  64.876 mJ |  64.375 mJ | 195.017 mJ |
-|ntrulpr761           |  38.159 mJ |  75.781 mJ | 112.258 mJ | 227.019 mJ |
-|ntrulpr857           |  47.703 mJ |  95.338 mJ | 142.195 mJ | 282.846 mJ |
-|sntrup653            | 289.820 mJ |  28.147 mJ |  83.878 mJ | 401.899 mJ |
-|sntrup761            | 392.530 mJ |  37.841 mJ | 112.584 mJ | 546.108 mJ |
-|sntrup857            | 499.477 mJ |  48.632 mJ | 141.440 mJ | 720.013 mJ |
-|SIKEp434             | 471.009 mJ | 774.717 mJ | 826.136 mJ |   2.069  J |
-|SIKEp503             | 718.763 mJ |   1.187  J |   1.266  J |   3.162  J |
-|SIKEp751             |   2.386  J | 868.082 mJ |   1.159  J |   4.391  J |
-|SIKEp610             |   1.350  J |   2.491  J |   2.504  J |   6.313  J |
+| Algorithm	           | KeyGen     | Encaps     | Decaps     |     TOTAL  |
+| -------------------- | ---------: | ---------: | ---------: | ---------: |
+| R5ND_1KEM_0d-sneik   | 141.996 μJ | 217.931 μJ | 249.568 μJ | 609.964 μJ | 
+| R5ND_1KEM_5d-sneik   | 173.318 μJ | 283.319 μJ | 365.496 μJ | 822.500 μJ | 
+| R5ND_1KEM_0d         | 232.057 μJ | 353.552 μJ | 414.005 μJ | 997.273 μJ | 
+| NewHope512-CPAKEM    | 407.261 μJ | 566.692 μJ |  73.184 μJ |   1.046 mJ | 
+| R5ND_1KEM_5d         | 263.486 μJ | 407.138 μJ | 527.939 μJ |   1.199 mJ | 
+| BabyBearEphem        | 486.618 μJ | 620.858 μJ | 195.841 μJ |   1.303 mJ | 
+| Kyber512             | 413.565 μJ | 533.953 μJ | 508.782 μJ |   1.456 mJ | 
+| LightSaber           | 393.189 μJ | 559.310 μJ | 587.781 μJ |   1.540 mJ | 
+| R5ND_3KEM_5d-sneik   | 345.666 μJ | 597.463 μJ | 724.382 μJ |   1.668 mJ | 
+| NewHope512-CCAKEM    | 483.852 μJ | 750.133 μJ | 733.988 μJ |   1.966 mJ | 
+| BabyBear             | 486.745 μJ | 598.762 μJ | 904.495 μJ |   1.990 mJ | 
+| NewHope1024-CPAKEM   | 802.005 μJ |   1.111 mJ | 132.250 μJ |   2.044 mJ | 
+| R5ND_3KEM_5d         | 493.941 μJ | 749.414 μJ | 945.253 μJ |   2.186 mJ | 
+| MamaBearEphem        | 948.591 μJ |   1.115 mJ | 266.277 μJ |   2.330 mJ | 
+| R5ND_3KEM_0d-sneik   | 520.562 μJ | 845.996 μJ |   1.047 mJ |   2.416 mJ | 
+| Kyber768             | 772.271 μJ | 920.445 μJ | 876.267 μJ |   2.568 mJ | 
+| Saber                | 771.151 μJ |   1.008 mJ |   1.051 mJ |   2.829 mJ | 
+| R5ND_5KEM_5d-sneik   | 662.612 μJ |   1.041 mJ |   1.309 mJ |   2.997 mJ | 
+| R5ND_3KEM_0d         | 718.645 μJ |   1.029 mJ |   1.316 mJ |   3.066 mJ | 
+| R5ND_5KEM_0d-sneik   | 754.248 μJ |   1.201 mJ |   1.491 mJ |   3.454 mJ | 
+| MamaBear             | 941.423 μJ |   1.084 mJ |   1.518 mJ |   3.552 mJ | 
+| R5ND_5KEM_5d         | 850.040 μJ |   1.227 mJ |   1.571 mJ |   3.647 mJ | 
+| PapaBearEphem        |   1.565 mJ |   1.762 mJ | 338.695 μJ |   3.666 mJ | 
+| NewHope1024-CCAKEM   | 959.295 μJ |   1.456 mJ |   1.436 mJ |   3.847 mJ | 
+| R5ND_5KEM_0d         | 930.329 μJ |   1.348 mJ |   1.730 mJ |   4.006 mJ | 
+| Kyber1024            |   1.265 mJ |   1.442 mJ |   1.383 mJ |   4.090 mJ | 
+| FireSaber            |   1.241 mJ |   1.533 mJ |   1.596 mJ |   4.366 mJ | 
+| PapaBear             |   1.554 mJ |   1.729 mJ |   2.299 mJ |   5.582 mJ | 
+| LAC128               |   1.176 mJ |   2.043 mJ |   3.195 mJ |   6.412 mJ | 
+| R5N1_1KEM_0d-sneik   |   2.578 mJ |   2.064 mJ |   2.318 mJ |   6.943 mJ | 
+| R5N1_1KEM_0d         |   3.232 mJ |   3.065 mJ |   3.650 mJ |   9.948 mJ | 
+| ECDH-secp256k1       |   2.799 mJ |   5.594 mJ |   2.801 mJ |  11.183 mJ | 
+| R5N1_3KEM_0d-sneik   |   4.228 mJ |   4.111 mJ |   4.447 mJ |  12.767 mJ | 
+| ECDH-secp256r1       |   3.663 mJ |   7.267 mJ |   3.656 mJ |  14.489 mJ | 
+| R5N1_3KEM_0d         |   5.063 mJ |   4.987 mJ |   5.735 mJ |  15.801 mJ | 
+| LAC192               |   3.916 mJ |   5.267 mJ |   9.698 mJ |  18.827 mJ | 
+| LAC256               |   4.079 mJ |   7.158 mJ |  11.709 mJ |  22.971 mJ | 
+| NTRU-HPS2048509      |  34.424 mJ | 395.641 μJ | 479.611 μJ |  35.238 mJ | 
+| R5N1_5KEM_0d-sneik   |  18.436 mJ |  11.670 mJ |  12.695 mJ |  42.801 mJ | 
+| R5N1_5KEM_0d         |  20.821 mJ |  13.616 mJ |  16.095 mJ |  50.360 mJ | 
+| NTRU-HPS2048677      |  60.625 mJ | 582.792 μJ | 739.031 μJ |  61.850 mJ | 
+| NTRU-HRSS701         |  66.152 mJ | 328.829 μJ | 776.016 μJ |  67.220 mJ | 
+| NTRU-HPS4096821      |  90.313 mJ | 731.073 μJ | 949.618 μJ |  91.983 mJ | 
+| FrodoKEM-640-AES     |  37.279 mJ |  35.083 mJ |  34.522 mJ | 106.753 mJ | 
+| ntrulpr653           |  27.734 mJ |  55.236 mJ |  82.591 mJ | 164.570 mJ | 
+| FrodoKEM-640-SHAKE   |  65.872 mJ |  64.942 mJ |  64.416 mJ | 195.112 mJ | 
+| ntrulpr761           |  38.117 mJ |  76.138 mJ | 112.341 mJ | 225.966 mJ | 
+| ntrulpr857           |  47.638 mJ |  95.158 mJ | 141.930 mJ | 282.490 mJ | 
+| sntrup653            | 290.085 mJ |  28.205 mJ |  83.343 mJ | 401.405 mJ | 
+| sntrup761            | 392.530 mJ |  37.841 mJ | 112.584 mJ | 546.108 mJ | 
+| sntrup857            | 499.477 mJ |  48.632 mJ | 141.440 mJ | 720.013 mJ | 
+| SIKEp434             | 471.009 mJ | 774.717 mJ | 826.136 mJ |   2.069  J | 
+| SIKEp503             | 718.763 mJ |   1.187  J |   1.266  J |   3.162  J | 
+| SIKEp610             |   1.346  J |   2.491  J |   2.505  J |   6.317  J | 
+| SIKEp751             |   2.403  J |   3.934  J |   4.237  J |  10.479  J | 
 
 **NB.** The SIKE energy numbers may be little off if the power consumption
 drifts during processing (average power measurements is based only on first 10 
