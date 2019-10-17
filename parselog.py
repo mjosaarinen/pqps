@@ -8,8 +8,6 @@
 import sys
 import time
 
-
-
 # prettyprint units
 
 def units(x):
