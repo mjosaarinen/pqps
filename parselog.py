@@ -29,7 +29,7 @@ def units(x):
 		return f'{1E-6*x:7.3f} M'
 	if (abs(x) < 1E12):
 		return f'{1E-9*x:7.3f} G'
-	return f'{x:8g}'
+	return f'{x:10g}'
 
 def stats(cyc,pw):
 	return units(cyc)+"clk" + "\t" + units(cyc/cclk)+"s" + "\t" + \
