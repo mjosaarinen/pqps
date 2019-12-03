@@ -4,6 +4,10 @@
 
 **Experimental** tools for PQC energy measurements.
 
+2019-12-02: There's a write-up about this now on arXiv: [Mobile Energy Requirements of the Upcoming NIST Post-Quantum Cryptography Standards](https://arxiv.org/abs/1912.00916). 
+The results were first presented at the 7th ETSI/IQC Quantum Safe 
+Cryptography Workshop in Seattle on November 7, 2019: [slides](https://docbox.etsi.org/Workshop/2019/201911_QSCWorkshop/TECHNICAL_TRACK/05_PROTOTYPING_RESOURCE_CONSTRAINTS/PQSHIELD_SAARINEN.pdf).
+
 # What's this about ?
 
 My original motivation was to establish a straightforward model from 
